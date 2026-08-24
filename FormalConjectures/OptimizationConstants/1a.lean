@@ -33,6 +33,7 @@ namespace Constant1a
 The biggest real number satisfying a certain inequality about (auto)convolutions
 and $L^2$-norms of functions.
 This number is related to the maximal size of Sidon sets in additive combinatorics. -/
+@[optimization_constant "1a"]
 noncomputable def C1a : ℝ :=
   sSup {C : ℝ | ∀ ⦃f : ℝ → ℝ⦄, 0 ≤ f →  C * (∫ x in (- 1 / 4)..(1 / 4), f x) ^ 2
     ≤ sSup {∫ x, f (t - x) * f x | t ∈ Icc (1 / 2 : ℝ) 1}}
