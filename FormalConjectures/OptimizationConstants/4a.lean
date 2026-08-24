@@ -1,0 +1,79 @@
+/-
+Copyright 2026 The Formal Conjectures Authors.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-/
+import FormalConjecturesUtil
+
+/-!
+# Tao's Optimization constant 4a / The cap set constant
+
+⚠️ This file was written by AI and has not been reviewed, it may contain mistakes or
+hallucinations.
+
+*References:*
+- [Tao's optimization constant 4a](https://teorth.github.io/optimizationproblems/constants/4a.html)
+- [EG2016] Ellenberg, J. S.; Gijswijt, D. "On large subsets of $\mathbb{F}_q^n$ with no
+  three-term arithmetic progression." Annals of Mathematics 185 (2017), 339–343.
+  [arXiv:1605.09223](https://arxiv.org/abs/1605.09223)
+- [E2004] Edel, Y. "Extensions of generalized product caps." Designs, Codes and Cryptography 31
+  (2004), 5–14.
+- [RBNBKDREWFKF2023] Romera-Paredes, B. et al. "Mathematical discoveries from program search
+  with large language models." Nature 625 (2024), 468–475. FunSearch.
+- [ZWLPLZJZZZ2025] X-evolve construction, 2025.
+-/
+
+open Filter
+
+namespace Constant4a
+
+/-- The largest size of a cap set in $\mathbb{F}_3^n$, i.e. of a subset containing no line
+(equivalently, no non-trivial three-term arithmetic progression). -/
+noncomputable def capSetCard (n : ℕ) : ℕ :=
+  Finset.maxAPFreeCard 3 (Finset.univ : Finset (𝔽₃ n))
+
+/-- **Tao's Optimization constant 4a / The cap set constant**:
+the growth rate $\lim_n r(n)^{1/n}$ of the largest cap set in $\mathbb{F}_3^n$. We take a
+`limsup` so that the definition does not presuppose the existence of the limit. -/
+@[optimization_constant "4a"]
+noncomputable def C4a : ℝ := limsup (fun n : ℕ => (capSetCard n : ℝ) ^ ((n : ℝ)⁻¹)) atTop
+
+/-- The best known lower bound $2.2203$, from the X-evolve construction
+[ZWLPLZJZZZ2025], refining the FunSearch construction [RBNBKDREWFKF2023] and Edel's
+construction [E2004]. -/
+@[category research solved, AMS 5 11]
+theorem c4a_lower_bound : 2.2203 ≤ C4a := by
+  sorry
+
+/-- The best known upper bound $2.756$, proven by Ellenberg-Gijswijt in [EG2016] with the
+polynomial method. -/
+@[category research solved, AMS 5 11]
+theorem c4a_upper_bound : C4a ≤ 2.756 := by
+  sorry
+
+/-- How can the upper bound be improved? -/
+@[category research open, AMS 5 11]
+theorem mem_Ico_c4a : answer(sorry) ∈ Set.Ico C4a 2.756 := by
+  sorry
+
+/-- How can the lower bound be improved? -/
+@[category research open, AMS 5 11]
+theorem mem_Ioc_c4a : answer(sorry) ∈ Set.Ioc 2.2203 C4a := by
+  sorry
+
+/-- What is the exact value of the constant? -/
+@[category research open, AMS 5 11]
+theorem c4a_eq : C4a = answer(sorry) := by
+  sorry
+
+end Constant4a
