@@ -51,7 +51,7 @@ noncomputable def C27a : ℕ∞ :=
 /-- Trivial lower bound. An equilateral triangle of side length $1$ forces three colors. -/
 @[category research solved, AMS 5 52]
 theorem c27a_lower_bound_trivial : 3 ≤ C27a := by
-  sorry
+  exact Erdos508.HadwigerNelsonAtLeastThree
 
 /-- Lower bound from [MM1961] (1961). Moser spindle: a $7$-vertex unit-distance graph with chromatic
 number $4$. -/

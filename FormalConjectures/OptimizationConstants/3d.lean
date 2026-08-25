@@ -89,7 +89,28 @@ theorem c3d_lower_bound_lili26 : 2 ≤ C3d := by
 -/
 @[category research solved, AMS 5 11]
 theorem c3d_upper_bound_ru96 : C3d ≤ 2 := by
-  sorry
+  refine Real.sSup_le ?_ (by norm_num)
+  rintro t ⟨A, hA2, hδ, rfl⟩
+  have hAne : A.Nonempty := Finset.card_pos.mp (by omega)
+  have hApos : (0 : ℝ) < (#A : ℝ) := by
+    have h : 0 < #A := by omega
+    exact_mod_cast h
+  have hδpos : 0 < Real.log (δ A) := Real.log_pos hδ
+  have hpr := Finset.pluennecke_ruzsa_inequality_nsmul_sub hAne A 2
+  rw [two_nsmul] at hpr
+  have hpr' : ((#(A + A) : ℝ)) ≤ ((#(A - A) : ℝ) / (#A : ℝ)) ^ 2 * (#A : ℝ) := by
+    have hc := (NNRat.cast_le (K := ℝ)).mpr hpr
+    push_cast at hc
+    exact hc
+  have hσδ : σ A ≤ δ A ^ 2 := by
+    rw [σ, δ, div_le_iff₀ hApos] at *
+    nlinarith [hpr']
+  have hσ1 : 1 ≤ σ A := by
+    rw [σ, le_div_iff₀ hApos, one_mul]
+    exact_mod_cast Finset.card_le_card_add_left hAne
+  rw [div_le_iff₀ hδpos]
+  calc Real.log (σ A) ≤ Real.log (δ A ^ 2) := Real.log_le_log (by linarith) hσδ
+    _ = 2 * Real.log (δ A) := by rw [Real.log_pow]; push_cast; ring
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5 11]

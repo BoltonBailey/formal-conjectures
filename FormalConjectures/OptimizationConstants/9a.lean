@@ -57,7 +57,38 @@ noncomputable def C9a : ℝ :=
 /-- Trivial lower bound. -/
 @[category research solved, AMS 5 94]
 theorem c9a_lower_bound_trivial : 3 ≤ C9a := by
-  sorry
+  have hLACnn : ∀ m : ℕ, (0 : ℝ) ≤ Green38.LargestAdmissibleCardinality m := fun m =>
+    Nat.cast_nonneg _
+  have hLAC : ∀ m : ℕ, Green38.LargestAdmissibleCardinality m ≤ (7 : ℝ) ^ m := by
+    intro m
+    have h : sSup (Green38.ValidCardinalities m) ≤ 7 ^ m := by
+      refine csSup_le ⟨0, Green38.green_38.test_zero_mem_validCardinalities⟩ ?_
+      rintro b ⟨A, -, rfl⟩
+      calc A.card ≤ Fintype.card (𝔽₇ m) := Finset.card_le_univ A
+        _ = 7 ^ m := by simp
+    calc Green38.LargestAdmissibleCardinality m
+        = ((sSup (Green38.ValidCardinalities m) : ℕ) : ℝ) := rfl
+      _ ≤ ((7 ^ m : ℕ) : ℝ) := by exact_mod_cast h
+      _ = (7 : ℝ) ^ m := by push_cast; ring
+  have hbdd : BddAbove (Set.range fun n : ℕ =>
+      Green38.LargestAdmissibleCardinality (n + 1) ^ (((n : ℝ) + 1)⁻¹)) := by
+    refine ⟨7, ?_⟩
+    rintro x ⟨n, rfl⟩
+    have hpos : (0 : ℝ) < (n : ℝ) + 1 := by positivity
+    calc Green38.LargestAdmissibleCardinality (n + 1) ^ (((n : ℝ) + 1)⁻¹)
+        ≤ ((7 : ℝ) ^ (n + 1)) ^ (((n : ℝ) + 1)⁻¹) :=
+          Real.rpow_le_rpow (hLACnn _) (hLAC (n + 1)) (by positivity)
+      _ = 7 := by
+          rw [← Real.rpow_natCast (7 : ℝ) (n + 1), ← Real.rpow_mul (by norm_num)]
+          push_cast
+          rw [mul_inv_cancel₀ hpos.ne', Real.rpow_one]
+  refine le_ciSup_of_le hbdd 0 ?_
+  simp only [Nat.cast_zero, zero_add, inv_one, Real.rpow_one]
+  have h3 : (3 : ℕ) ≤ sSup (Green38.ValidCardinalities 1) :=
+    le_csSup Green38.green_38.test_bound_above Green38.green_38.test_n1_lower
+  calc (3 : ℝ) = ((3 : ℕ) : ℝ) := by norm_num
+    _ ≤ ((sSup (Green38.ValidCardinalities 1) : ℕ) : ℝ) := by exact_mod_cast h3
+    _ = Green38.LargestAdmissibleCardinality 1 := rfl
 
 /-- Lower bound from [BMRRST1971] (1971). -/
 @[category research solved, AMS 5 94]

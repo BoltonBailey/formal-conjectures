@@ -68,7 +68,61 @@ noncomputable def C84b : ℝ :=
 /-- Trivial lower bound. $\lvert A+A\rvert \ge 2\lvert A\rvert - 1$. -/
 @[category research solved, AMS 5 11]
 theorem c84b_lower_bound_trivial : 1 ≤ C84b := by
-  sorry
+  have hmemA : ∀ n : ℕ, ∃ A : Finset ℝ, #A = n := fun n =>
+    ⟨(Finset.range n).image (fun i : ℕ => (i : ℝ)), by
+      rw [Finset.card_image_of_injective _ Nat.cast_injective, Finset.card_range]⟩
+  have hub : ∀ n : ℕ, sInf {t : ℝ | ∃ A : Finset ℝ, #A = n ∧
+      t = Real.log (max (#(A + A) : ℝ) (#(A * A) : ℝ)) / Real.log n} ≤ 2 := by
+    intro n
+    obtain ⟨A, hA⟩ := hmemA n
+    have hmem : Real.log (max (#(A + A) : ℝ) (#(A * A) : ℝ)) / Real.log n ∈
+        {t : ℝ | ∃ A : Finset ℝ, #A = n ∧
+          t = Real.log (max (#(A + A) : ℝ) (#(A * A) : ℝ)) / Real.log n} := ⟨A, hA, rfl⟩
+    have hle : Real.log (max (#(A + A) : ℝ) (#(A * A) : ℝ)) / Real.log n ≤ 2 := by
+      rcases lt_or_ge n 2 with hn | hn
+      · interval_cases n <;> simp
+      · have hn2 : (2 : ℝ) ≤ n := by exact_mod_cast hn
+        have hlogn : 0 < Real.log n := Real.log_pos (by linarith)
+        have hmax : max (#(A + A) : ℝ) (#(A * A) : ℝ) ≤ (n : ℝ) ^ 2 := by
+          refine max_le ?_ ?_
+          · have h := Finset.card_add_le (s := A) (t := A)
+            rw [hA] at h
+            calc (#(A + A) : ℝ) ≤ ((n * n : ℕ) : ℝ) := by exact_mod_cast h
+              _ = (n : ℝ) ^ 2 := by push_cast; ring
+          · have h := Finset.card_mul_le (s := A) (t := A)
+            rw [hA] at h
+            calc (#(A * A) : ℝ) ≤ ((n * n : ℕ) : ℝ) := by exact_mod_cast h
+              _ = (n : ℝ) ^ 2 := by push_cast; ring
+        have hmaxpos : (0 : ℝ) < max (#(A + A) : ℝ) (#(A * A) : ℝ) := by
+          have hAne : A.Nonempty := by
+            rw [← Finset.card_pos, hA]; omega
+          have h : (#A : ℝ) ≤ (#(A + A) : ℝ) := by
+            exact_mod_cast Finset.card_le_card_add_left hAne
+          rw [hA] at h
+          exact lt_of_lt_of_le (by linarith) (le_max_left _ _)
+        rw [div_le_iff₀ hlogn]
+        calc Real.log (max (#(A + A) : ℝ) (#(A * A) : ℝ)) ≤ Real.log ((n : ℝ) ^ 2) :=
+              Real.log_le_log hmaxpos hmax
+          _ = 2 * Real.log n := by
+              rw [Real.log_pow]; push_cast; ring
+    by_cases hbdd : BddBelow {t : ℝ | ∃ A : Finset ℝ, #A = n ∧
+        t = Real.log (max (#(A + A) : ℝ) (#(A * A) : ℝ)) / Real.log n}
+    · exact (csInf_le hbdd hmem).trans hle
+    · rw [Real.sInf_of_not_bddBelow hbdd]; norm_num
+  refine le_liminf_of_le (Filter.isCoboundedUnder_ge_of_le _ hub) ?_
+  filter_upwards [eventually_ge_atTop 2] with n hn
+  have hn2 : (2 : ℝ) ≤ n := by exact_mod_cast hn
+  have hlogn : 0 < Real.log n := Real.log_pos (by linarith)
+  obtain ⟨A₀, hA₀⟩ := hmemA n
+  refine le_csInf ⟨_, A₀, hA₀, rfl⟩ ?_
+  rintro t ⟨A, hA, rfl⟩
+  have hAne : A.Nonempty := by rw [← Finset.card_pos, hA]; omega
+  have hcard : (n : ℝ) ≤ (#(A + A) : ℝ) := by
+    have h : (#A : ℝ) ≤ (#(A + A) : ℝ) := by
+      exact_mod_cast Finset.card_le_card_add_left hAne
+    rwa [hA] at h
+  rw [le_div_iff₀ hlogn, one_mul]
+  exact Real.log_le_log (by linarith) (le_trans hcard (le_max_left _ _))
 
 /-- Lower bound from [El97] (1997). Elekes, via the Szemerédi–Trotter incidence theorem. -/
 @[category research solved, AMS 5 11]

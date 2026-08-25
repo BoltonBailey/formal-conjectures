@@ -80,7 +80,31 @@ theorem c3c_lower_bound_mi2026 : 1.6747338950208249 ≤ C3c := by
 /-- Trivial upper bound. -/
 @[category research solved, AMS 5 11 42]
 theorem c3c_upper_bound_trivial : C3c ≤ 2 := by
-  sorry
+  have key : ∀ (S : Set ℝ) (a : ℝ), 0 ≤ a → a ∈ S → sInf S ≤ a := by
+    intro S a ha haS
+    by_cases h : BddBelow S
+    · exact csInf_le h haS
+    · rw [Real.sInf_of_not_bddBelow h]; exact ha
+  refine key _ 2 (by norm_num) ?_
+  intro A B G hG
+  set M := max (max (max (#A : ℝ) (#B : ℝ)) (#(G.image fun p => p.1 + p.2) : ℝ))
+    (#(G.image fun p => p.1 + 2 * p.2) : ℝ) with hM
+  have hA : (#A : ℝ) ≤ M :=
+    le_trans (le_trans (le_max_left _ _) (le_max_left _ _)) (le_max_left _ _)
+  have hB : (#B : ℝ) ≤ M :=
+    le_trans (le_trans (le_max_right _ _) (le_max_left _ _)) (le_max_left _ _)
+  have hA0 : (0 : ℝ) ≤ (#A : ℝ) := Nat.cast_nonneg _
+  have hB0 : (0 : ℝ) ≤ (#B : ℝ) := Nat.cast_nonneg _
+  have h1 : (#(G.image fun p => p.1 - p.2) : ℝ) ≤ (#G : ℝ) := by
+    exact_mod_cast Finset.card_image_le
+  have h2 : (#G : ℝ) ≤ (#A : ℝ) * (#B : ℝ) := by
+    have h := Finset.card_le_card hG
+    rw [Finset.card_product] at h
+    exact_mod_cast h
+  have h3 : (#A : ℝ) * (#B : ℝ) ≤ M ^ (2 : ℝ) := by
+    rw [show (2 : ℝ) = ((2 : ℕ) : ℝ) by norm_num, Real.rpow_natCast, sq]
+    exact mul_le_mul hA hB hB0 (hA0.trans hA)
+  linarith
 
 /-- Upper bound from [KT1999] (1999). -/
 @[category research solved, AMS 5 11 42]

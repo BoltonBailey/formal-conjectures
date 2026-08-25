@@ -77,7 +77,13 @@ theorem c13a_lower_bound_kps2013 : 0.232239 ≤ C13a := by
 /-- Trivial upper bound. disk of radius $1/2$ -/
 @[category research solved, AMS 52]
 theorem c13a_upper_bound_trivial : C13a ≤ ENNReal.ofReal (Real.pi / 4) := by
-  sorry
+  refine sInf_le ⟨Metric.closedBall 0 0.5, MoserWorm.disc_mem_worm_covers,
+    convex_closedBall _ _, ?_⟩
+  rw [EuclideanSpace.volume_closedBall]
+  rw [Fintype.card_fin]
+  norm_num [Real.Gamma_two, ← ENNReal.ofReal_pow, ← ENNReal.ofReal_mul,
+    Real.sq_sqrt Real.pi_nonneg]
+  ring_nf
 
 /-- Upper bound from Meir [Wet1973] (1973). semicircle of radius $1/2$ -/
 @[category research solved, AMS 52]

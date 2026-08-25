@@ -87,7 +87,31 @@ theorem c42a_lower_bound_bir00b : 1 / 2 < C42a := by
 /-- Trivial upper bound. -/
 @[category research solved, AMS 11 30]
 theorem c42a_upper_bound_trivial : C42a ≤ 1 := by
-  sorry
+  have hnn : ∀ (n : ℕ) (r : ℝ), r ∈ {r : ℝ | ∃ z : Fin n → ℂ, (⨆ i, ‖z i‖) = 1 ∧
+      r = ⨆ k : Fin n, ‖Erdos519.powerSum z (k.val + 1)‖} → 0 ≤ r := by
+    rintro n r ⟨w, -, rfl⟩
+    exact Real.iSup_nonneg fun k => norm_nonneg _
+  have hRnn : ∀ n : ℕ, 0 ≤ R n := fun n => Real.sInf_nonneg (hnn n)
+  have hR1 : ∀ n : ℕ, 0 < n → R n ≤ 1 := by
+    intro n hn
+    have : Nonempty (Fin n) := ⟨⟨0, hn⟩⟩
+    set z : Fin n → ℂ := fun i => if i = ⟨0, hn⟩ then 1 else 0 with hz
+    have hsup : (⨆ i, ‖z i‖) = 1 := by
+      refine le_antisymm (ciSup_le fun i => ?_) ?_
+      · by_cases h : i = ⟨0, hn⟩ <;> simp [hz, h]
+      · refine le_ciSup_of_le (Set.Finite.bddAbove (Set.finite_range _)) ⟨0, hn⟩ ?_
+        simp [hz]
+    have hps : ∀ m : ℕ, Erdos519.powerSum z (m + 1) = 1 := by
+      intro m
+      have hpt : ∀ i : Fin n, z i ^ (m + 1) = if i = ⟨0, hn⟩ then (1 : ℂ) else 0 := by
+        intro i
+        by_cases h : i = ⟨0, hn⟩ <;> simp [hz, h]
+      simp [Erdos519.powerSum, hpt]
+    have hval : (⨆ k : Fin n, ‖Erdos519.powerSum z (k.val + 1)‖) = 1 := by
+      simp [hps]
+    refine csInf_le ⟨0, fun r hr => hnn n r hr⟩ ⟨z, hsup, hval.symm⟩
+  refine limsup_le_of_le (Filter.isCoboundedUnder_le_of_le _ hRnn) ?_
+  filter_upwards [eventually_gt_atTop 0] with n hn using hR1 n hn
 
 /-- Upper bound from Biró [Bir00] (2000). -/
 @[category research solved, AMS 11 30]

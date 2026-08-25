@@ -46,7 +46,7 @@ noncomputable def C62a : ℝ :=
 /-- Trivial lower bound. Trivial from the definition $C_{62a}\ge 0$. -/
 @[category research solved, AMS 11]
 theorem c62a_lower_bound_trivial : 0 ≤ C62a := by
-  sorry
+  exact Real.sInf_nonneg fun x hx => hx.1
 
 /-- Upper bound from [Har2019] (2019). Convexity bound. [Har2019-convexity-1-4] -/
 @[category research solved, AMS 11]

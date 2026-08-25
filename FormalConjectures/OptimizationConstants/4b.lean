@@ -70,7 +70,26 @@ theorem c4b_lower_bound_lew2015 : 1 / 2 * (1 + Real.log 12 / Real.log 205) ≤ C
 /-- Trivial upper bound. -/
 @[category research solved, AMS 5 11]
 theorem c4b_upper_bound_trivial : C4b ≤ 1 := by
-  sorry
+  have hlog : ∀ m : ℕ, 0 ≤ Real.log m := by
+    intro m
+    rcases Nat.eq_zero_or_pos m with rfl | hm
+    · simp
+    · exact Real.log_nonneg (by exact_mod_cast hm)
+  have hcard : ∀ N : ℕ, squareDifferenceFreeCard N ≤ N := by
+    intro N
+    refine csSup_le ⟨0, ∅, by simp, by simp, rfl⟩ ?_
+    rintro x ⟨A, hA, -, rfl⟩
+    calc #A ≤ #(Finset.Icc 1 N) := Finset.card_le_card hA
+      _ = N := by simp
+  refine limsup_le_of_le (Filter.isCoboundedUnder_le_of_le _
+    (fun n => div_nonneg (hlog _) (hlog _))) ?_
+  filter_upwards [eventually_gt_atTop 1] with N hN
+  have hN1 : (1 : ℝ) < N := by exact_mod_cast hN
+  have hlogN : 0 < Real.log N := Real.log_pos hN1
+  rw [div_le_one hlogN]
+  rcases Nat.eq_zero_or_pos (squareDifferenceFreeCard N) with h0 | h0
+  · rw [h0]; simpa using hlogN.le
+  · exact Real.log_le_log (by exact_mod_cast h0) (by exact_mod_cast hcard N)
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5 11]

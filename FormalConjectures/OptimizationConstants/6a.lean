@@ -61,7 +61,12 @@ noncomputable def C6a : ℝ :=
 /-- Trivial lower bound. -/
 @[category research solved, AMS 5]
 theorem c6a_lower_bound_trivial : 0 ≤ C6a := by
-  sorry
+  refine Real.sSup_nonneg' ⟨0, ?_, le_rfl⟩
+  intro n A hA hA' _
+  rcases Nat.eq_zero_or_pos n with rfl | hn
+  · exact absurd (Finset.eq_singleton_iff_nonempty_unique_mem.mpr
+      ⟨hA, fun x _ => Finset.eq_empty_of_isEmpty x⟩) hA'
+  · exact ⟨⟨0, hn⟩, by simp⟩
 
 /-- Lower bound from [G2022] (2022). -/
 @[category research solved, AMS 5]
@@ -91,7 +96,22 @@ theorem c6a_lower_bound_l2023 : 0.38271 ≤ C6a := by
 /-- Upper bound from [F1995] (1995). Conjectured (in 1976) to be optimal -/
 @[category research solved, AMS 5]
 theorem c6a_upper_bound_f1995 : C6a ≤ 1 / 2 := by
-  sorry
+  refine Real.sSup_le ?_ (by norm_num)
+  intro c hc
+  obtain ⟨i, hi⟩ := hc 1 {∅, {0}} ⟨∅, by simp⟩ (by decide) (by decide)
+  have hsub : ({∅, {0}} : Finset (Finset (Fin 1))).filter (fun x => i ∈ x) ⊆ {{0}} := by
+    intro x hx
+    simp only [Finset.mem_filter, Finset.mem_insert, Finset.mem_singleton] at hx ⊢
+    rcases hx.1 with rfl | rfl
+    · exact absurd hx.2 (by simp)
+    · rfl
+  have h1 : ((({∅, {0}} : Finset (Finset (Fin 1))).filter (fun x => i ∈ x)).card : ℝ) ≤ 1 := by
+    exact_mod_cast (Finset.card_le_card hsub).trans_eq (Finset.card_singleton _)
+  have h2 : ({∅, {0}} : Finset (Finset (Fin 1))).card = 2 := by
+    rw [Finset.card_pair]; simp
+  rw [h2] at hi
+  push_cast at hi
+  linarith
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5]

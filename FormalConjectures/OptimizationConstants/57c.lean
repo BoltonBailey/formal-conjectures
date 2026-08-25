@@ -57,7 +57,7 @@ theorem c57c_lower_bound_skin2009 : 0.5708858 ≤ C57c := by
 hence $B_u\le 1$. -/
 @[category research solved, AMS 30]
 theorem c57c_upper_bound_trivial : C57c ≤ 1 := by
-  sorry
+  exact Bloch.univalentBlochConstant_upper_bound
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 30]

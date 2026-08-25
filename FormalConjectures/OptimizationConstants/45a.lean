@@ -62,7 +62,14 @@ noncomputable def C45a : ℝ :=
 /-- Trivial lower bound. -/
 @[category research solved, AMS 11]
 theorem c45a_lower_bound_trivial : 0 ≤ C45a := by
-  sorry
+  have hle : ∀ (p : ℕ → Prop) (inst : DecidablePred p) (N : ℕ), @Nat.count p inst N ≤ N :=
+    fun p inst N => @Nat.count_le p inst N
+  refine le_limsup_of_frequently_le (Frequently.of_forall fun N => by positivity)
+    (Filter.isBoundedUnder_of ⟨1, fun N => ?_⟩)
+  rcases Nat.eq_zero_or_pos N with rfl | hN
+  · simp
+  · rw [div_le_one (by exact_mod_cast hN)]
+    exact Nat.cast_le.mpr (hle _ _ N)
 
 /-- Lower bound from [R1934] (1934). -/
 @[category research solved, AMS 11]
@@ -92,7 +99,29 @@ theorem c45a_lower_bound_ce2018 : 0.107648 ≤ C45a := by
 /-- Trivial upper bound. -/
 @[category research solved, AMS 11]
 theorem c45a_upper_bound_trivial : C45a ≤ 1 / 2 := by
-  sorry
+  have key : ∀ (p : ℕ → Prop) (inst : DecidablePred p), (∀ n, p n → Odd n) →
+      ∀ N : ℕ, ((@Nat.count p inst N : ℕ) : ℝ) ≤ (N : ℝ) / 2 := by
+    intro p inst hp N
+    have hnat : ∀ M : ℕ, @Nat.count p inst M ≤ M / 2 := by
+      intro M
+      induction M with
+      | zero => simp
+      | succ n ih =>
+        rw [Nat.count_succ]
+        split_ifs with h
+        · have hn : n % 2 = 1 := Nat.odd_iff.mp (hp n h)
+          omega
+        · omega
+    calc ((@Nat.count p inst N : ℕ) : ℝ) ≤ ((N / 2 : ℕ) : ℝ) := by exact_mod_cast hnat N
+      _ ≤ (N : ℝ) / 2 := Nat.cast_div_le
+  refine limsup_le_of_le (Filter.isCoboundedUnder_le_of_le _
+    (fun N => by positivity)) (Eventually.of_forall fun N => ?_)
+  rcases Nat.eq_zero_or_pos N with rfl | hN
+  · simp
+  · rw [div_le_iff₀ (by exact_mod_cast hN)]
+    refine le_trans (key _ _ ?hodd N) ?hfin
+    case hodd => rintro n ⟨h, -⟩; exact h
+    case hfin => linarith
 
 /-- Upper bound from [E1950] (1950). Used covering systems -/
 @[category research solved, AMS 11]

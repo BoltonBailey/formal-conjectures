@@ -65,7 +65,18 @@ theorem c5b_lower_bound_mt26 : 9 / 17 ≤ C5b := by
 /-- Trivial upper bound. -/
 @[category research solved, AMS 5 11]
 theorem c5b_upper_bound_trivial : C5b ≤ 1 := by
-  sorry
+  refine Real.sSup_le ?_ zero_le_one
+  intro c hc
+  obtain ⟨S, hSA, -, hcard⟩ := hc {0} (by
+    intro B hB hB4
+    have := Finset.card_le_card hB
+    simp [hB4] at this)
+  have h1 : (S.card : ℝ) ≤ 1 := by
+    have := Finset.card_le_card hSA
+    simp at this
+    exact_mod_cast this
+  simp at hcard
+  linarith
 
 /-- Upper bound from [GL95] (1995). -/
 @[category research solved, AMS 5 11]

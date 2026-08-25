@@ -48,7 +48,13 @@ noncomputable def C40a : ℝ :=
 $M(f)=1$ precisely in the cyclotomic/monomial case; hence $L\ge 1$. [BDM2007-kronecker] -/
 @[category research solved, AMS 11 12]
 theorem c40a_lower_bound_trivial : 1 ≤ C40a := by
-  sorry
+  have h2 : LehmerMahlerMeasureProblem.mahlerMeasureZ (Polynomial.C 2) = 2 := by
+    rw [LehmerMahlerMeasureProblem.mahlerMeasureZ, Polynomial.map_C,
+      LehmerMahlerMeasureProblem.mahlerMeasure, Polynomial.roots_C, Polynomial.leadingCoeff_C]
+    simp
+  refine le_csInf ⟨2, Polynomial.C 2, by rw [h2]; norm_num, h2⟩ ?_
+  rintro b ⟨f, hf, rfl⟩
+  exact hf.le
 
 /-- Upper bound from [BDM2007] [Leh1933] (2007, 1933). Lehmer’s example polynomial
 $\ell(x)=x^{10}+x^9-x^7-x^6-x^5-x^4-x^3+x+1$ has Mahler measure $M(\ell)=1.176280\ldots$, giving

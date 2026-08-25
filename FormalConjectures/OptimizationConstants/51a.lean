@@ -80,7 +80,48 @@ theorem c51a_lower_bound_s2026 : 0.5850788 ≤ C51a := by
 /-- Trivial upper bound. Follows from Cauchy estimates -/
 @[category research solved, AMS 30]
 theorem c51a_upper_bound_trivial : C51a ≤ 1 := by
-  sorry
+  refine Real.iSup_le (fun F => ?_) zero_le_one
+  obtain ⟨f, -, hdiff⟩ := F
+  refine liminf_le_of_frequently_le
+    ((eventually_ge_atTop (1 : ℝ)).frequently.mono fun r hr => ?_)
+    (Filter.isBoundedUnder_of ⟨0, fun r => div_nonneg (Real.iSup_nonneg fun n => norm_nonneg _)
+      (Real.iSup_nonneg fun z => norm_nonneg _)⟩)
+  have hr0 : (0 : ℝ) < r := lt_of_lt_of_le zero_lt_one hr
+  have hDnn : (0 : ℝ) ≤ ⨆ z : {z : ℂ // ‖z‖ = r}, ‖f z‖ :=
+    Real.iSup_nonneg fun z => norm_nonneg _
+  rw [Erdos513.ratio]
+  rcases eq_or_lt_of_le hDnn with hD0 | hDpos
+  · rw [← hD0, div_zero]; norm_num
+  · rw [div_le_one hDpos]
+    have hbdd : BddAbove (Set.range fun z : {z : ℂ // ‖z‖ = r} => ‖f z‖) := by
+      have hc : IsCompact (Metric.sphere (0 : ℂ) r) := isCompact_sphere 0 r
+      have heq : (Set.range fun z : {z : ℂ // ‖z‖ = r} => ‖f z‖)
+          = (fun z => ‖f z‖) '' (Metric.sphere (0 : ℂ) r) := by
+        ext y
+        constructor
+        · rintro ⟨⟨z, hz⟩, rfl⟩
+          exact ⟨z, by simpa [Complex.norm_def] using hz, rfl⟩
+        · rintro ⟨z, hz, rfl⟩
+          exact ⟨⟨z, by simpa using hz⟩, rfl⟩
+      rw [heq]
+      exact (hc.image (continuous_norm.comp hdiff.continuous)).bddAbove
+    have hsph : ∀ z ∈ Metric.sphere (0 : ℂ) r, ‖f z‖ ≤ ⨆ z : {z : ℂ // ‖z‖ = r}, ‖f z‖ :=
+      fun z hz => le_ciSup hbdd ⟨z, by simpa using hz⟩
+    refine ciSup_le fun n => ?_
+    have hcauchy := Complex.norm_iteratedDeriv_le_of_forall_mem_sphere_norm_le n hr0
+      (hdiff.diffContOnCl (s := Metric.ball 0 r)) hsph
+    have hfact : (0 : ℝ) < (n.factorial : ℝ) := by positivity
+    have hrn : (0 : ℝ) < r ^ n := by positivity
+    rw [le_div_iff₀ hrn] at hcauchy
+    rw [norm_mul, norm_mul]
+    simp only [norm_pow, Complex.norm_real, Real.norm_eq_abs, norm_inv, abs_of_pos hr0,
+      abs_of_pos hfact]
+    rw [show ‖iteratedDeriv n f 0‖ * ((n.factorial : ℝ))⁻¹ * r ^ n
+        = (‖iteratedDeriv n f 0‖ * r ^ n) / (n.factorial : ℝ) from by ring,
+      div_le_iff₀ hfact]
+    calc ‖iteratedDeriv n f 0‖ * r ^ n
+        ≤ (n.factorial : ℝ) * (⨆ z : {z : ℂ // ‖z‖ = r}, ‖f z‖) := hcauchy
+      _ = (⨆ z : {z : ℂ // ‖z‖ = r}, ‖f z‖) * (n.factorial : ℝ) := mul_comm _ _
 
 /-- Upper bound from [CH1964] (1964). -/
 @[category research solved, AMS 30]

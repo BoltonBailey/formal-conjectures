@@ -44,7 +44,14 @@ noncomputable def C23a : ℕ∞ :=
 /-- Trivial lower bound. By definition $C_{23a}$ (if finite) is a multiple of $4$. -/
 @[category research solved, AMS 5 15]
 theorem c23a_lower_bound_trivial : 4 ≤ C23a := by
-  sorry
+  refine le_sInf ?_
+  rintro n ⟨k, rfl, hk⟩
+  rcases Nat.eq_zero_or_pos k with rfl | hkpos
+  · exact absurd (show ∃ M, Hadamard.IsHadamard (n := 4 * 0) M from
+      Hadamard.exists_hadamard_zero) hk
+  · have h4 : (4 : ℕ∞) * (k : ℕ∞) = ((4 * k : ℕ) : ℕ∞) := by push_cast; ring
+    rw [h4]
+    exact_mod_cast Nat.le_mul_of_pos_right 4 hkpos
 
 /-- Lower bound from [CP2024] (2025). All orders $n<668$ with $n\equiv 0\pmod4$ are known to admit
 Hadamard matrices; the smallest currently unresolved order is $668$. -/
@@ -56,7 +63,7 @@ theorem c23a_lower_bound_cp2024 : 668 ≤ C23a := by
 -/
 @[category research solved, AMS 5 15]
 theorem c23a_upper_bound_trivial : C23a ≤ ⊤ := by
-  sorry
+  exact le_top
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5 15]

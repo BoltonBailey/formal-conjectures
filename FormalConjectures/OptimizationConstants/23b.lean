@@ -69,7 +69,7 @@ noncomputable def C23b : ℝ :=
 $n\to\infty$, $f$ is bounded (hence subpolynomial). [AJM2025-abstract-kappa-to-1] -/
 @[category research solved, AMS 5 15]
 theorem c23b_lower_bound_trivial : 0 ≤ C23b := by
-  sorry
+  exact Real.sSup_nonneg fun x hx => hx.1
 
 /-- Lower bound from [AJM2025] (2025). The authors state that (unconditionally) their method permits
 $\kappa(n)\le 1+\frac{1}{n^\alpha}$ for all sufficiently large $n$ with $\alpha=17/92-\delta$ for

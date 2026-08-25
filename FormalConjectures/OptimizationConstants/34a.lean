@@ -51,7 +51,7 @@ noncomputable def C34a : ℝ :=
 $s_\Delta(\mathbb{R}^2)$ is $\ge 0$. -/
 @[category research solved, AMS 28 42]
 theorem c34a_lower_bound_trivial : 0 ≤ C34a := by
-  sorry
+  exact Real.sInf_nonneg fun x hx => hx.1.1
 
 /-- Lower bound from [Fal1986] (1985). Falconer gave examples showing (in general dimension $d$)
 that one cannot expect $\lvert\Delta(E)\rvert>0$ below the threshold $d/2$; in $d=2$ this yields

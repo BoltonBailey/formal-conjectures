@@ -59,7 +59,7 @@ theorem c58a_lower_bound_kan2021 : 5 ≤ C58a := by
 /-- Trivial upper bound. Trivial. -/
 @[category research solved, AMS 11]
 theorem c58a_upper_bound_trivial : C58a ≤ ⊤ := by
-  sorry
+  exact le_top
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 11]

@@ -62,7 +62,24 @@ noncomputable def C24a : ℝ≥0∞ := ⨆ n : ℕ, K n
 /-- Trivial lower bound. Take $n=1$ and $A=[1]$, for which $\mathrm{disc}(A)=1$. -/
 @[category research solved, AMS 5 11]
 theorem c24a_lower_bound_trivial : 1 ≤ C24a := by
-  sorry
+  refine le_iSup_of_le 1 (le_iSup_of_le ⟨1, fun j => ?_⟩ ?_)
+  · have hj : j = 0 := Subsingleton.elim _ _
+    subst hj
+    simp [Matrix.one_apply]
+  · have hS : {r : ℝ | ∃ x : Fin 1 → ℝ, (∀ j, x j = 1 ∨ x j = -1) ∧
+        r = ⨆ i, |∑ j, (1 : Matrix (Fin 1) (Fin 1) ℝ) i j * x j|} = {1} := by
+      ext r
+      simp only [Set.mem_setOf_eq, Set.mem_singleton_iff]
+      constructor
+      · rintro ⟨x, hx, rfl⟩
+        rw [ciSup_unique]
+        simp only [Matrix.one_apply, one_mul]
+        rcases hx 0 with h | h <;> simp [h]
+      · rintro rfl
+        refine ⟨fun _ => 1, fun j => Or.inl rfl, ?_⟩
+        rw [ciSup_unique]
+        simp [Matrix.one_apply]
+    rw [hS, csInf_singleton, ENNReal.ofReal_one]
 
 /-- Lower bound from [Kun2023] (2023). Best known lower bound on $C_{24}$. -/
 @[category research solved, AMS 5 11]

@@ -49,7 +49,7 @@ noncomputable def C63a : ℝ :=
 /-- Trivial lower bound. Trivial from the definition $C_{63}\ge 0$. -/
 @[category research solved, AMS 11]
 theorem c63a_lower_bound_trivial : 0 ≤ C63a := by
-  sorry
+  exact Real.sInf_nonneg fun x hx => hx.1
 
 /-- Lower bound from [Tsa2010] (2010). Omega results imply $\alpha\ge 1/4$. [Tsa2010-omega-1-4] -/
 @[category research solved, AMS 11]

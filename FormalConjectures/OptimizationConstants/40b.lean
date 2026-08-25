@@ -87,7 +87,7 @@ theorem c40b_lower_bound_lou1983 : ENNReal.ofReal (9 / 4) ≤ C40b := by
 /-- Trivial upper bound. -/
 @[category research solved, AMS 11 12]
 theorem c40b_upper_bound_trivial : C40b ≤ ⊤ := by
-  sorry
+  exact le_top
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 11 12]

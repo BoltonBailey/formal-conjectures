@@ -57,7 +57,75 @@ noncomputable def C4a : ℝ := limsup (fun n : ℕ => (capSetCard n : ℝ) ^ ((n
 /-- Trivial lower bound. -/
 @[category research solved, AMS 5 11]
 theorem c4a_lower_bound_trivial : 2 ≤ C4a := by
-  sorry
+  classical
+  have hkey : ∀ n : ℕ, (2 : ℕ) ^ n ≤ capSetCard n := by
+    intro n
+    set S : Finset (𝔽₃ n) := Fintype.piFinset (fun _ => ({0, 1} : Finset (ZMod 3))) with hSdef
+    have hcard : S.card = 2 ^ n := by
+      rw [hSdef, Fintype.card_piFinset]
+      simp
+    have hmemS : ∀ x : 𝔽₃ n, x ∈ S ↔ ∀ i, x i = 0 ∨ x i = 1 := by
+      intro x
+      rw [hSdef, Fintype.mem_piFinset]
+      simp
+    have hfree : (S : Set (𝔽₃ n)).IsAPOfLengthFree ((3 : ℕ) : ℕ∞) := by
+      rintro t hts ⟨a, d, hcard3, hteq⟩
+      exfalso
+      have hmem : ∀ m : ℕ, (m : ℕ∞) < ((3 : ℕ) : ℕ∞) → a + m • d ∈ S := by
+        intro m hm
+        have hmS : a + m • d ∈ (S : Set (𝔽₃ n)) := hts (by rw [hteq]; exact ⟨m, hm, rfl⟩)
+        exact_mod_cast hmS
+      have h0 := (hmemS _).mp (hmem 0 (by norm_num))
+      have h1 := (hmemS _).mp (hmem 1 (by norm_num))
+      have h2 := (hmemS _).mp (hmem 2 (by norm_num))
+      have hd : d = 0 := by
+        funext i
+        have e0 := h0 i
+        have e1 := h1 i
+        have e2 := h2 i
+        simp only [Pi.add_apply, Pi.smul_apply, Pi.zero_apply, zero_smul, add_zero,
+          one_smul] at e0 e1 e2 ⊢
+        revert e0 e1 e2
+        generalize a i = x
+        generalize d i = e
+        revert x e
+        decide
+      subst hd
+      have hts1 : t = {a} := by
+        rw [hteq]
+        ext x
+        simp only [smul_zero, add_zero, Set.mem_ofPred_eq, Set.mem_singleton_iff]
+        exact ⟨fun ⟨m, _, hm⟩ => hm.symm, fun h => ⟨0, by norm_num, h.symm⟩⟩
+      rw [hts1] at hcard3
+      simp at hcard3
+    calc (2 : ℕ) ^ n = S.card := hcard.symm
+      _ ≤ capSetCard n := by
+          unfold capSetCard Finset.maxAPFreeCard
+          refine Finset.le_sup (f := Finset.card) ?_
+          simp only [Finset.mem_filter, Finset.mem_powerset]
+          exact ⟨Finset.subset_univ S, hfree⟩
+  have hcardub : ∀ n : ℕ, capSetCard n ≤ 3 ^ n := by
+    intro n
+    unfold capSetCard Finset.maxAPFreeCard
+    refine Finset.sup_le fun t ht => ?_
+    calc t.card ≤ (Finset.univ : Finset (𝔽₃ n)).card := Finset.card_le_card (Finset.subset_univ t)
+      _ = 3 ^ n := by simp
+  refine le_limsup_of_frequently_le ((eventually_gt_atTop 0).frequently.mono fun n hn => ?_)
+    (Filter.isBoundedUnder_of ⟨3, fun n => ?_⟩)
+  · have h2 : ((2 : ℝ) ^ (n : ℕ)) ≤ (capSetCard n : ℝ) := by exact_mod_cast hkey n
+    calc (2 : ℝ) = ((2 : ℝ) ^ (n : ℕ)) ^ ((n : ℝ)⁻¹) := by
+          rw [← Real.rpow_natCast (2 : ℝ) n, ← Real.rpow_mul (by norm_num),
+            mul_inv_cancel₀ (by exact_mod_cast hn.ne'), Real.rpow_one]
+      _ ≤ (capSetCard n : ℝ) ^ ((n : ℝ)⁻¹) := Real.rpow_le_rpow (by positivity) h2 (by positivity)
+  · rcases Nat.eq_zero_or_pos n with rfl | hn
+    · norm_num
+    · have h2 : ((capSetCard n : ℝ)) ≤ (3 : ℝ) ^ (n : ℕ) := by exact_mod_cast hcardub n
+      calc (capSetCard n : ℝ) ^ ((n : ℝ)⁻¹)
+          ≤ ((3 : ℝ) ^ (n : ℕ)) ^ ((n : ℝ)⁻¹) :=
+            Real.rpow_le_rpow (by positivity) h2 (by positivity)
+        _ = 3 := by
+            rw [← Real.rpow_natCast (3 : ℝ) n, ← Real.rpow_mul (by norm_num),
+              mul_inv_cancel₀ (by exact_mod_cast hn.ne'), Real.rpow_one]
 
 /-- Lower bound from [P1970] (1970). -/
 @[category research solved, AMS 5 11]
@@ -92,7 +160,22 @@ theorem c4a_lower_bound_zwlplzjzzz2025 : 2.2203 ≤ C4a := by
 /-- Trivial upper bound. -/
 @[category research solved, AMS 5 11]
 theorem c4a_upper_bound_trivial : C4a ≤ 3 := by
-  sorry
+  have hcard : ∀ n : ℕ, capSetCard n ≤ 3 ^ n := by
+    intro n
+    unfold capSetCard Finset.maxAPFreeCard
+    refine Finset.sup_le fun t ht => ?_
+    calc t.card ≤ (Finset.univ : Finset (𝔽₃ n)).card := Finset.card_le_card (Finset.subset_univ t)
+      _ = 3 ^ n := by simp
+  refine limsup_le_of_le (Filter.isCoboundedUnder_le_of_le _
+    (fun n => Real.rpow_nonneg (Nat.cast_nonneg _) _)) ?_
+  filter_upwards [eventually_gt_atTop 0] with n hn
+  have h2 : ((capSetCard n : ℝ)) ≤ (3 : ℝ) ^ (n : ℕ) := by exact_mod_cast hcard n
+  calc (capSetCard n : ℝ) ^ ((n : ℝ)⁻¹)
+      ≤ ((3 : ℝ) ^ (n : ℕ)) ^ ((n : ℝ)⁻¹) := by
+        apply Real.rpow_le_rpow (by positivity) h2 (by positivity)
+    _ = 3 := by
+        rw [← Real.rpow_natCast (3 : ℝ) n, ← Real.rpow_mul (by norm_num)]
+        rw [mul_inv_cancel₀ (by exact_mod_cast hn.ne'), Real.rpow_one]
 
 /-- Upper bound from [EG2016] (2017). -/
 @[category research solved, AMS 5 11]

@@ -63,7 +63,30 @@ noncomputable def C13b : ℝ≥0∞ := sInf {v | ∃ X ∈ UniversalCovers, volu
 /-- Trivial lower bound. Use unit disk -/
 @[category research solved, AMS 52]
 theorem c13b_lower_bound_trivial : ENNReal.ofReal (Real.pi / 4) ≤ C13b := by
-  sorry
+  refine le_sInf ?_
+  rintro v ⟨X, ⟨hXmeas, hXconv, hXcov⟩, rfl⟩
+  obtain ⟨e, w, hsub⟩ := hXcov (Metric.closedBall 0 (1 / 2))
+    ⟨convex_closedBall _ _, by
+      rw [Metric.diam_closedBall_eq _ (by norm_num : (0 : ℝ) ≤ 1 / 2)]; norm_num⟩
+  have himg : (fun x => e x + w) '' X = (fun y => y + w) '' (⇑e '' X) := by
+    rw [← Set.image_comp]; rfl
+  have himgpre : (⇑e '' X) = ⇑e.symm ⁻¹' X := by
+    ext y
+    simp only [Set.mem_image, Set.mem_preimage]
+    constructor
+    · rintro ⟨x, hx, rfl⟩; simpa using hx
+    · intro h; exact ⟨e.symm y, h, by simp⟩
+  have hvol : volume ((fun x : ℝ² => e x + w) '' X) = volume X := by
+    rw [himg, Set.image_add_right, measure_preimage_add_right, himgpre,
+      (LinearIsometryEquiv.measurePreserving e.symm).measure_preimage hXmeas.nullMeasurableSet]
+  have hball : volume (Metric.closedBall (0 : ℝ²) (1 / 2)) = ENNReal.ofReal (Real.pi / 4) := by
+    rw [EuclideanSpace.volume_closedBall, Fintype.card_fin]
+    norm_num [Real.Gamma_two, ← ENNReal.ofReal_pow, ← ENNReal.ofReal_mul,
+      Real.sq_sqrt Real.pi_nonneg]
+    ring_nf
+  calc ENNReal.ofReal (Real.pi / 4) = volume (Metric.closedBall (0 : ℝ²) (1 / 2)) := hball.symm
+    _ ≤ volume ((fun x : ℝ² => e x + w) '' X) := measure_mono hsub
+    _ = volume X := hvol
 
 /-- Lower bound from [Elek1994] (1994). Use unit disk and equilateral triangle -/
 @[category research solved, AMS 52]
