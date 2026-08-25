@@ -33,6 +33,13 @@ hallucinations.
   Advances in Mathematics 340 (2018), 960–982. [arXiv:1706.06630](https://arxiv.org/abs/1706.06630)
 - [Ba2024] Baek, Jineon. "Optimality of Gerver's sofa."
   [arXiv:2411.19826](https://arxiv.org/abs/2411.19826)
+- [Hammersley1968] Dr. J. M. Hammersley (1968). On the enfeeblement of mathematical skills by modern
+  mathematics and by similar soft intellectual trash in schools and universities. Bulletin of the
+  Institute of Mathematics and Its Applications. 4: 66–85. See Appendix IV, Problems, Problem 8, p.
+  84.
+- [Gerver1992] Gerver, Joseph L. (1992). On Moving a Sofa Around a Corner. Geometriae Dedicata. 42
+  (3): 267–283.
+- [Baek2024] Baek, J. (2024). Optimality of Gerver's Sofa. arXiv preprint arXiv:2411.19826.
 
 The constant is formalised in `FormalConjectures.Wikipedia.MovingSofa` as
 `MovingSofa.sofaConstant`.
@@ -48,31 +55,35 @@ corner of a hallway of unit width. -/
 @[optimization_constant "41a"]
 noncomputable def C41a : ℝ≥0∞ := MovingSofa.sofaConstant
 
-/-- The best known lower bound $2.2195$, given by the Gerver sofa [Ge1992]. -/
+/-- Lower bound from [Hammersley1968] (1968). -/
 @[category research solved, AMS 52]
-theorem c41a_lower_bound : 2.2195 ≤ C41a := by
+theorem c41a_lower_bound_hammersley1968 : ENNReal.ofReal (Real.pi / 2 + 2 / Real.pi) ≤ C41a := by
   sorry
 
-/-- The best published upper bound $2.37$, proven by Kallus-Romik in [KR2018] with a
-computer-assisted argument. -/
+/-- Lower bound from [Gerver1992] (1992). The Gerver sofa -/
 @[category research solved, AMS 52]
-theorem c41a_upper_bound : C41a ≤ 2.37 := by
+theorem c41a_lower_bound_gerver1992 : 2.2195 ≤ C41a := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 52]
-theorem mem_Ico_c41a : answer(sorry) ∈ Set.Ico C41a (2.37) := by
+/-- Upper bound from [Hammersley1968] (1968). -/
+@[category research solved, AMS 52]
+theorem c41a_upper_bound_hammersley1968 : C41a ≤ ENNReal.ofReal (2 * Real.sqrt 2) := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 52]
-theorem mem_Ioc_c41a : answer(sorry) ∈ Set.Ioc (2.2195) C41a := by
+/-- Upper bound from [KR2018] (2018). Best published bound, using a computer-assisted proof scheme
+-/
+@[category research solved, AMS 52]
+theorem c41a_upper_bound_kr2018 : C41a ≤ 2.37 := by
   sorry
 
-/-- What is the exact value of the constant? Baek [Ba2024] announced a proof that the Gerver
-sofa is optimal, which would give the value `MovingSofa.gerversSofa`. -/
+/-- Upper bound from [Baek2024] (2024). Announced bound, matching the Gerver construction -/
+@[category research solved, AMS 52]
+theorem c41a_upper_bound_baek2024 : C41a ≤ 2.2195 := by
+  sorry
+
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 52]
-theorem c41a_eq : C41a = answer(sorry) := by
+theorem c41a_eq : answer(sorry) = C41a := by
   sorry
 
 end Constant41a

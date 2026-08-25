@@ -40,37 +40,23 @@ largest univalent disc contained in $f(\mathbb{D})$. -/
 @[optimization_constant "57a"]
 noncomputable def C57a : ℝ := Bloch.blochConstant
 
-/-- The best known lower bound $\sqrt{3}/4 + 2 \times 10^{-4}$, proven by Chen-Gauthier
-in [CG1996]. -/
+/-- Lower bound from [CG1996] (1996). Best recorded lower bound (as quoted in the survey
+literature). [BS2023-bounds-B] -/
 @[category research solved, AMS 30]
-theorem c57a_lower_bound : Real.sqrt 3 / 4 + 2 * 10 ^ (-4 : ℤ) ≤ C57a :=
-  Bloch.blochConstant_lower_bound
-
-/-- The best known upper bound
-$\frac{1}{\sqrt{1 + \sqrt{3}}}\frac{\Gamma(1/3) \Gamma(11/12)}{\Gamma(1/4)}$, proven by
-Ahlfors-Grunsky in [AG1937]. -/
-@[category research solved, AMS 30]
-theorem c57a_upper_bound :
-    C57a ≤ Real.Gamma (1 / 3) * Real.Gamma (11 / 12) /
-      (Real.Gamma (1 / 4) * Real.sqrt (1 + Real.sqrt 3)) :=
-  Bloch.blochConstant_upper_bound
-
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 30]
-theorem mem_Ico_c57a : answer(sorry) ∈ Set.Ico C57a (Real.Gamma (1 / 3) * Real.Gamma (11 / 12) /
-    (Real.Gamma (1 / 4) * Real.sqrt (1 + Real.sqrt 3))) := by
+theorem c57a_lower_bound_cg1996 : Real.sqrt 3 / 4 + 2 * 10 ^ (-4 : ℤ) ≤ C57a := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 30]
-theorem mem_Ioc_c57a :
-    answer(sorry) ∈ Set.Ioc (Real.sqrt 3 / 4 + 2 * 10 ^ (-4 : ℤ)) C57a := by
+/-- Upper bound from [AG1937] (1937). Ahlfors–Grunsky bound; conjectured sharp. [BS2023-AG-conj-B]
+[BS2023-bounds-B] -/
+@[category research solved, AMS 30]
+theorem c57a_upper_bound_ag1937 :
+    C57a ≤ 1 / Real.sqrt (1 + Real.sqrt 3) *
+      ((Real.Gamma (1 / 3) * Real.Gamma (11 / 12)) / Real.Gamma (1 / 4)) := by
   sorry
 
-/-- What is the exact value of the constant? Ahlfors and Grunsky conjectured in [AG1937] that
-their upper bound is sharp. -/
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 30]
-theorem c57a_eq : C57a = answer(sorry) := by
+theorem c57a_eq : answer(sorry) = C57a := by
   sorry
 
 end Constant57a

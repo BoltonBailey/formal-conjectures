@@ -61,33 +61,39 @@ noncomputable def C11a : ℝ :=
   sInf {C : ℝ | ∀ (n : ℕ) (f : (Fin n → Bool) → ℝ),
     expect (fun x => |f x - expect f|) ≤ C * expect (gradNorm f)}
 
-/-- The best known lower bound $\sqrt{\pi/2} \approx 1.25331$, which comes from the sharp
-Gaussian $L^1$ Poincaré inequality [Pisier1986], [ILvHV2019]. -/
+/-- Trivial lower bound. For $n=1$, take $f(x)=x$ to get ratio $1$. -/
 @[category research solved, AMS 5 60]
-theorem c11a_lower_bound : Real.sqrt (Real.pi / 2) ≤ C11a := by
+theorem c11a_lower_bound_trivial : 1 ≤ C11a := by
   sorry
 
-/-- The upper bound $\pi/2 \approx 1.57080$, first proven by Ben Efraim-Lust-Piquard
-in [BELP2008]. -/
+/-- Lower bound from [Pisier1986], [ILvHV2019] (1986, 2019). Comes from the sharp Gaussian
+$L^1$-Poincaré inequality (Pisier). -/
 @[category research solved, AMS 5 60]
-theorem c11a_upper_bound : C11a ≤ Real.pi / 2 := by
+theorem c11a_lower_bound_pisier1986_ilvhv2019 : Real.sqrt (Real.pi / 2) ≤ C11a := by
   sorry
 
-/-- The constant is strictly smaller than $\pi/2$ [ILvHV2019]; an explicit gap
-$\delta \approx 0.00013$ is given in [IS2024]. -/
+/-- Upper bound from [BELP2008] (2008). First proof (non-commutative/CAR algebra). Several later
+proofs recover the same constant. -/
 @[category research solved, AMS 5 60]
-theorem c11a_lt_pi_div_two : C11a < Real.pi / 2 := by
+theorem c11a_upper_bound_belp2008 : C11a ≤ Real.pi / 2 := by
   sorry
 
-/-- How can the lower bound be improved? -/
+/-- Upper bound from [ILvHV2019] (2019). The bound $\pi/2 - \delta$ for some $\delta > 0$. First
+proof that $C_{11a}$ is strictly smaller than $\pi/2$. -/
+@[category research solved, AMS 5 60]
+theorem c11a_upper_bound_ilvhv2019 : C11a < Real.pi / 2 := by
+  sorry
+
+/-- Upper bound from [IS2024] (2024). The bound $\pi/2 - \delta$ with $\delta \approx 0.00013$,
+stated here with $\delta = 0.0001$. Provides an explicit integral expression for $\delta$ and
+evaluates it numerically (about $1.3\times 10^{-4}$). -/
+@[category research solved, AMS 5 60]
+theorem c11a_upper_bound_is2024 : C11a ≤ Real.pi / 2 - 0.0001 := by
+  sorry
+
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 5 60]
-theorem mem_Ioc_c11a : answer(sorry) ∈ Set.Ioc (Real.sqrt (Real.pi / 2)) C11a := by
-  sorry
-
-/-- What is the exact value of the constant? It remains open whether it equals
-$\sqrt{\pi/2}$. -/
-@[category research open, AMS 5 60]
-theorem c11a_eq : C11a = answer(sorry) := by
+theorem c11a_eq : answer(sorry) = C11a := by
   sorry
 
 end Constant11a

@@ -30,6 +30,26 @@ hallucinations.
 - [Cu25] Cushman, A. Current record lower bound, 2025.
 - [BSSZ2026] Bloom, T. F.; Sawin, W.; Schildkraut, K.; Zhelezov, D. Disproof of the sum-product
   conjecture for the reals, 2026.
+- [El97] Elekes, György. "On the number of sums and products". Acta Arithmetica 81 (1997), no. 4,
+  365–367.
+- [So05] Solymosi, József. "On the number of sums and products". Bulletin of the London Mathematical
+  Society 37 (2005), no. 4, 491–494.
+- [KoSh16] Konyagin, Sergei V.; Shkredov, Ilya D. "New results on sums and products in
+  $\mathbb{R}$". Trudy Mat. Inst. Steklova 294 (2016), 87–98; translation in Proc. Steklov Inst.
+  Math. 294 (2016), 78–88.
+- [Sh19] Shakan, George. "On higher energy decompositions and the sum-product phenomenon".
+  Mathematical Proceedings of the Cambridge Philosophical Society 167 (2019), no. 3, 599–617.
+- [RuSt22] Rudnev, Misha; Stevens, Sophie. "An update on the sum-product problem". Mathematical
+  Proceedings of the Cambridge Philosophical Society 173 (2022), no. 2, 411–430.
+  [arXiv:2005.11145](https://arxiv.org/abs/2005.11145).
+- [Bl25] Bloom, Thomas F. "Sum-product estimate over the reals" (2025). See [Bloom-notes] for the
+  precise reference.
+- [Al26] Althoefer, Ingo. "Improved constant for [BSSZ2026]". Note (28 May 2026), with
+  [tex](https://althofer.de/improved_constant_052.tex) and
+  [pdf](https://althofer.de/improved_constant_052.pdf).
+- [EPF52] Bloom, Thomas F. (ed.). "Erdős Problem #52: Discussion thread".
+  [erdosproblems.com/forum/thread/52](https://www.erdosproblems.com/forum/thread/52) (accessed 29
+  May 2026).
 -/
 
 open Filter
@@ -45,37 +65,81 @@ noncomputable def C84b : ℝ :=
   liminf (fun n : ℕ => sInf {t : ℝ | ∃ A : Finset ℝ, #A = n ∧
     t = Real.log (max (#(A + A) : ℝ) (#(A * A) : ℝ)) / Real.log n}) atTop
 
-/-- The best known lower bound $4/3 + 10/4407 \approx 1.335602$, proven by Cushman in [Cu25],
-refining Solymosi's $4/3$ barrier [So09]. -/
+/-- Trivial lower bound. $\lvert A+A\rvert \ge 2\lvert A\rvert - 1$. -/
 @[category research solved, AMS 5 11]
-theorem c84b_lower_bound : 4 / 3 + 10 / 4407 ≤ C84b := by
+theorem c84b_lower_bound_trivial : 1 ≤ C84b := by
   sorry
 
-/-- The upper bound $2$, from the Erdős-Szemerédi construction [ErSz83], which was conjectured
-to be sharp. -/
+/-- Lower bound from [El97] (1997). Elekes, via the Szemerédi–Trotter incidence theorem. -/
 @[category research solved, AMS 5 11]
-theorem c84b_upper_bound : C84b ≤ 2 := by
+theorem c84b_lower_bound_el97 : 5 / 4 ≤ C84b := by
   sorry
 
-/-- The **sum-product conjecture for the reals** was disproved by
-Bloom-Sawin-Schildkraut-Zhelezov in [BSSZ2026]: the exponent is strictly less than $2$. -/
+/-- Lower bound from [So05] (2005). Solymosi. -/
 @[category research solved, AMS 5 11]
-theorem c84b_lt_two : C84b < 2 := by
+theorem c84b_lower_bound_so05 : 14 / 11 ≤ C84b := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ico_c84b : answer(sorry) ∈ Set.Ico C84b 2 := by
+/-- Lower bound from [So09] (2009). Solymosi; the long-standing "$4/3$ barrier". -/
+@[category research solved, AMS 5 11]
+theorem c84b_lower_bound_so09 : 4 / 3 ≤ C84b := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ioc_c84b : answer(sorry) ∈ Set.Ioc (4 / 3 + 10 / 4407) C84b := by
+/-- Lower bound from [KoSh16] (2016). The website lists this value as approximate ($\approx
+1.33338$). Konyagin–Shkredov; first to break the $4/3$ barrier (their 2015 and 2016 papers give
+$\approx 1.33338$ and $\approx 1.33384$). -/
+@[category research solved, AMS 5 11]
+theorem c84b_lower_bound_kosh16 : 1.33338 ≤ C84b := by
+  sorry
+
+/-- Lower bound from [Sh19] (2019). The website lists this value as approximate ($\approx 1.33428$).
+Shakan. -/
+@[category research solved, AMS 5 11]
+theorem c84b_lower_bound_sh19 : 1.33428 ≤ C84b := by
+  sorry
+
+/-- Lower bound from [RuSt22] (2005). Rudnev–Stevens. -/
+@[category research solved, AMS 5 11]
+theorem c84b_lower_bound_rust22 : 1558 / 1167 ≤ C84b := by
+  sorry
+
+/-- Lower bound from [Bl25] (2025). Bloom. -/
+@[category research solved, AMS 5 11]
+theorem c84b_lower_bound_bl25 : 1270 / 951 ≤ C84b := by
+  sorry
+
+/-- Lower bound from [Cu25] (2025). Cushman; current record. -/
+@[category research solved, AMS 5 11]
+theorem c84b_lower_bound_cu25 : 4 / 3 + 10 / 4407 ≤ C84b := by
+  sorry
+
+/-- Upper bound from [ErSz83] (1983). Erdős–Szemerédi constructed sets of integers with $\max(\lvert
+A+A\rvert, \lvert AA\rvert) \le \lvert A\rvert^{2-c/\log\log\lvert A\rvert}$, so the exponent is
+$\le 2$. This was conjectured to be sharp (the sum-product conjecture). -/
+@[category research solved, AMS 5 11]
+theorem c84b_upper_bound_ersz83 : C84b ≤ 2 := by
+  sorry
+
+/-- Upper bound from [BSSZ2026] (2026). The bound $2 - c$ for an absolute constant $c > 0$.
+Bloom–Sawin–Schildkraut–Zhelezov disprove the conjecture by constructing arbitrarily large $A
+\subset \mathbb{R}$ — algebraic integers in totally real number fields of degree $\asymp \log\lvert
+A\rvert$ — with $\max(\lvert A+A\rvert, \lvert AA\rvert) \le \lvert A\rvert^{2-c}$. A non-optimized
+explicit version of the argument gives $c \ge 0.00000087$, i.e. exponent $\le 1.99999913$ (the
+authors stress this value "should not be taken too seriously"). -/
+@[category research solved, AMS 5 11]
+theorem c84b_upper_bound_bssz2026 : C84b < 2 := by
+  sorry
+
+/-- Upper bound from [Al26], [EPF52] (2026). Althoefer (28 May 2026), posted on the Erdős Problems
+forum [EPF52]; a ChatGPT 5.5 long-thinking optimization of the explicit constant of [BSSZ2026, §5]
+giving $c \ge 0.000719$. Unverified. -/
+@[category research solved, AMS 5 11]
+theorem c84b_upper_bound_al26_epf52 : C84b ≤ 1.999281 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5 11]
-theorem c84b_eq : C84b = answer(sorry) := by
+theorem c84b_eq : answer(sorry) = C84b := by
   sorry
 
 end Constant84b

@@ -53,31 +53,43 @@ $q$. -/
 @[optimization_constant "72a"]
 noncomputable def C72a : ℝ := max (leadingConstant 1) (leadingConstant (-1))
 
-/-- The trivial lower bound $0$. -/
+/-- Trivial lower bound. Trivial from nonnegativity of the defining infimum. -/
 @[category research solved, AMS 11]
-theorem c72a_lower_bound : 0 ≤ C72a := by
+theorem c72a_lower_bound_trivial : 0 ≤ C72a := by
   sorry
 
-/-- The best known upper bound $\frac{1}{4\pi}$, proven by Bordignon-Kerr in [BK2020] for odd
-characters modulo squarefree $q$; the even case gives the smaller constant
-$\frac{1}{2\pi^2}$. Pomerance [Pom2011] gave $2/\pi^2$. -/
+/-- Upper bound from [Pom2011] (2009). Primitive characters, explicit inequality; asymptotically
+this gives $c=2/\pi^2$ (even) and $c=1/(2\pi)$ (odd), so $C_{72}\le 2/\pi^2$. [Pom2011-thm1] -/
 @[category research solved, AMS 11]
-theorem c72a_upper_bound : C72a ≤ 1 / (4 * Real.pi) := by
+theorem c72a_upper_bound_pom2011 : C72a ≤ 2 / (Real.pi ^ 2) := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 11]
-theorem mem_Ico_c72a : answer(sorry) ∈ Set.Ico C72a (1 / (4 * Real.pi)) := by
+/-- Upper bound from [B2022] (2022). All primitive moduli (hence also squarefree), odd characters;
+gives $C_{72}^{\mathrm{odd}}\le 3/(8\pi)$ and thus $C_{72}\le 3/(8\pi)$. [B2022-main] -/
+@[category research solved, AMS 11]
+theorem c72a_upper_bound_b2022 : C72a ≤ 3 / (8 * Real.pi) := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 11]
-theorem mem_Ioc_c72a : answer(sorry) ∈ Set.Ioc 0 C72a := by
+/-- Upper bound from [Kerr2020] (1807). Cubefree moduli (hence squarefree), arbitrary intervals;
+implies the same leading constant for the initial-interval quantity $S(\chi)$. [Kerr2020-main] -/
+@[category research solved, AMS 11]
+theorem c72a_upper_bound_kerr2020 : C72a ≤ 1 / (Real.pi ^ 2) := by
+  sorry
+
+/-- Upper bound from [BK2020] (1909). Squarefree moduli, odd characters; this controls
+$C_{72}=\max\{C_{72}^{\mathrm{even}},C_{72}^{\mathrm{odd}}\}$. [BK2020-main-constants] -/
+@[category research solved, AMS 11]
+theorem c72a_upper_bound_bk2020_1 : C72a ≤ 1 / (4 * Real.pi) := by
+  sorry
+
+/-- Upper bound from [BK2020] (1909). Squarefree moduli, even characters. [BK2020-main-constants] -/
+@[category research solved, AMS 11]
+theorem c72a_upper_bound_bk2020_2 : C72a ≤ 1 / (2 * Real.pi ^ 2) := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 11]
-theorem c72a_eq : C72a = answer(sorry) := by
+theorem c72a_eq : answer(sorry) = C72a := by
   sorry
 
 end Constant72a

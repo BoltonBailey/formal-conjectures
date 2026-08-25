@@ -66,30 +66,32 @@ finite upper bound is known. -/
 @[optimization_constant "40b"]
 noncomputable def C40b : ℝ≥0∞ := ⨆ c ∈ Admissible, ENNReal.ofReal c
 
-/-- The best known lower bound $9/4$, proven by Louboutin in [Lou1983]. Dobrowolski [Dob1979]
-proved the case $c = 1$ and Cantor-Straus [CS1982] the case $c = 2$. -/
+/-- Lower bound from [Dob1979] (1979). Dobrowolski proved $M(\alpha) > 1+(1-\epsilon)B(d)$ for $d\ge
+d(\epsilon)$ (as reported by Voutier), hence $C_{40b}\ge 1$. [Vou1996-dob-asymp] -/
 @[category research solved, AMS 11 12]
-theorem c40b_lower_bound : ENNReal.ofReal (9 / 4) ≤ C40b := by
+theorem c40b_lower_bound_dob1979 : 1 ≤ C40b := by
   sorry
 
-/-- No finite upper bound is known. -/
+/-- Lower bound from [CS1982] (1982). Cantor–Straus replace the coefficient $(1-\epsilon)$ by
+$(2-\epsilon)$ (as reported by Voutier), hence $C_{40b}\ge 2$. [Vou1996-cs-lou] -/
 @[category research solved, AMS 11 12]
-theorem c40b_upper_bound : C40b ≤ ⊤ :=
-  le_top
-
-/-- Is the constant finite? A negative answer would in particular settle Lehmer's problem. -/
-@[category research open, AMS 11 12]
-theorem c40b_ne_top : C40b ≠ ⊤ := by
+theorem c40b_lower_bound_cs1982 : 2 ≤ C40b := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 11 12]
-theorem mem_Ioc_c40b : answer(sorry) ∈ Set.Ioc (ENNReal.ofReal (9 / 4)) C40b := by
+/-- Lower bound from [Lou1983] (1983). Louboutin improves the coefficient to $(\tfrac94-\epsilon)$
+(as reported by Voutier), hence $C_{40b}\ge 9/4$. [Vou1996-cs-lou] -/
+@[category research solved, AMS 11 12]
+theorem c40b_lower_bound_lou1983 : ENNReal.ofReal (9 / 4) ≤ C40b := by
+  sorry
+
+/-- Trivial upper bound. -/
+@[category research solved, AMS 11 12]
+theorem c40b_upper_bound_trivial : C40b ≤ ⊤ := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 11 12]
-theorem c40b_eq : C40b = answer(sorry) := by
+theorem c40b_eq : answer(sorry) = C40b := by
   sorry
 
 end Constant40b

@@ -31,6 +31,12 @@ hallucinations.
 - [RBNBKDREWFKF2023] Romera-Paredes, B. et al. "Mathematical discoveries from program search
   with large language models." Nature 625 (2024), 468–475. FunSearch.
 - [ZWLPLZJZZZ2025] X-evolve construction, 2025.
+- [P1970] Pellegrino, Giuseppe. Sul massimo ordine delle calotte in $S_{4,3}$. Matematiche (Catania)
+  25 (1970), no. 10, 1–9.
+- [CF1994] Calderbank, A. Robert; Fishburn, Peter C. Maximal three-independent subsets of
+  $\\{0,1,2\\}^n$. Des. Codes Cryptogr. 4, No. 3, 203-211 (1994).
+- [T2023] Tyrrell, Fred. New lower bounds for cap sets. Discrete Analysis. 2023 (20).
+  [arXiv:2209.10045](https://arxiv.org/abs/2209.10045).
 -/
 
 open Filter
@@ -48,32 +54,54 @@ the growth rate $\lim_n r(n)^{1/n}$ of the largest cap set in $\mathbb{F}_3^n$. 
 @[optimization_constant "4a"]
 noncomputable def C4a : ℝ := limsup (fun n : ℕ => (capSetCard n : ℝ) ^ ((n : ℝ)⁻¹)) atTop
 
-/-- The best known lower bound $2.2203$, from the X-evolve construction
-[ZWLPLZJZZZ2025], refining the FunSearch construction [RBNBKDREWFKF2023] and Edel's
-construction [E2004]. -/
+/-- Trivial lower bound. -/
 @[category research solved, AMS 5 11]
-theorem c4a_lower_bound : 2.2203 ≤ C4a := by
+theorem c4a_lower_bound_trivial : 2 ≤ C4a := by
   sorry
 
-/-- The best known upper bound $2.756$, proven by Ellenberg-Gijswijt in [EG2016] with the
-polynomial method. -/
+/-- Lower bound from [P1970] (1970). -/
 @[category research solved, AMS 5 11]
-theorem c4a_upper_bound : C4a ≤ 2.756 := by
+theorem c4a_lower_bound_p1970 : 2.1146 ≤ C4a := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ico_c4a : answer(sorry) ∈ Set.Ico C4a 2.756 := by
+/-- Lower bound from [CF1994] (1994). -/
+@[category research solved, AMS 5 11]
+theorem c4a_lower_bound_cf1994 : 2.2101 ≤ C4a := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ioc_c4a : answer(sorry) ∈ Set.Ioc 2.2203 C4a := by
+/-- Lower bound from [E2004] (2004). -/
+@[category research solved, AMS 5 11]
+theorem c4a_lower_bound_e2004 : 2.2173 ≤ C4a := by
+  sorry
+
+/-- Lower bound from [T2023] (2023). -/
+@[category research solved, AMS 5 11]
+theorem c4a_lower_bound_t2023 : 2.2180 ≤ C4a := by
+  sorry
+
+/-- Lower bound from [RBNBKDREWFKF2023] (2023). Funsearch -/
+@[category research solved, AMS 5 11]
+theorem c4a_lower_bound_rbnbkdrewfkf2023 : 2.2202 ≤ C4a := by
+  sorry
+
+/-- Lower bound from [ZWLPLZJZZZ2025] (2025). X-evolve -/
+@[category research solved, AMS 5 11]
+theorem c4a_lower_bound_zwlplzjzzz2025 : 2.2203 ≤ C4a := by
+  sorry
+
+/-- Trivial upper bound. -/
+@[category research solved, AMS 5 11]
+theorem c4a_upper_bound_trivial : C4a ≤ 3 := by
+  sorry
+
+/-- Upper bound from [EG2016] (2017). -/
+@[category research solved, AMS 5 11]
+theorem c4a_upper_bound_eg2016 : C4a ≤ 2.756 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5 11]
-theorem c4a_eq : C4a = answer(sorry) := by
+theorem c4a_eq : answer(sorry) = C4a := by
   sorry
 
 end Constant4a

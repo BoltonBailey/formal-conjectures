@@ -30,6 +30,17 @@ hallucinations.
   [arXiv:2211.09055](https://arxiv.org/abs/2211.09055)
 - [L2023] Liu, L. "Improved bounds for the union-closed sets conjecture."
   [arXiv:2311.05737](https://arxiv.org/abs/2311.05737)
+- [AHS2022] Alweiss, Ryan; Huang, Brice; Sellke, Mark. Improved lower bound for the union-closed
+  sets conjecture. arXiv preprint arXiv:2211.11731, 2022.
+- [CL2022] Chase, Zachary; Lovett, Shachar. Approximate union closed conjecture. arXiv preprint
+  arXiv:2211.11689, 2022.
+- [P2022] Pebody, Luke. Extension of a method of Gilmer. arXiv preprint arXiv:2211.13139, 2022.
+- [S2022] Sawin, Will. An improved lower bound for the union-closed set conjecture. arXiv preprint
+  arXiv:2211.11504, 2022.
+- [C2022] Cambie, Stijn. Better bounds for the union-closed sets conjecture using the entropy
+  approach. arXiv preprint arXiv:2212.12500, 2022.
+- [Y2022] Yu, Lei. Dimension-Free Bounds for the Union-Closed Sets Conjecture. arXiv preprint
+  arXiv:2212.00658, 2022.
 
 The union-closed condition is formalised in `FormalConjectures.Wikipedia.UnionClosed` as
 `UnionClosed.IsUnionClosed`.
@@ -47,27 +58,44 @@ noncomputable def C6a : ℝ :=
   sSup {c : ℝ | ∀ (n : ℕ) (A : Finset (Finset (Fin n))), A.Nonempty → A ≠ {∅} →
     UnionClosed.IsUnionClosed A → ∃ i : Fin n, c * #A ≤ #{x ∈ A | i ∈ x}}
 
-/-- The best known lower bound $0.38271$, proven by Liu in [L2023]. Gilmer [G2022] gave the
-first constant lower bound. -/
+/-- Trivial lower bound. -/
 @[category research solved, AMS 5]
-theorem c6a_lower_bound : 0.38271 ≤ C6a := by
+theorem c6a_lower_bound_trivial : 0 ≤ C6a := by
   sorry
 
-/-- The upper bound $1/2$, which is attained by the power set of a singleton. Frankl conjectured
-in 1976 that this is the exact value [F1995]. -/
+/-- Lower bound from [G2022] (2022). -/
 @[category research solved, AMS 5]
-theorem c6a_upper_bound : C6a ≤ 1 / 2 := by
+theorem c6a_lower_bound_g2022 : 0.1 ≤ C6a := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5]
-theorem mem_Ioc_c6a : answer(sorry) ∈ Set.Ioc 0.38271 C6a := by
+/-- Lower bound from [AHS2022], [CL2022], [P2022], [S2022] (2022). -/
+@[category research solved, AMS 5]
+theorem c6a_lower_bound_ahs2022_cl2022_p2022_s2022 : (3 - Real.sqrt 5) / 2 ≤ C6a := by
   sorry
 
-/-- What is the exact value of the constant? The **union-closed sets conjecture** of Frankl
-asserts that it is $1/2$. -/
+/-- Lower bound from [S2022] (2022). -/
+@[category research solved, AMS 5]
+theorem c6a_lower_bound_s2022 : (3 - Real.sqrt 5) / 2 < C6a := by
+  sorry
+
+/-- Lower bound from [C2022], [Y2022] (2022). -/
+@[category research solved, AMS 5]
+theorem c6a_lower_bound_c2022_y2022 : 0.38234 ≤ C6a := by
+  sorry
+
+/-- Lower bound from [L2023] (2023). -/
+@[category research solved, AMS 5]
+theorem c6a_lower_bound_l2023 : 0.38271 ≤ C6a := by
+  sorry
+
+/-- Upper bound from [F1995] (1995). Conjectured (in 1976) to be optimal -/
+@[category research solved, AMS 5]
+theorem c6a_upper_bound_f1995 : C6a ≤ 1 / 2 := by
+  sorry
+
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 5]
-theorem c6a_eq : C6a = answer(sorry) := by
+theorem c6a_eq : answer(sorry) = C6a := by
   sorry
 
 end Constant6a

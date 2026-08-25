@@ -47,26 +47,20 @@ noncomputable def C66a : ℝ :=
     ∑ q ∈ Finset.Icc 1 ⌊(x : ℝ) ^ θ⌋₊, ElliottHalberstamConjecture.E x q ≤
       C * x / Real.log x ^ A}
 
-/-- The best known lower bound $1/2$, coming from the Bombieri-Vinogradov theorem
-[Ked2007]. -/
+/-- Lower bound from [Ked2007] (2007). Bombieri-Vinogradov range $Q=x^{1/2}(\log x)^{-B}$.
+[Ked2007-BV] -/
 @[category research solved, AMS 11]
-theorem c66a_lower_bound : 1 / 2 ≤ C66a := by
+theorem c66a_lower_bound_ked2007 : 1 / 2 ≤ C66a := by
   sorry
 
-/-- The trivial upper bound $1$. -/
+/-- Trivial upper bound. Trivial ceiling in the standard level-of-distribution formulation. -/
 @[category research solved, AMS 11]
-theorem c66a_upper_bound : C66a ≤ 1 := by
+theorem c66a_upper_bound_trivial : C66a ≤ 1 := by
   sorry
 
-/-- How can the lower bound be improved? -/
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 11]
-theorem mem_Ioc_c66a : answer(sorry) ∈ Set.Ioc (1 / 2) C66a := by
-  sorry
-
-/-- What is the exact value of the constant? The **Elliott-Halberstam conjecture** [EH1970]
-asserts that it is $1$. -/
-@[category research open, AMS 11]
-theorem c66a_eq : C66a = answer(sorry) := by
+theorem c66a_eq : answer(sorry) = C66a := by
   sorry
 
 end Constant66a

@@ -29,6 +29,9 @@ hallucinations.
 - [CH1964] Clunie, J.; Hayman, W. K. "The maximum term of a power series." Journal d'Analyse
   Mathématique 12 (1964), 143–186.
 - [HT2026] Hunter, Z.; Tao, T. "Improved bounds for the maximum term problem." 2026.
+- [S2026] Sothanaphan, Nat. "A certified computation for an improved He–Tang parameter choice in
+  Erdős’ maximum-term problem." 2026.
+  https://drive.google.com/file/d/1wZnzui_eeBE32HnkrnSB7YhfcTOiYolp/view
 
 The underlying ratio is formalised in `FormalConjectures.ErdosProblems.«513»` as `Erdos513.ratio`.
 -/
@@ -47,30 +50,46 @@ noncomputable def C51a : ℝ :=
   ⨆ f : {f : ℂ → ℂ // Transcendental ℂ[X] f ∧ Differentiable ℂ f},
     liminf (fun r : ℝ => Erdos513.ratio r f) atTop
 
-/-- The best known lower bound $0.5850724$, a certified computer-assisted improvement of the
-Clunie-Hayman construction due to Hunter-Tao [HT2026]. -/
+/-- Lower bound from [Er1961] (1961). -/
 @[category research solved, AMS 30]
-theorem c51a_lower_bound : 0.5850724 ≤ C51a := by
+theorem c51a_lower_bound_er1961 : 1 / 2 ≤ C51a := by
   sorry
 
-/-- The best known upper bound $2/\pi$, proven by Clunie-Hayman in [CH1964]. -/
+/-- Lower bound from Kövári (unpublished). Cited in [HT2026] -/
 @[category research solved, AMS 30]
-theorem c51a_upper_bound : C51a ≤ 2 / π := by
+theorem c51a_lower_bound_kovari : 1 / 2 < C51a := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 30]
-theorem mem_Ico_c51a : answer(sorry) ∈ Set.Ico C51a (2 / π) := by
+/-- Lower bound from [CH1964] (1964). Scaling-identity construction. -/
+@[category research solved, AMS 30]
+theorem c51a_lower_bound_ch1964 : 4 / 7 ≤ C51a := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 30]
-theorem mem_Ioc_c51a : answer(sorry) ∈ Set.Ioc 0.5850724 C51a := by
+/-- Lower bound from [HT2026] (2026). Certified (computer-assisted) improvement using a
+two-parameter generalization of the Clunie–Hayman construction. -/
+@[category research solved, AMS 30]
+theorem c51a_lower_bound_ht2026 : 0.5850724 ≤ C51a := by
+  sorry
+
+/-- Lower bound from [S2026] (2026). Used GPT 5.2. Discussed
+[here](https://www.erdosproblems.com/forum/thread/513#post-4532) -/
+@[category research solved, AMS 30]
+theorem c51a_lower_bound_s2026 : 0.5850788 ≤ C51a := by
+  sorry
+
+/-- Trivial upper bound. Follows from Cauchy estimates -/
+@[category research solved, AMS 30]
+theorem c51a_upper_bound_trivial : C51a ≤ 1 := by
+  sorry
+
+/-- Upper bound from [CH1964] (1964). -/
+@[category research solved, AMS 30]
+theorem c51a_upper_bound_ch1964 : C51a ≤ 2 / Real.pi := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 30]
-theorem c51a_eq : C51a = answer(sorry) := by
+theorem c51a_eq : answer(sorry) = C51a := by
   sorry
 
 end Constant51a

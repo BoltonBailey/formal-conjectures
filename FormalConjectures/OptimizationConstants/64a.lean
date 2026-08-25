@@ -45,29 +45,25 @@ $\varepsilon > 0$. -/
 noncomputable def C64a : ℝ :=
   sInf {θ : ℝ | ∀ ε > 0, GaussCircleProblem.E =O[atTop] fun t : ℝ => t ^ (θ + ε)}
 
-/-- The trivial lower bound $0$. -/
+/-- Trivial lower bound. Trivial from the definition $C_{64}\ge 0$. -/
 @[category research solved, AMS 11]
-theorem c64a_lower_bound : 0 ≤ C64a := by
+theorem c64a_lower_bound_trivial : 0 ≤ C64a := by
   sorry
 
-/-- The best known upper bound $131/208$, proven by Huxley in [Hux2003]. -/
+/-- Trivial upper bound. Trivial bound $N(t)=\pi t^2+O(t)$. -/
 @[category research solved, AMS 11]
-theorem c64a_upper_bound : C64a ≤ 131 / 208 := by
+theorem c64a_upper_bound_trivial : C64a ≤ 1 := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 11]
-theorem mem_Ico_c64a : answer(sorry) ∈ Set.Ico C64a (131 / 208) := by
+/-- Upper bound from [Hux2003] (2003). Huxley's bound (long-standing record). [CRM2023-ub-131-208]
+-/
+@[category research solved, AMS 11]
+theorem c64a_upper_bound_hux2003 : C64a ≤ 131 / 208 := by
   sorry
 
-/-- How can the lower bound be improved? -/
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 11]
-theorem mem_Ioc_c64a : answer(sorry) ∈ Set.Ioc 0 C64a := by
-  sorry
-
-/-- What is the exact value of the constant? Hardy conjectured that it is $1/2$ [Har1915]. -/
-@[category research open, AMS 11]
-theorem c64a_eq : C64a = answer(sorry) := by
+theorem c64a_eq : answer(sorry) = C64a := by
   sorry
 
 end Constant64a

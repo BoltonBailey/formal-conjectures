@@ -30,6 +30,26 @@ hallucinations.
   [arXiv:1609.08000](https://arxiv.org/abs/1609.08000)
 - [W2022] White, E. P. "Erdős' minimum overlap problem."
   [arXiv:2201.05704](https://arxiv.org/abs/2201.05704)
+- [S1958] Swierczkowski, S., On the intersection of a linear set with the translation of its
+  complement. Colloq. Math. 5 (1958), 185-197.
+- [M1959] Moser, L., On the minimum overlap problem of Erdos, Acta Arith. 5 (1959), 117-119.
+- [MRS1956] Motzkin, T. S.; Ralston, K. E.; Selfridge, J. L., Minimal overlap under translation.
+  Abstract Bull. Amer. Math. Soc. 62, 558 (1956).
+- [H1996] Haugland, J. K., Advances in the minimum overlap problem. J. Number Theory 58 (1996), no.
+  1, 71-78.
+- [GGSWT2025] Georgiev, Bogdan; Gómez-Serrano, Javier; Tao, Terence; Wagner, Adam Zsolt.
+  Mathematical exploration and discovery at scale.
+  [arXiv:2511.02864](https://arxiv.org/abs/2511.02864)
+- [YKLBMWKCZGS2026] Yuksekgonul, Mert; Koceja, Daniel; Li, Xinhao; Bianchi, Federico; McCaleb, Jed;
+  Wang, Xiaolong; Kautz, Jan; Choi, Yejin; Zou, James; Guestrin, Carlos; Sun, Yu. [Learning to
+  Discover at Test Time](https://test-time-training.github.io/discover.pdf), 2026.
+- [T2026] Together AI. Einsteinarena-new-sota: State-of-the-art results on open math problems, 2026.
+  URL https://github.com/togethercomputer/EinsteinArena-new-SOTA.
+- [YLTLYSTYLLGDHZSWZSHMELCZX2026] Haotian Ye, Haowei Lin, Jingyi Tang, Yizhen Luo, Caiyin Yang,
+  Chang Su, Rahul Thapa, Rui Yang, Ruihua Liu, Zeyu Li, Chong Gao, Dachao Ding, Guangrong He,
+  Miaolei Zhang, Lina Sun, Wenyang Wang, Yuchen Zhong, Zhuohao Shen, Di He, Jianzhu Ma, Stefano
+  Ermon, Tongyang Li, Xiaowen Chu, James Zou, Yuzhi Xu, Evaluation-driven Scaling for Scientific
+  Discovery, https://arxiv.org/abs/2604.19341
 
 The teorth database states the constant in its equivalent continuous form, as the largest $C$
 with $\sup_{x \in [-2, 2]} \int_{-1}^1 f(t)g(x + t)\,dt \ge C$ for all non-negative
@@ -51,29 +71,89 @@ presuppose this. -/
 @[optimization_constant "1b"]
 noncomputable def C1b : ℝ := limsup (fun n : ℕ => (Erdos36.M n : ℝ) / n) atTop
 
-/-- The best known lower bound $0.379005$, proven by White in [W2022]. -/
+/-- Lower bound from [E1955] (1956). -/
 @[category research solved, AMS 5 11]
-theorem c1b_lower_bound : 0.379005 ≤ C1b := by
+theorem c1b_lower_bound_e1955 : 1 / 4 ≤ C1b := by
   sorry
 
-/-- The best published upper bound $0.380927$, proven by Haugland in [H2016]. -/
+/-- Lower bound from Scherk (unpublished, 1955). -/
 @[category research solved, AMS 5 11]
-theorem c1b_upper_bound : C1b ≤ 0.380927 := by
+theorem c1b_lower_bound_scherk : 1 - 1 / Real.sqrt 2 ≤ C1b := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ico_c1b : answer(sorry) ∈ Set.Ico C1b 0.380927 := by
+/-- Lower bound from [S1958] (1958). -/
+@[category research solved, AMS 5 11]
+theorem c1b_lower_bound_s1958 : (4 - Real.sqrt 6) / 5 ≤ C1b := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ioc_c1b : answer(sorry) ∈ Set.Ioc 0.379005 C1b := by
+/-- Lower bound from [M1959] (1959). -/
+@[category research solved, AMS 5 11]
+theorem c1b_lower_bound_m1959 : Real.sqrt (4 - Real.sqrt 15) ≤ C1b := by
+  sorry
+
+/-- Lower bound from [W2022] (2022). -/
+@[category research solved, AMS 5 11]
+theorem c1b_lower_bound_w2022 : 0.379005 ≤ C1b := by
+  sorry
+
+/-- Upper bound from [E1955] (1956). -/
+@[category research solved, AMS 5 11]
+theorem c1b_upper_bound_e1955 : C1b ≤ 1 / 2 := by
+  sorry
+
+/-- Upper bound from Erdős (unpublished). -/
+@[category research solved, AMS 5 11]
+theorem c1b_upper_bound_erdos : C1b ≤ 4 / 9 := by
+  sorry
+
+/-- Upper bound from [MRS1956] (1956). -/
+@[category research solved, AMS 5 11]
+theorem c1b_upper_bound_mrs1956_1 : C1b ≤ 5 / 12 := by
+  sorry
+
+/-- Upper bound from [MRS1956] (1956). -/
+@[category research solved, AMS 5 11]
+theorem c1b_upper_bound_mrs1956_2 : C1b ≤ 0.4 := by
+  sorry
+
+/-- Upper bound from Haugland (unpublished, 1993). -/
+@[category research solved, AMS 5 11]
+theorem c1b_upper_bound_haugland : C1b ≤ 0.385694 := by
+  sorry
+
+/-- Upper bound from [H1996] (1996). -/
+@[category research solved, AMS 5 11]
+theorem c1b_upper_bound_h1996 : C1b ≤ 0.382002 := by
+  sorry
+
+/-- Upper bound from [H2016] (2016). -/
+@[category research solved, AMS 5 11]
+theorem c1b_upper_bound_h2016 : C1b ≤ 0.380927 := by
+  sorry
+
+/-- Upper bound from [GGSWT2025] (2025). AlphaEvolve -/
+@[category research solved, AMS 5 11]
+theorem c1b_upper_bound_ggswt2025 : C1b ≤ 0.380924 := by
+  sorry
+
+/-- Upper bound from [YKLBMWKCZGS2026] (2026). TTT-Discover -/
+@[category research solved, AMS 5 11]
+theorem c1b_upper_bound_yklbmwkczgs2026 : C1b ≤ 0.380876 := by
+  sorry
+
+/-- Upper bound from [T2026] (2026). TogetherAI -/
+@[category research solved, AMS 5 11]
+theorem c1b_upper_bound_t2026 : C1b ≤ 0.380871 := by
+  sorry
+
+/-- Upper bound from [YLTLYSTYLLGDHZSWZSHMELCZX2026] (2026). SimpleTES -/
+@[category research solved, AMS 5 11]
+theorem c1b_upper_bound_yltlystyllgdhzswzshmelczx2026 : C1b ≤ 0.380868 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5 11]
-theorem c1b_eq : C1b = answer(sorry) := by
+theorem c1b_eq : answer(sorry) = C1b := by
   sorry
 
 end Constant1b

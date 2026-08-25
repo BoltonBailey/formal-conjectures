@@ -52,26 +52,26 @@ noncomputable def C67a : ℝ :=
     AnalyticOn ℂ φ Ω → InjOn φ Ω → φ '' Ω = BrennanConjecture.unitDisk →
       IntegrableOn (fun z => ‖deriv φ z‖ ^ p) Ω}
 
-/-- The best known lower bound $3.422$, attributed to Bertilsson [Ber1999], [HC2015]. Brennan
-[Bre1978] proved a bound strictly larger than $3$. -/
+/-- Trivial lower bound. Trivial by change of variables:
+$\int_{\Omega}\lvert\varphi'(z)\rvert^2\,dA(z)=\mathrm{Area}(\mathbb{D})=\pi$. -/
 @[category research solved, AMS 30]
-theorem c67a_lower_bound : 3.422 ≤ C67a := by
+theorem c67a_lower_bound_trivial : 2 ≤ C67a := by
   sorry
 
-/-- The upper bound $4$, which is the conjectured exact value [HC2015]. -/
+/-- Lower bound from [HC2015] (2015). Historical summary attributes this threshold to Bertilsson's
+dissertation. [HC2015-best-known-3-422] -/
 @[category research solved, AMS 30]
-theorem c67a_upper_bound : C67a ≤ 4 := by
+theorem c67a_lower_bound_hc2015 : 3.422 ≤ C67a := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 30]
-theorem mem_Ioc_c67a : answer(sorry) ∈ Set.Ioc 3.422 C67a := by
+/-- Upper bound from [HC2015] (2015). Conjectured endpoint. [HC2015-conjecture-range] -/
+@[category research solved, AMS 30]
+theorem c67a_upper_bound_hc2015 : C67a ≤ 4 := by
   sorry
 
-/-- What is the exact value of the constant? **Brennan's conjecture** asserts that it is
-$4$. -/
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 30]
-theorem c67a_eq : C67a = answer(sorry) := by
+theorem c67a_eq : answer(sorry) = C67a := by
   sorry
 
 end Constant67a

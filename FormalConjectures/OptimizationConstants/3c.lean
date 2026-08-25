@@ -29,6 +29,9 @@ hallucinations.
 - [GGSWT2025] Georgiev, B.; Gómez-Serrano, J.; Tao, T.; Wagner, A. Z. "Mathematical exploration
   and discovery at scale." [arXiv:2511.02864](https://arxiv.org/abs/2511.02864)
 - [MI2026] Entropy construction on a 95-point support, 2026.
+- [A2026] Astor, T. Improved Arithmetic Kakeya-Type Counterexamples. TBA (2026)
+- [G2026] Griego, Sebastian. 26-point entropy certificate for $C_{3c}$, [submitted to this
+  repository](https://github.com/teorth/optimizationproblems/pull/70) (2026).
 
 This is the four-slope analogue of `FormalConjectures.OptimizationConstants.«3b»`.
 -/
@@ -49,30 +52,44 @@ noncomputable def C3c : ℝ :=
       max (max (max (#A : ℝ) (#B : ℝ)) (#(G.image fun p => p.1 + p.2) : ℝ))
         (#(G.image fun p => p.1 + 2 * p.2) : ℝ) ^ c}
 
-/-- The best known lower bound $1.6747338950208249$, given by an entropy construction on a
-$95$-point support [MI2026]. Łaba [L2015] gave $1.61226$. -/
+/-- Lower bound from [L2015] (2015). -/
 @[category research solved, AMS 5 11 42]
-theorem c3c_lower_bound : 1.6747338950208249 ≤ C3c := by
+theorem c3c_lower_bound_l2015 : 1.61226 ≤ C3c := by
   sorry
 
-/-- The best known upper bound $2 - 1/4 = 7/4$, proven by Katz-Tao in [KT1999]. -/
+/-- Lower bound from [GGSWT2025] (2025). -/
 @[category research solved, AMS 5 11 42]
-theorem c3c_upper_bound : C3c ≤ 7 / 4 := by
+theorem c3c_lower_bound_ggswt2025 : 1.668 ≤ C3c := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 5 11 42]
-theorem mem_Ico_c3c : answer(sorry) ∈ Set.Ico C3c (7 / 4) := by
+/-- Lower bound from [A2026] (2026). -/
+@[category research solved, AMS 5 11 42]
+theorem c3c_lower_bound_a2026 : 1.67471 ≤ C3c := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5 11 42]
-theorem mem_Ioc_c3c : answer(sorry) ∈ Set.Ioc 1.6747338950208249 C3c := by
+/-- Lower bound from [G2026] (2026). Entropy construction on a 26-point support. -/
+@[category research solved, AMS 5 11 42]
+theorem c3c_lower_bound_g2026 : 1.67473389 ≤ C3c := by
+  sorry
+
+/-- Lower bound from [MI2026] (2026). Entropy construction on a 95-point support. -/
+@[category research solved, AMS 5 11 42]
+theorem c3c_lower_bound_mi2026 : 1.6747338950208249 ≤ C3c := by
+  sorry
+
+/-- Trivial upper bound. -/
+@[category research solved, AMS 5 11 42]
+theorem c3c_upper_bound_trivial : C3c ≤ 2 := by
+  sorry
+
+/-- Upper bound from [KT1999] (1999). -/
+@[category research solved, AMS 5 11 42]
+theorem c3c_upper_bound_kt1999 : C3c ≤ 2 - 1 / 4 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5 11 42]
-theorem c3c_eq : C3c = answer(sorry) := by
+theorem c3c_eq : answer(sorry) = C3c := by
   sorry
 
 end Constant3c

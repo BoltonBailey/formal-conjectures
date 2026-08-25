@@ -47,31 +47,40 @@ noncomputable def C34a : ℝ :=
   sInf {s : ℝ | s ∈ Icc (0 : ℝ) 2 ∧ ∀ E : Set (EuclideanSpace ℝ (Fin 2)), IsCompact E →
     ENNReal.ofReal s < dimH E → 0 < volume (distanceSet E)}
 
-/-- The best known lower bound $1$, from Falconer's examples [Fal1986]. -/
+/-- Trivial lower bound. Since $\dim_H(E)\ge 0$ always, the infimum defining
+$s_\Delta(\mathbb{R}^2)$ is $\ge 0$. -/
 @[category research solved, AMS 28 42]
-theorem c34a_lower_bound : 1 ≤ C34a := by
+theorem c34a_lower_bound_trivial : 0 ≤ C34a := by
   sorry
 
-/-- The best known upper bound $5/4$, proven by Guth-Iosevich-Ou-Wang in [GIOW2018].
-Falconer [Fal1986] gave $3/2$ and Wolff [Wol1999] gave $4/3$. -/
+/-- Lower bound from [Fal1986] (1985). Falconer gave examples showing (in general dimension $d$)
+that one cannot expect $\lvert\Delta(E)\rvert>0$ below the threshold $d/2$; in $d=2$ this yields
+$s_\Delta(\mathbb{R}^2)\ge 1$. [[GIOW2018-lb-d-2]] -/
 @[category research solved, AMS 28 42]
-theorem c34a_upper_bound : C34a ≤ 5 / 4 := by
+theorem c34a_lower_bound_fal1986 : 1 ≤ C34a := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 28 42]
-theorem mem_Ico_c34a : answer(sorry) ∈ Set.Ico C34a (5 / 4) := by
+/-- Upper bound from [Fal1986] (1985). Falconer proved (in particular in $d=2$) that if
+$\dim_H(E)>3/2$ then $\lvert\Delta(E)\rvert>0$. [GIOW2018-falconer-3-2] -/
+@[category research solved, AMS 28 42]
+theorem c34a_upper_bound_fal1986 : C34a ≤ 3 / 2 := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 28 42]
-theorem mem_Ioc_c34a : answer(sorry) ∈ Set.Ioc 1 C34a := by
+/-- Upper bound from [Wol1999] (1999). Wolff improved the planar threshold to $\dim_H(E)>4/3$.
+[GIOW2018-wolff-4-3] -/
+@[category research solved, AMS 28 42]
+theorem c34a_upper_bound_wol1999 : C34a ≤ 4 / 3 := by
   sorry
 
-/-- What is the exact value of the constant? The **Falconer distance conjecture** in the plane
-predicts that it is $1$. -/
+/-- Upper bound from [GIOW2018] (1808). Guth–Iosevich–Ou–Wang proved that if $\dim_H(E)>5/4$ then
+$\lvert\Delta(E)\rvert>0$. [GIOW2018-thm-5-4] -/
+@[category research solved, AMS 28 42]
+theorem c34a_upper_bound_giow2018 : C34a ≤ 5 / 4 := by
+  sorry
+
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 28 42]
-theorem c34a_eq : C34a = answer(sorry) := by
+theorem c34a_eq : answer(sorry) = C34a := by
   sorry
 
 end Constant34a

@@ -44,31 +44,27 @@ noncomputable def C39a : ℕ :=
   sSup {m : ℕ | ∃ K : Set (EuclideanSpace ℝ (Fin 3)), IsCompact K ∧ Convex ℝ K ∧
     (interior K).Nonempty ∧ m = coveringNumber K (interior K)}
 
-/-- The lower bound $8 = 2^3$, already forced by the cube. -/
+/-- Lower bound from Classical (cube). $H_3 \ge 2^3 = 8$ (already forced by the cube /
+parallelotope). [ABP2024-lb-cube] -/
 @[category research solved, AMS 52]
-theorem c39a_lower_bound : 8 ≤ C39a := by
+theorem c39a_lower_bound_classical : 8 ≤ C39a := by
   sorry
 
-/-- The best known upper bound $14$, proven by Prymak in [Pry2023], improving the bound $16$ of
-Papadoperakis [Pap1999]. -/
+/-- Upper bound from [Pap1999] (1999). Previous best bound: $H_3 \le 16$ (Papadoperakis).
+[ABP2024-ub-H3-16] -/
 @[category research solved, AMS 52]
-theorem c39a_upper_bound : C39a ≤ 14 := by
+theorem c39a_upper_bound_pap1999 : C39a ≤ 16 := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 52]
-theorem mem_Ico_c39a : answer(sorry) ∈ Set.Ico C39a 14 := by
+/-- Upper bound from [Pry2023] (2023). Best known general upper bound: $H_3 \le 14$ (attributed to
+Prymak). [ABP2024-ub-H3-14] -/
+@[category research solved, AMS 52]
+theorem c39a_upper_bound_pry2023 : C39a ≤ 14 := by
   sorry
 
-/-- How can the lower bound be improved? -/
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 52]
-theorem mem_Ioc_c39a : answer(sorry) ∈ Set.Ioc 8 C39a := by
-  sorry
-
-/-- What is the exact value of the constant? **Hadwiger's covering (illumination) conjecture**
-asserts that $H_n = 2^n$ for every $n$, hence that this constant is $8$ [ABP2024]. -/
-@[category research open, AMS 52]
-theorem c39a_eq : C39a = answer(sorry) := by
+theorem c39a_eq : answer(sorry) = C39a := by
   sorry
 
 end Constant39a

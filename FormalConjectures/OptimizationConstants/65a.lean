@@ -29,6 +29,10 @@ hallucinations.
   zeros of Dirichlet L-functions." Acta Arithmetica 150 (2011), 65–91.
 - [MMT2024] Maynard, J.; Merikoski, J.; Thorner, J. An $L$-function-free proof of Linnik's
   theorem, 2024.
+- [XylDiss2011] Xylouris, Triantafyllos. "Uber die Nullstellen der Dirichletschen L-Funktionen und
+  die kleinste Primzahl in einer arithmetischen Progression." Bonner Mathematische Schriften 404,
+  Universitat Bonn, Mathematisches Institut (2011). Dissertation for the degree of Doctor of
+  Mathematics and Natural Sciences.
 -/
 
 namespace Constant65a
@@ -44,32 +48,122 @@ noncomputable def C65a : ℝ :=
   sInf {L : ℝ | ∃ C > (0 : ℝ), ∀ q ≥ 2, ∀ a : ℕ, Nat.Coprime a q →
     (leastPrime a q : ℝ) ≤ C * (q : ℝ) ^ L}
 
-/-- The trivial lower bound $1$: for $a = 1$ the least prime in the progression is at least
-$q + 1$. -/
+/-- Trivial lower bound. Trivial: $P(1,q)\ge q+1$. -/
 @[category research solved, AMS 11]
-theorem c65a_lower_bound : 1 ≤ C65a := by
+theorem c65a_lower_bound_trivial : 1 ≤ C65a := by
   sorry
 
-/-- The best known upper bound $5$, reported in [MMT2024]. Xylouris [Xyl2011] proved
-$L \le 5.18$. -/
+/-- Upper bound from [Xyl2011] (2011). Historical table entry (Pan 1957). [Xyl2011-historical-table]
+-/
 @[category research solved, AMS 11]
-theorem c65a_upper_bound : C65a ≤ 5 := by
+theorem c65a_upper_bound_xyl2011_1 : C65a ≤ 10000 := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 11]
-theorem mem_Ico_c65a : answer(sorry) ∈ Set.Ico C65a 5 := by
+/-- Upper bound from [Xyl2011] (2011). Historical table entry (Pan 1958). [Xyl2011-historical-table]
+-/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyl2011_2 : C65a ≤ 5448 := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 11]
-theorem mem_Ioc_c65a : answer(sorry) ∈ Set.Ioc 1 C65a := by
+/-- Upper bound from [Xyl2011] (2011). Historical table entry (Chen 1965).
+[Xyl2011-historical-table] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyl2011_3 : C65a ≤ 777 := by
   sorry
 
-/-- What is the exact value of the constant? It is conjectured to be $1$, which would follow
-from the generalised Riemann hypothesis up to logarithmic factors. -/
+/-- Upper bound from [Xyl2011] (2011). Historical table entry (Jutila 1971).
+[Xyl2011-historical-table] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyl2011_4 : C65a ≤ 630 := by
+  sorry
+
+/-- Upper bound from [Xyl2011] (2011). Historical table entry (Jutila 1970).
+[Xyl2011-historical-table] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyl2011_5 : C65a ≤ 550 := by
+  sorry
+
+/-- Upper bound from [MMT2024] (2024). New $L$-function-free proof of Linnik's problem (coarse
+exponent). [MMT2024-ub-350] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_mmt2024 : C65a ≤ 350 := by
+  sorry
+
+/-- Upper bound from [Xyl2011] (2011). Historical table entry (Chen 1977).
+[Xyl2011-historical-table] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyl2011_6 : C65a ≤ 168 := by
+  sorry
+
+/-- Upper bound from [Xyl2011] (2011). Historical table entry (Jutila 1977).
+[Xyl2011-historical-table] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyl2011_7 : C65a ≤ 80 := by
+  sorry
+
+/-- Upper bound from [Xyl2011] (2011). Historical table entry (Graham 1977).
+[Xyl2011-historical-table] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyl2011_8 : C65a ≤ 36 := by
+  sorry
+
+/-- Upper bound from [Xyl2011] (2011). Historical table entry (Graham 1981).
+[Xyl2011-historical-table] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyl2011_9 : C65a ≤ 20 := by
+  sorry
+
+/-- Upper bound from [Xyl2011] (2011). Historical table entry (Chen 1979).
+[Xyl2011-historical-table] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyl2011_10 : C65a ≤ 17 := by
+  sorry
+
+/-- Upper bound from [Xyl2011] (2011). Historical table entry (Wang 1986).
+[Xyl2011-historical-table] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyl2011_11 : C65a ≤ 16 := by
+  sorry
+
+/-- Upper bound from [Xyl2011] (2011). Historical table entry (Chen-Liu 1989).
+[Xyl2011-historical-table] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyl2011_12 : C65a ≤ 13.5 := by
+  sorry
+
+/-- Upper bound from [Xyl2011] (2011). Historical table entry (Chen-Liu 1991).
+[Xyl2011-historical-table] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyl2011_13 : C65a ≤ 11.5 := by
+  sorry
+
+/-- Upper bound from [Xyl2011] (2011). Historical table entry (Wang 1991).
+[Xyl2011-historical-table] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyl2011_14 : C65a ≤ 8 := by
+  sorry
+
+/-- Upper bound from [Xyl2011] (2011). Historical table entry (Heath-Brown 1992).
+[Xyl2011-historical-table] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyl2011_15 : C65a ≤ 5.5 := by
+  sorry
+
+/-- Upper bound from [Xyl2011] (2011). Published explicit effective exponent in Theorem 1.1.
+[Xyl2011-ub-5-18] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyl2011_16 : C65a ≤ 5.18 := by
+  sorry
+
+/-- Upper bound from [XylDiss2011] (2011). Attributed in modern literature to Xylouris's 2011
+dissertation. [MMT2024-ub-5] -/
+@[category research solved, AMS 11]
+theorem c65a_upper_bound_xyldiss2011 : C65a ≤ 5 := by
+  sorry
+
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 11]
-theorem c65a_eq : C65a = answer(sorry) := by
+theorem c65a_eq : answer(sorry) = C65a := by
   sorry
 
 end Constant65a

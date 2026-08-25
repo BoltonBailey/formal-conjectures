@@ -41,26 +41,26 @@ $\infty$. -/
 noncomputable def C23a : ℕ∞ :=
   sInf {n : ℕ∞ | ∃ k : ℕ, n = 4 * k ∧ ¬ ∃ M, Hadamard.IsHadamard (n := 4 * k) M}
 
-/-- The best known lower bound $668$: every order $n < 668$ with $4 \mid n$ is known to admit a
-Hadamard matrix [CP2024]. -/
+/-- Trivial lower bound. By definition $C_{23a}$ (if finite) is a multiple of $4$. -/
 @[category research solved, AMS 5 15]
-theorem c23a_lower_bound : 668 ≤ C23a := by
+theorem c23a_lower_bound_trivial : 4 ≤ C23a := by
   sorry
 
-/-- The best known upper bound is the trivial bound $\infty$: no finite upper bound is known. -/
+/-- Lower bound from [CP2024] (2025). All orders $n<668$ with $n\equiv 0\pmod4$ are known to admit
+Hadamard matrices; the smallest currently unresolved order is $668$. -/
 @[category research solved, AMS 5 15]
-theorem c23a_upper_bound : C23a ≤ ⊤ :=
-  le_top
-
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5 15]
-theorem mem_Ioc_c23a : answer(sorry) ∈ Set.Ioc 668 C23a := by
+theorem c23a_lower_bound_cp2024 : 668 ≤ C23a := by
   sorry
 
-/-- What is the exact value of the constant? The **Hadamard conjecture** asserts that it is
-$\infty$. -/
+/-- Trivial upper bound. No finite upper bound is known; conjecturally sharp (Hadamard conjecture).
+-/
+@[category research solved, AMS 5 15]
+theorem c23a_upper_bound_trivial : C23a ≤ ⊤ := by
+  sorry
+
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 5 15]
-theorem c23a_eq : C23a = answer(sorry) := by
+theorem c23a_eq : answer(sorry) = C23a := by
   sorry
 
 end Constant23a

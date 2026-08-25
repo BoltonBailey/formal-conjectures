@@ -30,6 +30,17 @@ hallucinations.
   Math. 2 (1950), 113–123.
 - [CE2018] Chen, Y.-G.; Elsholtz, C. "Lower bounds for Romanoff's constant." 2018.
 - [Y2026] Upper bound $0.490180063290061$, 2026.
+- [CS2004] Y.G. Chen and X.G. Sun, "On Romanoff's constant," J. Number Theory, 106 (2004), 275–284.
+- [P2006] J. Pintz, "A note on Romanoff's constant," Acta Mathematica Hungarica, 112 (2006), 1-14.
+- [HS2010] L. Habsieger and R. Sivak-Fischler, "A new lower bound for Romanoff's constant," Journal
+  of Number Theory, 130 (2010).
+- [HR2006] L. Habsieger and X. Roblot, "On integers of the form $p + 2^k$," Acta Arithmetica, 122
+  (2006), 45–50.
+- [CDL2024] Y. Chen, X. Dai, and H. Li, "Some results on a conjecture of de Polignac about numbers
+  of the form $p + 2^k$," [arXiv:2402.06644](https://arxiv.org/abs/2402.06644), 2024.
+- [G2026] Griego, Sebastian. 36-prime obstruction certificate for Romanoff's constant upper-density
+  bound, 2026. [Code and
+  verification](https://github.com/sebastian-griego/c45-romanoff-certificate/tree/v1-c45-certificate).
 
 The complementary set is formalised in `FormalConjectures.ErdosProblems.«16»` as
 `Erdos16.Erdos16Set`.
@@ -48,31 +59,70 @@ noncomputable def C45a : ℝ :=
   limsup (fun N : ℕ =>
     (count (fun n => Odd n ∧ ∃ k p : ℕ, p.Prime ∧ n = 2 ^ k + p) N : ℝ) / N) atTop
 
-/-- The best known lower bound $0.107648$, proven by Chen-Elsholtz in [CE2018]. Romanoff [R1934]
-first proved that the density is positive. -/
+/-- Trivial lower bound. -/
 @[category research solved, AMS 11]
-theorem c45a_lower_bound : 0.107648 ≤ C45a := by
+theorem c45a_lower_bound_trivial : 0 ≤ C45a := by
   sorry
 
-/-- The best known upper bound $0.490180063290061$ [Y2026]. Erdős [E1950] first proved, using
-covering systems, that the density is strictly less than the trivial bound $1/2$. -/
+/-- Lower bound from [R1934] (1934). -/
 @[category research solved, AMS 11]
-theorem c45a_upper_bound : C45a ≤ 0.490180063290061 := by
+theorem c45a_lower_bound_r1934 : 0 < C45a := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 11]
-theorem mem_Ico_c45a : answer(sorry) ∈ Set.Ico C45a 0.490180063290061 := by
+/-- Lower bound from [CS2004] (2004). -/
+@[category research solved, AMS 11]
+theorem c45a_lower_bound_cs2004 : 0.0868 ≤ C45a := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 11]
-theorem mem_Ioc_c45a : answer(sorry) ∈ Set.Ioc 0.107648 C45a := by
+/-- Lower bound from [P2006] (2006). -/
+@[category research solved, AMS 11]
+theorem c45a_lower_bound_p2006 : 0.0936 ≤ C45a := by
+  sorry
+
+/-- Lower bound from [HS2010] (2010). -/
+@[category research solved, AMS 11]
+theorem c45a_lower_bound_hs2010 : 0.093627 ≤ C45a := by
+  sorry
+
+/-- Lower bound from [CE2018] (2018). -/
+@[category research solved, AMS 11]
+theorem c45a_lower_bound_ce2018 : 0.107648 ≤ C45a := by
+  sorry
+
+/-- Trivial upper bound. -/
+@[category research solved, AMS 11]
+theorem c45a_upper_bound_trivial : C45a ≤ 1 / 2 := by
+  sorry
+
+/-- Upper bound from [E1950] (1950). Used covering systems -/
+@[category research solved, AMS 11]
+theorem c45a_upper_bound_e1950 : C45a < 0.5 := by
+  sorry
+
+/-- Upper bound from [HR2006] (2006). -/
+@[category research solved, AMS 11]
+theorem c45a_upper_bound_hr2006 : C45a ≤ 0.490941 := by
+  sorry
+
+/-- Upper bound from [CDL2024] (2024). -/
+@[category research solved, AMS 11]
+theorem c45a_upper_bound_cdl2024 : C45a ≤ 0.490341088858244 := by
+  sorry
+
+/-- Upper bound from [G2026] (2026). 36-prime finite obstruction certificate with exact
+cluster-update verification. -/
+@[category research solved, AMS 11]
+theorem c45a_upper_bound_g2026 : C45a ≤ 0.490249407811155 := by
+  sorry
+
+/-- Upper bound from [Y2026] (2026). -/
+@[category research solved, AMS 11]
+theorem c45a_upper_bound_y2026 : C45a ≤ 0.490180063290061 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 11]
-theorem c45a_eq : C45a = answer(sorry) := by
+theorem c45a_eq : answer(sorry) = C45a := by
   sorry
 
 end Constant45a

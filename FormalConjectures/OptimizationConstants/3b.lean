@@ -29,6 +29,9 @@ hallucinations.
   Kakeya conjecture." Mathematical Research Letters 6 (1999), 625–630.
 - [L2015] Łaba, I. Lower bound construction, 2015.
 - [MI2026] Entropy construction on a 13-point support, 2026.
+- [GGSWT2025] Georgiev, Bogdan; Gómez-Serrano, Javier; Tao, Terence; Wagner, Adam Zsolt.
+  Mathematical exploration and discovery at scale.
+  [arXiv:2511.02864](https://arxiv.org/abs/2511.02864)
 -/
 
 open scoped Pointwise Finset
@@ -46,30 +49,55 @@ noncomputable def C3b : ℝ :=
     (#(G.image fun p => p.1 - p.2) : ℝ) ≤
       max (max (#A : ℝ) (#B : ℝ)) (#(G.image fun p => p.1 + p.2) : ℝ) ^ c}
 
-/-- The best known lower bound $1.77898884$, given by an entropy construction on a $13$-point
-support [MI2026], refining the bound $1.77898$ of [L2015]. -/
+/-- Trivial lower bound. -/
 @[category research solved, AMS 5 11 42]
-theorem c3b_lower_bound : 1.77898884 ≤ C3b := by
+theorem c3b_lower_bound_trivial : Real.log 3 / Real.log 2 ≤ C3b := by
   sorry
 
-/-- The best known upper bound $2 - 1/6 = 11/6$, proven by Katz-Tao in [KT1999]. -/
+/-- Lower bound from Ruzsa (unpublished). -/
 @[category research solved, AMS 5 11 42]
-theorem c3b_upper_bound : C3b ≤ 11 / 6 := by
+theorem c3b_lower_bound_ruzsa : Real.log 27 / Real.log (27 / 4) ≤ C3b := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 5 11 42]
-theorem mem_Ico_c3b : answer(sorry) ∈ Set.Ico C3b (11 / 6) := by
+/-- Lower bound from [L2015] (2015). -/
+@[category research solved, AMS 5 11 42]
+theorem c3b_lower_bound_l2015 : 1.77898 ≤ C3b := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5 11 42]
-theorem mem_Ioc_c3b : answer(sorry) ∈ Set.Ioc 1.77898884 C3b := by
+/-- Lower bound from [GGSWT2025] (2025). Improved [L2015] in the eighth decimal place (AlphaEvolve)
+-/
+@[category research solved, AMS 5 11 42]
+theorem c3b_lower_bound_ggswt2025 : 1.77898 < C3b := by
+  sorry
+
+/-- Lower bound from [MI2026] (2026). Entropy construction on a 13-point support. -/
+@[category research solved, AMS 5 11 42]
+theorem c3b_lower_bound_mi2026 : 1.77898884 ≤ C3b := by
+  sorry
+
+/-- Trivial upper bound. -/
+@[category research solved, AMS 5 11 42]
+theorem c3b_upper_bound_trivial : C3b ≤ 2 := by
+  sorry
+
+/-- Upper bound from Wolff (unpublished). -/
+@[category research solved, AMS 5 11 42]
+theorem c3b_upper_bound_wolff : C3b ≤ 2 - 1 / 14 := by
+  sorry
+
+/-- Upper bound from [B1999] (1999). -/
+@[category research solved, AMS 5 11 42]
+theorem c3b_upper_bound_b1999 : C3b ≤ 2 - 1 / 13 := by
+  sorry
+
+/-- Upper bound from [KT1999] (1999). -/
+@[category research solved, AMS 5 11 42]
+theorem c3b_upper_bound_kt1999 : C3b ≤ 2 - 1 / 6 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5 11 42]
-theorem c3b_eq : C3b = answer(sorry) := by
+theorem c3b_eq : answer(sorry) = C3b := by
   sorry
 
 end Constant3b

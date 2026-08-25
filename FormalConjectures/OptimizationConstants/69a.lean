@@ -44,26 +44,21 @@ noncomputable def C69a : ℝ :=
   sInf {R : ℝ | 0 < R ∧ ∀ f : ℂ[X], Sendov.Polynomial.IsSendov f →
     ∀ z ∈ f.rootSet ℂ, Metric.infDist z (f.derivative.rootSet ℂ) ≤ R}
 
-/-- The lower bound $1$, given by $f(z) = z^n - 1$ and the root $\lambda_0 = 1$, whose critical
-points lie on the boundary of $D(\lambda_0, 1)$ [Tao2022]. -/
+/-- Lower bound from [Tao2022] (2012). Example $f(z)=z^n-1$, $\lambda_0=1$: the critical points are
+at $0$ and lie on $\partial D(\lambda_0,1)$. [Tao2022-example-zn1] -/
 @[category research solved, AMS 12 30 52]
-theorem c69a_lower_bound : 1 ≤ C69a := by
+theorem c69a_lower_bound_tao2022 : 1 ≤ C69a := by
   sorry
 
-/-- The trivial upper bound $2$: all roots of $f$ and of $f'$ lie in the closed unit disc. -/
+/-- Trivial upper bound. Trivial geometric bound since all zeroes of $f$ and $f'$ lie in the closed
+unit disk. -/
 @[category research solved, AMS 12 30 52]
-theorem c69a_upper_bound : C69a ≤ 2 := by
+theorem c69a_upper_bound_trivial : C69a ≤ 2 := by
   sorry
 
-/-- How can the upper bound be improved? -/
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 12 30 52]
-theorem mem_Ico_c69a : answer(sorry) ∈ Set.Ico C69a 2 := by
-  sorry
-
-/-- What is the exact value of the constant? **Sendov's conjecture** asserts that it is $1$;
-this is known for degree at most $9$ and for all sufficiently large degrees [Tao2022]. -/
-@[category research open, AMS 12 30 52]
-theorem c69a_eq : C69a = answer(sorry) := by
+theorem c69a_eq : answer(sorry) = C69a := by
   sorry
 
 end Constant69a

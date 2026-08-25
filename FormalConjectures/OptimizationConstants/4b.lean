@@ -29,6 +29,8 @@ hallucinations.
   (1984), 205–209.
 - [Lew2015] Lewko, M. "An improved lower bound related to the Furstenberg-Sárközy theorem."
   Electronic Journal of Combinatorics 22 (2015), P1.32.
+- [BG2008] Beigel, R.; Gasarch, W. "Square-Difference-Free Sets of Size
+  \(\Omega(n^{0.7334\ldots})\)." 2008. [arXiv:0804.4892](https://arxiv.org/abs/0804.4892)
 -/
 
 open Filter
@@ -49,33 +51,30 @@ the limit is itself open [Ruz1984]. -/
 noncomputable def C4b : ℝ :=
   limsup (fun N : ℕ => Real.log (squareDifferenceFreeCard N) / Real.log N) atTop
 
-/-- The best known lower bound $\frac12(1 + \log 12 / \log 205) \approx 0.733412$, proven by
-Lewko in [Lew2015], refining Ruzsa's base-expansion construction [Ruz1984]. -/
+/-- Lower bound from Trivial / folklore (see [BG2008]) (2008). Can use an arithmetic progression of
+spacing $p \asymp \sqrt{N}$ -/
 @[category research solved, AMS 5 11]
-theorem c4b_lower_bound :
-    (1 / 2) * (1 + Real.log 12 / Real.log 205) ≤ C4b := by
+theorem c4b_lower_bound_bg2008 : 1 / 2 ≤ C4b := by
   sorry
 
-/-- The trivial upper bound $1$. The known quantitative forms of the Furstenberg-Sárközy
-theorem [Sar1978] do not yet improve on it. -/
+/-- Lower bound from [Ruz1984] (1984). Base-expansion construction -/
 @[category research solved, AMS 5 11]
-theorem c4b_upper_bound : C4b ≤ 1 := by
+theorem c4b_lower_bound_ruz1984 : 1 / 2 * (1 + Real.log 7 / Real.log 65) ≤ C4b := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ico_c4b : answer(sorry) ∈ Set.Ico C4b 1 := by
+/-- Lower bound from [Lew2015] (2015). Improves modulus and residue set in base expansion -/
+@[category research solved, AMS 5 11]
+theorem c4b_lower_bound_lew2015 : 1 / 2 * (1 + Real.log 12 / Real.log 205) ≤ C4b := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ioc_c4b :
-    answer(sorry) ∈ Set.Ioc ((1 / 2) * (1 + Real.log 12 / Real.log 205)) C4b := by
+/-- Trivial upper bound. -/
+@[category research solved, AMS 5 11]
+theorem c4b_upper_bound_trivial : C4b ≤ 1 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5 11]
-theorem c4b_eq : C4b = answer(sorry) := by
+theorem c4b_eq : answer(sorry) = C4b := by
   sorry
 
 end Constant4b

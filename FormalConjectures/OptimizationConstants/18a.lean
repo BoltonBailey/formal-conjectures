@@ -48,30 +48,24 @@ noncomputable def C18a : ℝ :=
       ∃ (W : Submodule (ZMod 2) (𝔽₂ n)) (T : Finset (𝔽₂ n)),
         Nat.card W ≤ #A ∧ (#T : ℝ) ≤ K ^ (C + ε) ∧ (A : Set (𝔽₂ n)) ⊆ T + W}
 
-/-- The trivial lower bound $1$, obtained by taking $A$ to be a set of $K$ basis vectors. -/
+/-- Trivial lower bound. Consider $K$ basis vectors -/
 @[category research solved, AMS 5 11]
-theorem c18a_lower_bound : 1 ≤ C18a := by
+theorem c18a_lower_bound_trivial : 1 ≤ C18a := by
   sorry
 
-/-- The best known upper bound $9$, proven by Liu in [L2024]. The first bound
-$7 + \sqrt{17} = 11.123\ldots$ is due to Gowers-Green-Manners-Tao [GGMT2025]. -/
+/-- Upper bound from [GGMT2025] (2025). Usually reported as $12$ -/
 @[category research solved, AMS 5 11]
-theorem c18a_upper_bound : C18a ≤ 9 := by
+theorem c18a_upper_bound_ggmt2025 : C18a ≤ 7 + Real.sqrt 17 := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ico_c18a : answer(sorry) ∈ Set.Ico C18a 9 := by
-  sorry
-
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ioc_c18a : answer(sorry) ∈ Set.Ioc 1 C18a := by
+/-- Upper bound from [L2024] (2024). A simplified argument giving $11$ is also provided -/
+@[category research solved, AMS 5 11]
+theorem c18a_upper_bound_l2024 : C18a ≤ 9 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5 11]
-theorem c18a_eq : C18a = answer(sorry) := by
+theorem c18a_eq : answer(sorry) = C18a := by
   sorry
 
 end Constant18a

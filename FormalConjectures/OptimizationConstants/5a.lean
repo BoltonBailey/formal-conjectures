@@ -30,6 +30,12 @@ hallucinations.
   theory." Transactions of the American Mathematical Society 43 (1938), 377–385.
 - [CHO25] Carter, H.; Hunter, Z.; O'Bryant, K. "Sidon sets and perturbations."
   [arXiv:2504.11241](https://arxiv.org/abs/2504.11241)
+- [Li69] Lindstr\"{o}m, B., An inequality for $B_{2}$-sequences. J. Combinatorial Theory (1969),
+  211-212.
+- [BFR21] Balogh, J. and F\"{u}redi, Z. and Roy, S., An upper bound on the size of Sidon sets.
+  [arXiv:2103.15850](https://arxiv.org/abs/2103.15850) (2021).
+- [OBO22] O'Bryant, K., On the size of finite Sidon sets.
+  [arXiv:2207.07800](https://arxiv.org/abs/2207.07800) (2022).
 
 A further, currently unpublished, upper bound of $0.97633$ was announced in 2025 by Carter,
 Georgiev, Gómez-Serrano, Hunter, O'Bryant, Tao and Wagner using AlphaEvolve.
@@ -49,31 +55,41 @@ noncomputable def C5a : ℝ :=
   sInf {c : ℝ | ∀ ε > 0, ∀ᶠ N : ℕ in atTop,
     Green31.F N ≤ Real.sqrt N + (c + ε) * (N : ℝ) ^ (4⁻¹ : ℝ)}
 
-/-- The best known lower bound $0$, coming from Singer's perfect difference set
-construction [Si38]. -/
+/-- Lower bound from [Si38] (1938). -/
 @[category research solved, AMS 5 11]
-theorem c5a_lower_bound : 0 ≤ C5a := by
+theorem c5a_lower_bound_si38 : 0 ≤ C5a := by
   sorry
 
-/-- The best published upper bound $0.98183$, proven by Carter-Hunter-O'Bryant in [CHO25].
-The bound $1$ goes back to Erdős-Turán [ET41]. -/
+/-- Upper bound from [ET41], [Li69] (1941, 1969). -/
 @[category research solved, AMS 5 11]
-theorem c5a_upper_bound : C5a ≤ 0.98183 := by
+theorem c5a_upper_bound_et41_li69 : C5a ≤ 1 := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ico_c5a : answer(sorry) ∈ Set.Ico C5a 0.98183 := by
+/-- Upper bound from [BFR21] (2021). -/
+@[category research solved, AMS 5 11]
+theorem c5a_upper_bound_bfr21 : C5a ≤ 0.998 := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ioc_c5a : answer(sorry) ∈ Set.Ioc 0 C5a := by
+/-- Upper bound from [OBO22] (2022). -/
+@[category research solved, AMS 5 11]
+theorem c5a_upper_bound_obo22 : C5a ≤ 0.99703 := by
+  sorry
+
+/-- Upper bound from [CHO25] (2025). -/
+@[category research solved, AMS 5 11]
+theorem c5a_upper_bound_cho25 : C5a ≤ 0.98183 := by
+  sorry
+
+/-- Upper bound from Carter, Georgiev, Gomez--Serrano, Hunter, O'Bryant, Tao, Wagner
+([unpublished](https://terrytao.wordpress.com/2025/11/05/mathematical-exploration-and-discovery-at-scale/#comment-689052),
+2025). AlphaEvolve -/
+@[category research solved, AMS 5 11]
+theorem c5a_upper_bound_carter : C5a ≤ 0.97633 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5 11]
-theorem c5a_eq : C5a = answer(sorry) := by
+theorem c5a_eq : answer(sorry) = C5a := by
   sorry
 
 end Constant5a

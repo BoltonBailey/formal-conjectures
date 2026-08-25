@@ -32,6 +32,8 @@ hallucinations.
   for diagonal Ramsey." [arXiv:2303.09521](https://arxiv.org/abs/2303.09521)
 - [GNNW2024] Gupta, P.; Ndiaye, N.; Norin, S.; Wei, L. "Optimizing the CGMS upper bound on Ramsey
   numbers." [arXiv:2407.19026](https://arxiv.org/abs/2407.19026)
+- [Gri26] Max Grinsztajn. Code and certificate for a Ramsey upper bound below 3.792. GitHub
+  repository, 2026. https://github.com/maaxgrin/ramsey-3792-bound
 
 Ramsey numbers are formalised in `FormalConjectures.Wikipedia.RamseyNumbers` as
 `RamseyNumbers.graphRamseyNumber`.
@@ -48,33 +50,35 @@ of the limit is itself open, so we take a `limsup`. -/
 noncomputable def C17a : ℝ :=
   limsup (fun k : ℕ => (RamseyNumbers.graphRamseyNumber k k : ℝ) ^ ((k : ℝ)⁻¹)) atTop
 
-/-- The best known lower bound $\sqrt{2}$, proven by Erdős in [Erd1947] with the probabilistic
-method. -/
+/-- Lower bound from [Erd1947] (1947). Introduces Erdős’ probabilistic method -/
 @[category research solved, AMS 5]
-theorem c17a_lower_bound : Real.sqrt 2 ≤ C17a := by
+theorem c17a_lower_bound_erd1947 : Real.sqrt 2 ≤ C17a := by
   sorry
 
-/-- The best known upper bound $4e^{-0.14/e} = 3.7992027396\ldots$, proven by
-Gupta-Ndiaye-Norin-Wei in [GNNW2024] by optimising the parameters of the
-Campos-Griffiths-Morris-Sahasrabudhe argument [CGMS2023]. The classical bound $4$ is due to
-Erdős-Szekeres [ES1935]. -/
+/-- Upper bound from [ES1935] (1935). -/
 @[category research solved, AMS 5]
-theorem c17a_upper_bound : C17a ≤ 4 * Real.exp (-0.14 / Real.exp 1) := by
+theorem c17a_upper_bound_es1935 : C17a ≤ 4 := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 5]
-theorem mem_Ico_c17a : answer(sorry) ∈ Set.Ico C17a (4 * Real.exp (-0.14 / Real.exp 1)) := by
+/-- Upper bound from [CGMS2023] (2023). A simpler proof with $4 - 2^{-10}$ is also provided -/
+@[category research solved, AMS 5]
+theorem c17a_upper_bound_cgms2023 : C17a ≤ 4 - 2 ^ (-7 : ℤ) := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5]
-theorem mem_Ioc_c17a : answer(sorry) ∈ Set.Ioc (Real.sqrt 2) C17a := by
+/-- Upper bound from [GNNW2024] (2024). Optimizes parameters in the [CGMS2023] approach -/
+@[category research solved, AMS 5]
+theorem c17a_upper_bound_gnnw2024 : C17a ≤ 4 * Real.exp (-0.14 / Real.exp 1) := by
   sorry
 
-/-- What is the exact value of the constant? Even the existence of the limit is open. -/
+/-- Upper bound from [Gri26] (2026). Computer-assisted verification using Theorem 13 and Lemma 14 of
+[GNNW2024] -/
+@[category research solved, AMS 5]
+theorem c17a_upper_bound_gri26 : C17a ≤ 3.791993699438612 := by
+  sorry
+
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 5]
-theorem c17a_eq : C17a = answer(sorry) := by
+theorem c17a_eq : answer(sorry) = C17a := by
   sorry
 
 end Constant17a

@@ -28,6 +28,8 @@ hallucinations.
   of Mathematics 60 (1987), 199–224.
 - [P1978] Pisier, G. "Grothendieck's theorem for noncommutative $C^*$-algebras." Journal of
   Functional Analysis 29 (1978), 397–415.
+- [Kai1973] Kaijser, S. "A note on the Grothendieck constant with an application to harmonic
+  analysis." UUDM Report No. 1973:10, Uppsala University (mimeographed).
 -/
 
 namespace Constant10b
@@ -50,30 +52,34 @@ noncomputable def C10b : ℝ :=
     (∀ i, ‖u i‖ = 1) → (∀ j, ‖v j‖ = 1) →
       ‖∑ i, ∑ j, A i j * inner ℂ (u i) (v j)‖ ≤ C * phaseValue A}
 
-/-- The best known lower bound $1.338$, due to Davie [D1984]. -/
+/-- Trivial lower bound. -/
 @[category research solved, AMS 46 47]
-theorem c10b_lower_bound : 1.338 ≤ C10b := by
+theorem c10b_lower_bound_trivial : 1 ≤ C10b := by
   sorry
 
-/-- The best known upper bound $1.40491$, proven by Haagerup in [H1987]. Pisier [P1978] gave
-$e^{1 - \gamma} \approx 1.52621$. -/
+/-- Lower bound from [D1984] (1987). Best known general lower bound (Davie; cited by Haagerup). -/
 @[category research solved, AMS 46 47]
-theorem c10b_upper_bound : C10b ≤ 1.40491 := by
+theorem c10b_lower_bound_d1984 : 1.338 ≤ C10b := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 46 47]
-theorem mem_Ico_c10b : answer(sorry) ∈ Set.Ico C10b 1.40491 := by
+/-- Upper bound from [Kai1973] (1973). Bound via the method of Rietz (as cited by Haagerup). -/
+@[category research solved, AMS 46 47]
+theorem c10b_upper_bound_kai1973 : C10b ≤ 1.607 := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 46 47]
-theorem mem_Ioc_c10b : answer(sorry) ∈ Set.Ioc 1.338 C10b := by
+/-- Upper bound from [P1978] (1978). Here $\gamma$ is the Euler--Mascheroni constant. -/
+@[category research solved, AMS 46 47]
+theorem c10b_upper_bound_p1978 : C10b ≤ Real.exp (1 - Real.eulerMascheroniConstant) := by
+  sorry
+
+/-- Upper bound from [H1987] (1987). Best known general upper bound (Haagerup). -/
+@[category research solved, AMS 46 47]
+theorem c10b_upper_bound_h1987 : C10b ≤ 1.40491 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 46 47]
-theorem c10b_eq : C10b = answer(sorry) := by
+theorem c10b_eq : answer(sorry) = C10b := by
   sorry
 
 end Constant10b

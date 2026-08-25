@@ -49,31 +49,38 @@ $\{1, \ldots, n\}$. We take a `limsup`; a tensor power argument shows it is in f
 noncomputable def C49a : ℝ :=
   limsup (fun n : ℕ => (sunflowerFreeCard n : ℝ) ^ ((n : ℝ)⁻¹)) atTop
 
-/-- The best known lower bound $1.551$, from the Deuber-Erdős-Gunderson-Kostochka-Meyer
-construction [DEGKM1997]. -/
+/-- Trivial lower bound. $f(n)\ge 1$. -/
 @[category research solved, AMS 5]
-theorem c49a_lower_bound : 1.551 ≤ C49a := by
+theorem c49a_lower_bound_trivial : 1 ≤ C49a := by
   sorry
 
-/-- The best known upper bound $3 / 2^{2/3} \approx 1.8898815748$, proven by Naslund-Sawin
-in [NS2017]. -/
+/-- Lower bound from [DEGKM1997] (1997). This lower bound is obtained from a construction of
+Deuber--Erdős--Gunderson--Kostochka--Meyer. The numerical value is stated in [FPP2024], [TZ2025]. -/
 @[category research solved, AMS 5]
-theorem c49a_upper_bound : C49a ≤ 3 / (2 : ℝ) ^ ((2 : ℝ) / 3) := by
+theorem c49a_lower_bound_degkm1997 : 1.551 < C49a := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 5]
-theorem mem_Ico_c49a : answer(sorry) ∈ Set.Ico C49a (3 / (2 : ℝ) ^ ((2 : ℝ) / 3)) := by
+/-- Lower bound from [NS2017] (2017). The arXiv preprint version of [NS2017] records $\mu^{\mathrm
+S}\_3\ge 1.554$, citing an unpublished manuscript of the first author. -/
+@[category research solved, AMS 5]
+theorem c49a_lower_bound_ns2017 : 1.554 ≤ C49a := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5]
-theorem mem_Ioc_c49a : answer(sorry) ∈ Set.Ioc 1.551 C49a := by
+/-- Trivial upper bound. $f(n)\le 2^n$. -/
+@[category research solved, AMS 5]
+theorem c49a_upper_bound_trivial : C49a ≤ 2 := by
+  sorry
+
+/-- Upper bound from [NS2017] (2017). They prove $\lvert\mathcal{F}\rvert \le 3(n+1)
+\sum\_{k=0}^{\lfloor n/3\rfloor} \binom{n}{k} \le \left(\frac{3}{2^{2/3}}\right)^{n(1+o(1))}$ for
+sunflower-free $\mathcal{F}\subseteq 2^{[n]}$. -/
+@[category research solved, AMS 5]
+theorem c49a_upper_bound_ns2017 : C49a ≤ 3 / (2 ^ (2 / 3 : ℝ)) := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5]
-theorem c49a_eq : C49a = answer(sorry) := by
+theorem c49a_eq : answer(sorry) = C49a := by
   sorry
 
 end Constant49a

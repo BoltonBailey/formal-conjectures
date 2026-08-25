@@ -49,27 +49,34 @@ noncomputable def C25a : ℝ :=
     Convex ℝ K → (interior K).Nonempty → K = -K →
       ENNReal.ofReal (c ^ n) ≤ (n ! : ℝ≥0∞) * volume K * volume (polarBody K)}
 
-/-- The best known lower bound $\pi$, proven by Kuperberg in [K2008]. Bourgain-Milman [BM1987]
-first proved that some positive constant works, and Nazarov [N2012] gave the explicit value
-$\pi^3/16$. -/
+/-- Lower bound from [BM1987] (1987). A non-explicit positive constant $c > 0$. Bourgain–Milman
+(reverse Santaló inequality): there exists a universal constant $c>0$ with $M(K)\ge c^n$ for all
+centrally symmetric convex bodies $K$. -/
 @[category research solved, AMS 52]
-theorem c25a_lower_bound : Real.pi ≤ C25a := by
+theorem c25a_lower_bound_bm1987 : 0 < C25a := by
   sorry
 
-/-- The upper bound $4$, given by the cube $[-1, 1]^n$, whose Mahler volume is $4^n$. -/
+/-- Lower bound from [N2012] (2012). Nazarov obtained an explicit constant in the symmetric
+Bourgain–Milman inequality (via a Hörmander/$\bar\partial$ method). -/
 @[category research solved, AMS 52]
-theorem c25a_upper_bound : C25a ≤ 4 := by
+theorem c25a_lower_bound_n2012 : Real.pi ^ 3 / 16 ≤ C25a := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 52]
-theorem mem_Ioc_c25a : answer(sorry) ∈ Set.Ioc Real.pi C25a := by
+/-- Lower bound from [K2008] (2008). Best known explicit constant to date (Kuperberg). -/
+@[category research solved, AMS 52]
+theorem c25a_lower_bound_k2008 : Real.pi ≤ C25a := by
   sorry
 
-/-- What is the exact value of the constant? The (symmetric) **Mahler conjecture** predicts that
-it is $4$, with the Hanner polytopes as extremisers. -/
+/-- Trivial upper bound. For the cube $B_\infty^n=[-1,1]^n$ one has $\mathrm{Vol}(B_\infty^n)=2^n$
+and $\mathrm{Vol}\big((B_\infty^n)^\circ\big)=2^n/n!$, hence $M(B_\infty^n)=4^n$ and $C_{25}\le 4$.
+Conjecturally, this is sharp (Mahler conjecture). -/
+@[category research solved, AMS 52]
+theorem c25a_upper_bound_trivial : C25a ≤ 4 := by
+  sorry
+
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 52]
-theorem c25a_eq : C25a = answer(sorry) := by
+theorem c25a_eq : answer(sorry) = C25a := by
   sorry
 
 end Constant25a

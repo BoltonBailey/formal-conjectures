@@ -31,6 +31,13 @@ hallucinations.
   $\mathbb{Z}^d$." Electronic Journal of Combinatorics 7 (2000), R21.
 - [FV2017] Friedli, S.; Velenik, Y. "Statistical Mechanics of Lattice Systems." Cambridge
   University Press (2017).
+- [SlaBounds] Slade, Gordon. "Bounds on the self-avoiding-walk connective constant." In: Benedetto,
+  John J. (ed.), "The Journal of Fourier Analysis and Applications." CRC Press (2020), 525–533. DOI:
+  [10.1201/9780429332838-32](https://doi.org/10.1201/9780429332838-32). [Author
+  PDF](https://personal.math.ubc.ca/~slade/kahane.pdf).
+- [Num2026] Numaro ([numaro.tech](https://numaro.tech)). "An improved rigorous lower bound for the
+  square-lattice SAW connective constant." [Certificate
+  archive](https://doi.org/10.5281/zenodo.21546041), submitted to this repository (2026).
 -/
 
 open Filter
@@ -53,32 +60,56 @@ the limit is known to exist by submultiplicativity. -/
 @[optimization_constant "38a"]
 noncomputable def C38a : ℝ := limsup (fun n : ℕ => (sawCount n : ℝ) ^ ((n : ℝ)⁻¹)) atTop
 
-/-- The best known lower bound $2.625622$, attributed to Jensen [Jen2004] and reported
-in [FV2017]. Conway-Guttmann [CG1993] gave $2.62002$. -/
+/-- Trivial lower bound. From the general bound $d \le \mu \le 2d-1$ with $d=2$. [SlaBounds-simple]
+-/
 @[category research solved, AMS 5 82]
-theorem c38a_lower_bound : 2.625622 ≤ C38a := by
+theorem c38a_lower_bound_trivial : 2 ≤ C38a := by
   sorry
 
-/-- The best known upper bound $2.679193$, attributed to Pönitz-Tittmann [PT2000] and reported
-in [FV2017]. -/
+/-- Lower bound from [SlaBounds] (2020). Reported (Table 1) as the best rigorous lower bound for
+$d=2$ in this survey; the survey attributes it to [CG1993]. [SlaBounds-table1-d2]
+[SlaBounds-conway-guttmann] -/
 @[category research solved, AMS 5 82]
-theorem c38a_upper_bound : C38a ≤ 2.679193 := by
+theorem c38a_lower_bound_slabounds : 2.62002 ≤ C38a := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 5 82]
-theorem mem_Ico_c38a : answer(sorry) ∈ Set.Ico C38a 2.679193 := by
+/-- Lower bound from [FV2017] (2017). Reported as a rigorous lower bound in [FV2017] (attributed
+there to [Jen2004-lb]). [FV2017-bounds-square] [FV2017-ref-182] -/
+@[category research solved, AMS 5 82]
+theorem c38a_lower_bound_fv2017 : 2.625622 ≤ C38a := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5 82]
-theorem mem_Ioc_c38a : answer(sorry) ∈ Set.Ioc 2.625622 C38a := by
+/-- Lower bound from [Num2026] (2026). Kesten irreducible-bridge renewal exactly as in [Jen2004-lb],
+extended two span levels past the 2004 computation (span $L=17$, series length $N=260$) by an exact
+cell-by-cell finite-lattice transfer matrix (CRT big-integer arithmetic); the certificate is a
+single exact big-integer inequality (self-contained checker included), and secondary certificates at
+Jensen's own span ($L=15$, $N=260$ gives $2.6256270$) and at $L=16$ ($2.6265705$) independently also
+exceed $2.625622$. [Num2026-bound] -/
+@[category research solved, AMS 5 82]
+theorem c38a_lower_bound_num2026 : 2.6273856 ≤ C38a := by
   sorry
 
-/-- What is the exact value of the constant? Numerically it is about $2.63815853$, but no exact
-value is known. -/
+/-- Trivial upper bound. From the general bound $d \le \mu \le 2d-1$ with $d=2$. [SlaBounds-simple]
+-/
+@[category research solved, AMS 5 82]
+theorem c38a_upper_bound_trivial : C38a ≤ 3 := by
+  sorry
+
+/-- Upper bound from [SlaBounds] (2020). Reported (Table 1) as the best rigorous upper bound for
+$d=2$ in this survey, attributed there to [Alm1993]. [SlaBounds-table1-d2] -/
+@[category research solved, AMS 5 82]
+theorem c38a_upper_bound_slabounds : C38a ≤ 2.69576 := by
+  sorry
+
+/-- Upper bound from [FV2017] (2017). Reported as a rigorous upper bound in [FV2017] (attributed
+there to [PT2000]). [FV2017-bounds-square] [FV2017-ref-277] -/
+@[category research solved, AMS 5 82]
+theorem c38a_upper_bound_fv2017 : C38a ≤ 2.679193 := by
+  sorry
+
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 5 82]
-theorem c38a_eq : C38a = answer(sorry) := by
+theorem c38a_eq : answer(sorry) = C38a := by
   sorry
 
 end Constant38a

@@ -30,6 +30,14 @@ hallucinations.
   International Journal of Computational Geometry & Applications 15 (2005), 537–544.
 - [Gib2018] Gibbs, P. "An upper bound for Lebesgue's covering problem."
   [arXiv:1810.10089](https://arxiv.org/abs/1810.10089)
+- [Spr1936] Sprague, Roland. *"Über ein elementares Variationsproblem"". "Matematiska Tidsskrift*
+  Ser. B (1936), 96–99.
+- [Han1992] Hansen, H. C. *"Small universal covers for sets of unit diameter"". "Geometriae
+  Dedicata* 42 (1992), 205–213. DOI: 10.1007/BF00147549.
+- [BBG2015] Baez, John C.; Bagdasaryan, Karine; Gibbs, Philip. *"The Lebesgue universal covering
+  problem"". "Journal of Computational Geometry* 6 (2015), no. 1, 288–299. Preprint:
+  https://arxiv.org/abs/1502.01251 (Also available as a PDF from Baez’s webpage:
+  https://math.ucr.edu/home/baez/covering.pdf)
 -/
 
 open MeasureTheory
@@ -52,31 +60,68 @@ of diameter $1$. -/
 @[optimization_constant "13b"]
 noncomputable def C13b : ℝ≥0∞ := sInf {v | ∃ X ∈ UniversalCovers, volume X = v}
 
-/-- The best known lower bound $0.832$, proven by Brass-Sharifi in [BS2005] with a rigorous
-computer-aided search. Elekes [Elek1994] gave $0.8271$. -/
+/-- Trivial lower bound. Use unit disk -/
 @[category research solved, AMS 52]
-theorem c13b_lower_bound : 0.832 ≤ C13b := by
+theorem c13b_lower_bound_trivial : ENNReal.ofReal (Real.pi / 4) ≤ C13b := by
   sorry
 
-/-- The best known upper bound $0.8440935944$, proven by Gibbs in [Gib2018]. Pál's regular
-hexagon [Pal1920] gives $\sqrt{3}/2$. -/
+/-- Lower bound from [Elek1994] (1994). Use unit disk and equilateral triangle -/
 @[category research solved, AMS 52]
-theorem c13b_upper_bound : C13b ≤ 0.8440935944 := by
+theorem c13b_lower_bound_elek1994_1 : 0.8257 ≤ C13b := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 52]
-theorem mem_Ico_c13b : answer(sorry) ∈ Set.Ico C13b 0.8440935944 := by
+/-- Lower bound from [Elek1994] (1994). Also use regular $3^j$-gons -/
+@[category research solved, AMS 52]
+theorem c13b_lower_bound_elek1994_2 : 0.8271 ≤ C13b := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 52]
-theorem mem_Ioc_c13b : answer(sorry) ∈ Set.Ioc 0.832 C13b := by
+/-- Lower bound from [BS2005] (2005). Rigorous computer-aided search using a circle, equilateral
+triangle, and regular pentagon -/
+@[category research solved, AMS 52]
+theorem c13b_lower_bound_bs2005 : 0.832 ≤ C13b := by
+  sorry
+
+/-- Trivial upper bound. Follows from Jung’s theorem [Elek1994]. -/
+@[category research solved, AMS 52]
+theorem c13b_upper_bound_trivial : C13b ≤ ENNReal.ofReal (Real.pi / 3) := by
+  sorry
+
+/-- Upper bound from [Pal1920] (1920). Regular hexagon circumscribing unit disk. -/
+@[category research solved, AMS 52]
+theorem c13b_upper_bound_pal1920_1 : C13b ≤ ENNReal.ofReal (Real.sqrt 3 / 2) := by
+  sorry
+
+/-- Upper bound from [Pal1920] (1920). Truncation of the hexagon via an inscribed regular dodecagon.
+-/
+@[category research solved, AMS 52]
+theorem c13b_upper_bound_pal1920_2 : C13b ≤ ENNReal.ofReal (2 - 2 / Real.sqrt 3) := by
+  sorry
+
+/-- Upper bound from [Spr1936] (1936). Removed a further tiny region -/
+@[category research solved, AMS 52]
+theorem c13b_upper_bound_spr1936 : C13b ≤ 0.844137708436 := by
+  sorry
+
+/-- Upper bound from [Han1992] (corrected in [BBG2015]) (1992, 2015). Removed two additional
+microscopic regions -/
+@[category research solved, AMS 52]
+theorem c13b_upper_bound_han1992_bbg2015 : C13b ≤ 0.844137708398 := by
+  sorry
+
+/-- Upper bound from [BBG2015] (2015). Computer-assisted geometry, with high-precision verification
+by Greg Egan. -/
+@[category research solved, AMS 52]
+theorem c13b_upper_bound_bbg2015 : C13b ≤ 0.844115297128419059 := by
+  sorry
+
+/-- Upper bound from [Gib2018] (1810). -/
+@[category research solved, AMS 52]
+theorem c13b_upper_bound_gib2018 : C13b ≤ 0.8440935944 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 52]
-theorem c13b_eq : C13b = answer(sorry) := by
+theorem c13b_eq : answer(sorry) = C13b := by
   sorry
 
 end Constant13b

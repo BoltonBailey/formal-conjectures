@@ -47,31 +47,39 @@ noncomputable def C5b : ℝ :=
   sSup {c : ℝ | ∀ A : Finset ℝ, Is45Set A →
     ∃ S ⊆ A, IsSidon (S : Set ℝ) ∧ c * #A ≤ #S}
 
-/-- The best known lower bound $9/17 \approx 0.5294$, proven in [MT26]. A short
-$2$-colourability argument gives $1/2$ [GL95]. -/
+/-- Lower bound from [GL95] (1995). A short 2-colorability argument -/
 @[category research solved, AMS 5 11]
-theorem c5b_lower_bound : 9 / 17 ≤ C5b := by
+theorem c5b_lower_bound_gl95_1 : 1 / 2 ≤ C5b := by
   sorry
 
-/-- The best known upper bound $4/7 \approx 0.5714$, proven in [MT26], improving the bound
-$3/5$ of [GL95]. -/
+/-- Lower bound from [GL95] (1995). -/
 @[category research solved, AMS 5 11]
-theorem c5b_upper_bound : C5b ≤ 4 / 7 := by
+theorem c5b_lower_bound_gl95_2 : 1 / 2 + (1 / (141 * 76)) ≤ C5b := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ico_c5b : answer(sorry) ∈ Set.Ico C5b (4 / 7) := by
+/-- Lower bound from [MT26] (2026). -/
+@[category research solved, AMS 5 11]
+theorem c5b_lower_bound_mt26 : 9 / 17 ≤ C5b := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ioc_c5b : answer(sorry) ∈ Set.Ioc (9 / 17) C5b := by
+/-- Trivial upper bound. -/
+@[category research solved, AMS 5 11]
+theorem c5b_upper_bound_trivial : C5b ≤ 1 := by
+  sorry
+
+/-- Upper bound from [GL95] (1995). -/
+@[category research solved, AMS 5 11]
+theorem c5b_upper_bound_gl95 : C5b ≤ 3 / 5 := by
+  sorry
+
+/-- Upper bound from [MT26] (2026). -/
+@[category research solved, AMS 5 11]
+theorem c5b_upper_bound_mt26 : C5b ≤ 4 / 7 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5 11]
-theorem c5b_eq : C5b = answer(sorry) := by
+theorem c5b_eq : answer(sorry) = C5b := by
   sorry
 
 end Constant5b

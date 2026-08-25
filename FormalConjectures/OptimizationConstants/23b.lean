@@ -65,31 +65,29 @@ noncomputable def C23b : ℝ :=
     (∀ ε > (0 : ℝ), f =O[atTop] fun n : ℕ => (n : ℝ) ^ ε) ∧
     ∀ᶠ n : ℕ in atTop, kappa n = ENNReal.ofReal (1 + f n / (n : ℝ) ^ α)}
 
-/-- The best known lower bound $17/92 \approx 0.18478$, from the method of [AJM2025], which
-gives $\kappa(n) \le 1 + n^{-\alpha}$ for all large $n$ with $\alpha = 17/92 - \delta$. -/
+/-- Trivial lower bound. Take $\alpha=0$ and $f(n)=\kappa(n)-1$. Since $\kappa(n)\to 1$ as
+$n\to\infty$, $f$ is bounded (hence subpolynomial). [AJM2025-abstract-kappa-to-1] -/
 @[category research solved, AMS 5 15]
-theorem c23b_lower_bound : 17 / 92 ≤ C23b := by
+theorem c23b_lower_bound_trivial : 0 ≤ C23b := by
   sorry
 
-/-- The best known upper bound $1$, stated in the discussion of Problem 11 of [AJM2025]; it is
-supported by the lower bound $\kappa(n) \ge 1 + c \log n / n$ for $n \not\equiv 0 \pmod 4$. -/
+/-- Lower bound from [AJM2025] (2025). The authors state that (unconditionally) their method permits
+$\kappa(n)\le 1+\frac{1}{n^\alpha}$ for all sufficiently large $n$ with $\alpha=17/92-\delta$ for
+any small $\delta>0$. [AJM2025-thm1-alpha] -/
 @[category research solved, AMS 5 15]
-theorem c23b_upper_bound : C23b ≤ 1 := by
+theorem c23b_lower_bound_ajm2025 : 17 / 92 ≤ C23b := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 5 15]
-theorem mem_Ico_c23b : answer(sorry) ∈ Set.Ico C23b 1 := by
-  sorry
-
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5 15]
-theorem mem_Ioc_c23b : answer(sorry) ∈ Set.Ioc (17 / 92) C23b := by
+/-- Upper bound from [AJM2025] (2025). Stated in the discussion of Problem 11. [AJM2025-prob11] (A
+supporting mechanism is the lower bound $\kappa(n)\ge 1+c\frac{\log n}{n}$ for $n\not\equiv 0 \pmod
+4$.) [AJM2025-thm6] -/
+@[category research solved, AMS 5 15]
+theorem c23b_upper_bound_ajm2025 : C23b ≤ 1 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5 15]
-theorem c23b_eq : C23b = answer(sorry) := by
+theorem c23b_eq : answer(sorry) = C23b := by
   sorry
 
 end Constant23b

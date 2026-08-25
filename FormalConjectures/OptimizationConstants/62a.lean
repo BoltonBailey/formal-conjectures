@@ -43,31 +43,30 @@ noncomputable def C62a : ℝ :=
   sInf {θ : ℝ | 0 ≤ θ ∧ ∀ ε > 0,
     (fun t : ℝ => riemannZeta (1 / 2 + t * I)) =O[atTop] fun t : ℝ => (1 + |t|) ^ (θ + ε)}
 
-/-- The trivial lower bound $0$. -/
+/-- Trivial lower bound. Trivial from the definition $C_{62a}\ge 0$. -/
 @[category research solved, AMS 11]
-theorem c62a_lower_bound : 0 ≤ C62a := by
+theorem c62a_lower_bound_trivial : 0 ≤ C62a := by
   sorry
 
-/-- The best known upper bound $13/84$, proven by Bourgain in [Bou2017]. The classical
-convexity bound is $1/4$ and Hardy-Littlewood [HL1923] gave $1/6$. -/
+/-- Upper bound from [Har2019] (2019). Convexity bound. [Har2019-convexity-1-4] -/
 @[category research solved, AMS 11]
-theorem c62a_upper_bound : C62a ≤ 13 / 84 := by
+theorem c62a_upper_bound_har2019_1 : C62a ≤ 1 / 4 := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 11]
-theorem mem_Ico_c62a : answer(sorry) ∈ Set.Ico C62a (13 / 84) := by
+/-- Upper bound from [Har2019] (2019). Hardy-Littlewood bound. [Har2019-hl-1-6] -/
+@[category research solved, AMS 11]
+theorem c62a_upper_bound_har2019_2 : C62a ≤ 1 / 6 := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 11]
-theorem mem_Ioc_c62a : answer(sorry) ∈ Set.Ioc 0 C62a := by
+/-- Upper bound from [Bou2017] (2017). Bourgain's pointwise bound for $\lvert\zeta(1/2+it)\rvert$.
+[Bou2017-13-84] -/
+@[category research solved, AMS 11]
+theorem c62a_upper_bound_bou2017 : C62a ≤ 13 / 84 := by
   sorry
 
-/-- What is the exact value of the constant? The **Lindelöf hypothesis** asserts that it is
-$0$ [Har2019]. -/
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 11]
-theorem c62a_eq : C62a = answer(sorry) := by
+theorem c62a_eq : answer(sorry) = C62a := by
   sorry
 
 end Constant62a

@@ -29,6 +29,10 @@ hallucinations.
   programming." Journal of the American Mathematical Society 21 (2008), 909–924.
 - [MV2009] Mittelmann, H. D.; Vallentin, F. "High accuracy semidefinite programming bounds for
   kissing numbers." Experimental Mathematics 19 (2010), 175–179.
+- [Cox1963] Coxeter, Harold Scott Macdonald. "An upper bound for the number of equal nonoverlapping
+  spheres that can touch another of the same size." In: "Proc. Sympos. Pure Math." 7 (1963), 53–71.
+- [OS1979] Odlyzko, A. M.; Sloane, N. J. A. "New bounds on the number of unit spheres that can touch
+  a unit sphere in $n$ dimensions." Journal of Combinatorial Theory, Series A 26 (1979), 210–214.
 -/
 
 open EuclideanSpace Metric
@@ -45,31 +49,45 @@ noncomputable def C29a : ℕ :=
   sSup {n : ℕ | ∃ C : Finset (EuclideanSpace ℝ (Fin 5)), #C = n ∧
     (∀ x ∈ C, ‖x‖ = 1) ∧ ∀ x ∈ C, ∀ y ∈ C, x ≠ y → inner ℝ x y ≤ (1 / 2 : ℝ)}
 
-/-- The best known lower bound $40$, achieved by the $D_5$ root system [KZ1873]. -/
+/-- Trivial lower bound. Trivial construction via the cross polytope $\{\pm e_i\}_{i=1}^5\subset
+S^4$. -/
 @[category research solved, AMS 11 52]
-theorem c29a_lower_bound : 40 ≤ C29a := by
+theorem c29a_lower_bound_trivial : 10 ≤ C29a := by
   sorry
 
-/-- The best known upper bound $44$, proven by Mittelmann-Vallentin in [MV2009] using
-semidefinite programming, refining [BV2008]. -/
+/-- Lower bound from [KZ1873] (1873). Achieved by the $D_5$ root system (40 points), giving a
+kissing configuration of size $40$ in $\mathbb{R}^5$. [CR2024-lb-40-D5] -/
 @[category research solved, AMS 11 52]
-theorem c29a_upper_bound : C29a ≤ 44 := by
+theorem c29a_lower_bound_kz1873 : 40 ≤ C29a := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 11 52]
-theorem mem_Ico_c29a : answer(sorry) ∈ Set.Ico C29a 44 := by
+/-- Upper bound from [Cox1963] (1963). Coxeter’s strongest bound in dimension $5$ (as summarized in
+the survey literature). [BDM2012-ub-story-d5] -/
+@[category research solved, AMS 11 52]
+theorem c29a_upper_bound_cox1963 : C29a ≤ 48 := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 11 52]
-theorem mem_Ioc_c29a : answer(sorry) ∈ Set.Ioc 40 C29a := by
+/-- Upper bound from [OS1979] (1979). The bound $46.345$, which for the integer $C_{29a}$ means
+$C_{29a} \le 46$. Improvement attributed to Odlyzko–Sloane (as summarized in the survey literature).
+[BDM2012-ub-story-d5] -/
+@[category research solved, AMS 11 52]
+theorem c29a_upper_bound_os1979 : C29a ≤ 46 := by
   sorry
 
-/-- What is the exact value of the constant? It is widely believed to be $40$. Dimension $5$ is
-the smallest dimension in which the kissing number is unknown. -/
+/-- Upper bound from [BV2008], [MV2009] (2008, 2010). Semidefinite-programming upper bound recorded
+as the best “known upper bound” prior to the higher-accuracy SDP computations. -/
+@[category research solved, AMS 11 52]
+theorem c29a_upper_bound_bv2008_mv2009 : C29a ≤ 45 := by
+  sorry
+
+/-- Upper bound from [MV2009] (2010). [MV2009-range-40-44] -/
+@[category research solved, AMS 11 52]
+theorem c29a_upper_bound_mv2009 : C29a ≤ 44 := by
+  sorry
+
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 11 52]
-theorem c29a_eq : C29a = answer(sorry) := by
+theorem c29a_eq : answer(sorry) = C29a := by
   sorry
 
 end Constant29a

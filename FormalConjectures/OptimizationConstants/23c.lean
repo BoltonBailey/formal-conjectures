@@ -52,32 +52,38 @@ noncomputable def C23c : ℝ :=
     2 ≤ n → 1 ≤ t →
     T * (n : ℝ) ^ α ≤ t → |(N n (4 * t) : ℝ) / mainTerm n (4 * t) - 1| ≤ ε}
 
-/-- The lower bound $1$: for $\alpha < 1$ the regime still includes widths with $4t < n$, where
-no $n \times 4t$ partial Hadamard matrix exists [DL2010]. -/
+/-- Lower bound from [DL2010] (2010). Admissible exponents cannot be below $1$: for any $\alpha<1$,
+the regime $t/n^\alpha \to \infty$ still includes widths with $4t<n$, where an $n \times 4t$ partial
+Hadamard matrix cannot exist. [DL2010-linear-obstruction] -/
 @[category research solved, AMS 5 15]
-theorem c23c_lower_bound : 1 ≤ C23c := by
+theorem c23c_lower_bound_dl2010 : 1 ≤ C23c := by
   sorry
 
-/-- The best known upper bound $3$, proven in [Davis2026]: the asymptotic holds for
-$t / n^3 \to \infty$, and a non-vanishing correction survives at $t = \Theta n^3$, so the
-asymptotics change at the cubic scale. Canfield [Can2011] had $4$. -/
+/-- Upper bound from [DL2010] (2010). Historical first polynomial-range asymptotic-counting bound:
+the de Launey–Levin argument yields $N_{n,4t} \sim A_{n,4t}$ when $t/n^{12} \to \infty$, although
+that exponent is not isolated as a standalone theorem in the 2010 paper itself.
+[Davis2026-prior-exponents] -/
 @[category research solved, AMS 5 15]
-theorem c23c_upper_bound : C23c ≤ 3 := by
+theorem c23c_upper_bound_dl2010 : C23c ≤ 12 := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 5 15]
-theorem mem_Ico_c23c : answer(sorry) ∈ Set.Ico C23c 3 := by
+/-- Upper bound from [Can2011] (2011). Unpublished improvement due to Canfield: $N_{n,4t} \sim
+A_{n,4t}$ when $t/n^4 \to \infty$. [Davis2026-prior-exponents] -/
+@[category research solved, AMS 5 15]
+theorem c23c_upper_bound_can2011 : C23c ≤ 4 := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5 15]
-theorem mem_Ioc_c23c : answer(sorry) ∈ Set.Ioc 1 C23c := by
+/-- Upper bound from [Davis2026] (2026). Current best upper bound: the cubic-regime result proves
+$N_{n,4t} \sim A_{n,4t}$ for $t/n^3 \to \infty$ and shows that a nonvanishing correction survives
+when $t = \Theta n^3$ with large fixed $\Theta$, so the asymptotics change at the cubic scale.
+[Davis2026-change-cubic] [Davis2026-open-below3] -/
+@[category research solved, AMS 5 15]
+theorem c23c_upper_bound_davis2026 : C23c ≤ 3 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5 15]
-theorem c23c_eq : C23c = answer(sorry) := by
+theorem c23c_eq : answer(sorry) = C23c := by
   sorry
 
 end Constant23c

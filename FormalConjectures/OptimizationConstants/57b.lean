@@ -28,6 +28,10 @@ hallucinations.
   (1943), 387–390.
 - [Ya1995] Yanagihara, H. "On the locally univalent Bloch constant." Journal d'Analyse
   Mathématique 65 (1995), 1–17.
+- [Yan1995] Yanagihara, H. "On the locally univalent Bloch constant." Journal d'Analyse Mathématique
+  65 (1995), 1–17. DOI: [10.1007/BF02788763](https://doi.org/10.1007/BF02788763).
+- [Rad1943] Rademacher, Hans. "On the Bloch-Landau constant." American Journal of Mathematics 65
+  (1943), no. 3, 387–390. DOI: [10.2307/2371963](https://doi.org/10.2307/2371963).
 
 The constant is formalised in `FormalConjectures.Wikipedia.Bloch` as `Bloch.landauConstant`.
 -/
@@ -40,34 +44,22 @@ largest disc contained in $f(\mathbb{D})$. -/
 @[optimization_constant "57b"]
 noncomputable def C57b : ℝ := Bloch.landauConstant
 
-/-- The best known lower bound $1/2 + 10^{-335}$, proven by Yanagihara in [Ya1995]. -/
+/-- Lower bound from [Yan1995] (1995). Lower bound attributed to Yanagihara (as summarized in
+[BS2023]). [BS2023-bounds-L] -/
 @[category research solved, AMS 30]
-theorem c57b_lower_bound : 0.5 + 10 ^ (-335 : ℤ) ≤ C57b :=
-  Bloch.landauConstant_lower_bound
-
-/-- The best known upper bound $\frac{\Gamma(1/3) \Gamma(5/6)}{\Gamma(1/6)}$, proven by
-Rademacher in [Ra1943]. -/
-@[category research solved, AMS 30]
-theorem c57b_upper_bound :
-    C57b ≤ Real.Gamma (1 / 3) * Real.Gamma (5 / 6) / Real.Gamma (1 / 6) :=
-  Bloch.landauConstant_upper_bound
-
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 30]
-theorem mem_Ico_c57b :
-    answer(sorry) ∈
-      Set.Ico C57b (Real.Gamma (1 / 3) * Real.Gamma (5 / 6) / Real.Gamma (1 / 6)) := by
+theorem c57b_lower_bound_yan1995 : 1 / 2 + 10 ^ (-335 : ℤ) ≤ C57b := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 30]
-theorem mem_Ioc_c57b : answer(sorry) ∈ Set.Ioc (0.5 + 10 ^ (-335 : ℤ)) C57b := by
+/-- Upper bound from [Rad1943] (1943). Upper bound attributed to Rademacher (as summarized in
+[BS2023]). [BS2023-bounds-L] -/
+@[category research solved, AMS 30]
+theorem c57b_upper_bound_rad1943 :
+    C57b ≤ (Real.Gamma (1 / 3) * Real.Gamma (5 / 6)) / Real.Gamma (1 / 6) := by
   sorry
 
-/-- What is the exact value of the constant? Rademacher believed that his upper bound is
-sharp. -/
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 30]
-theorem c57b_eq : C57b = answer(sorry) := by
+theorem c57b_eq : answer(sorry) = C57b := by
   sorry
 
 end Constant57b

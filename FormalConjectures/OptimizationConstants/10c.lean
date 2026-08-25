@@ -29,6 +29,12 @@ hallucinations.
 - [Bel2013] Bellare, ... Re-optimisation of Spencer's method, 2013.
 - [PV2022] Pham, H. T.; Vondrák, J. "Discrepancy minimization via regularization." 2022.
 - [L2026] A $17 \times 17$ sign matrix with exact discrepancy $7$, 2026.
+- [Band2024] Bandeira, A. S. ["Did just a couple of deviations suffice all
+  along?"](https://randomstrasse101.math.ethz.ch/posts/HowManyDeviations/) (problems 10–14).
+  Randomstrasse 101 blog post (Dec 19, 2024).
+- [G2026] Griego, Sebastian. 6 by 6 sign-matrix certificate for C10c, submitted to this repository
+  (2026).
+- [X2026] Xie, Chuhan. 9 by 9 sign-matrix certificate for C10c, submitted to this repository (2026).
 
 Spencer's theorem itself is formalised in
 `FormalConjectures.Wikipedia.SixStandardDeviations`.
@@ -50,32 +56,57 @@ noncomputable def C10c : ℝ :=
   sInf {K : ℝ | ∀ (n : ℕ) (A : Matrix (Fin n) (Fin n) ℝ), (∀ i j, |A i j| ≤ 1) →
     disc A ≤ K * Real.sqrt n}
 
-/-- The best known lower bound $7/\sqrt{17}$, given by a $17 \times 17$ sign matrix of exact
-discrepancy $7$ [L2026]. -/
+/-- Trivial lower bound. $A=[1]$. Also achieved by Hadamard matrices [Band2024]. -/
 @[category research solved, AMS 5 11]
-theorem c10c_lower_bound : 7 / Real.sqrt 17 ≤ C10c := by
+theorem c10c_lower_bound_trivial : 1 ≤ C10c := by
   sorry
 
-/-- The best known upper bound $3\sqrt{3/2} \approx 3.674235$, proven by Pham-Vondrák
-in [PV2022]. Spencer's original "six standard deviations suffice" theorem [Spe1985] gives
-$5.32$. -/
+/-- Lower bound from [Band2024] (2024). The 2 by 2 sign matrix with rows $(1,1)$ and $(1,-1)$. -/
 @[category research solved, AMS 5 11]
-theorem c10c_upper_bound : C10c ≤ 3 * Real.sqrt (3 / 2) := by
+theorem c10c_lower_bound_band2024 : Real.sqrt 2 ≤ C10c := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ico_c10c : answer(sorry) ∈ Set.Ico C10c (3 * Real.sqrt (3 / 2)) := by
+/-- Lower bound from [G2026] (2026). A 6 by 6 sign matrix with exact discrepancy $4$. -/
+@[category research solved, AMS 5 11]
+theorem c10c_lower_bound_g2026 : 4 / Real.sqrt 6 ≤ C10c := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 5 11]
-theorem mem_Ioc_c10c : answer(sorry) ∈ Set.Ioc (7 / Real.sqrt 17) C10c := by
+/-- Lower bound from [X2026] (2026). A 9 by 9 sign matrix with exact discrepancy $5$. -/
+@[category research solved, AMS 5 11]
+theorem c10c_lower_bound_x2026 : 5 / 3 ≤ C10c := by
+  sorry
+
+/-- Lower bound from [L2026] (2026). A 17 by 17 sign matrix with exact discrepancy $7$ ($16$
+distinct rows, one repeated to square it). -/
+@[category research solved, AMS 5 11]
+theorem c10c_lower_bound_l2026 : 7 / Real.sqrt 17 ≤ C10c := by
+  sorry
+
+/-- Upper bound from [Spe1985] (1985). Usually reported as $6$. The celebrated “six standard
+deviations suffice” theorem of Spencer; also applies to rectangular matrices or set systems. -/
+@[category research solved, AMS 5 11]
+theorem c10c_upper_bound_spe1985 : C10c ≤ 5.32 := by
+  sorry
+
+/-- Upper bound from [Bel2013] (2013). Re-optimizes Spencer’s method. -/
+@[category research solved, AMS 5 11]
+theorem c10c_upper_bound_bel2013_1 : C10c ≤ 5.199 := by
+  sorry
+
+/-- Upper bound from Schmidt [Bel2013] (2013). Some of the computations are given only as a personal
+communication. -/
+@[category research solved, AMS 5 11]
+theorem c10c_upper_bound_bel2013_2 : C10c ≤ 3.65 := by
+  sorry
+
+/-- Upper bound from [PV2022] (2022). Also gives an algorithmic version. -/
+@[category research solved, AMS 5 11]
+theorem c10c_upper_bound_pv2022 : C10c ≤ 3 * Real.sqrt (3 / 2) := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 5 11]
-theorem c10c_eq : C10c = answer(sorry) := by
+theorem c10c_eq : answer(sorry) = C10c := by
   sorry
 
 end Constant10c

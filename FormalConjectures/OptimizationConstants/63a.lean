@@ -46,29 +46,25 @@ the infimal $a \ge 0$ with $\Delta(x) = O(x^{a + \varepsilon})$ for every $\vare
 noncomputable def C63a : ℝ :=
   sInf {a : ℝ | 0 ≤ a ∧ ∀ ε > 0, Δ =O[atTop] fun x : ℝ => x ^ (a + ε)}
 
-/-- The lower bound $1/4$, which follows from Hardy's omega result [Tsa2010]. -/
+/-- Trivial lower bound. Trivial from the definition $C_{63}\ge 0$. -/
 @[category research solved, AMS 11]
-theorem c63a_lower_bound : 1 / 4 ≤ C63a := by
+theorem c63a_lower_bound_trivial : 0 ≤ C63a := by
   sorry
 
-/-- The best known upper bound $131/416$, proven by Huxley in [Hux2003]. -/
+/-- Lower bound from [Tsa2010] (2010). Omega results imply $\alpha\ge 1/4$. [Tsa2010-omega-1-4] -/
 @[category research solved, AMS 11]
-theorem c63a_upper_bound : C63a ≤ 131 / 416 := by
+theorem c63a_lower_bound_tsa2010 : 1 / 4 ≤ C63a := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 11]
-theorem mem_Ico_c63a : answer(sorry) ∈ Set.Ico C63a (131 / 416) := by
+/-- Upper bound from [Hux2003] (2003). Record exponent (as stated in survey literature).
+[Tsa2010-ub-131-416] -/
+@[category research solved, AMS 11]
+theorem c63a_upper_bound_hux2003 : C63a ≤ 131 / 416 := by
   sorry
 
-/-- How can the lower bound be improved? -/
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 11]
-theorem mem_Ioc_c63a : answer(sorry) ∈ Set.Ioc (1 / 4) C63a := by
-  sorry
-
-/-- What is the exact value of the constant? It is conjectured to be $1/4$ [Tsa2010]. -/
-@[category research open, AMS 11]
-theorem c63a_eq : C63a = answer(sorry) := by
+theorem c63a_eq : answer(sorry) = C63a := by
   sorry
 
 end Constant63a

@@ -45,31 +45,22 @@ noncomputable def irrationalityMeasure (x : ℝ) : ℝ := sSup {p : ℝ | Liouvi
 @[optimization_constant "7b"]
 noncomputable def C7b : ℝ := irrationalityMeasure (Real.Gamma (1 / 4))
 
-/-- The lower bound $2$, which holds for every irrational number by Dirichlet's approximation
-theorem. -/
+/-- Lower bound from Trivial (Dirichlet). Every irrational number has irrationality exponent at
+least $2$. -/
 @[category research solved, AMS 11]
-theorem c7b_lower_bound : 2 ≤ C7b := by
+theorem c7b_lower_bound_trivial : 2 ≤ C7b := by
   sorry
 
-/-- The best known upper bound $10^{143}$, proven by Bruiltet in [Bru2002]. -/
+/-- Upper bound from [Bru2002] (2002). Bruiltet proves an explicit inequality of the form $h(p/q)\ge
+10^{75}\Rightarrow \lvert \Gamma(1/4)-p/q\rvert > (1/(qe))^{10^{143}}$, which implies
+$\mu(\Gamma(1/4))\le 10^{143}$. [Bru2002-cor-gamma14] -/
 @[category research solved, AMS 11]
-theorem c7b_upper_bound : C7b ≤ 10 ^ (143 : ℕ) := by
+theorem c7b_upper_bound_bru2002 : C7b ≤ 10 ^ 143 := by
   sorry
 
-/-- How can the upper bound be improved? -/
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 11]
-theorem mem_Ico_c7b : answer(sorry) ∈ Set.Ico C7b (10 ^ (143 : ℕ)) := by
-  sorry
-
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 11]
-theorem mem_Ioc_c7b : answer(sorry) ∈ Set.Ioc 2 C7b := by
-  sorry
-
-/-- What is the exact value of the constant? The gap between the proven bounds $2$ and
-$10^{143}$ reflects how weak the current methods are for special constants. -/
-@[category research open, AMS 11]
-theorem c7b_eq : C7b = answer(sorry) := by
+theorem c7b_eq : answer(sorry) = C7b := by
   sorry
 
 end Constant7b

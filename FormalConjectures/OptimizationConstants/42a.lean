@@ -30,6 +30,13 @@ hallucinations.
   Math. Hungar. 65 (1994), 209–216.
 - [Bir00] Biró, A. "An upper estimate in Turán's pure power sum problem." Acta Math. Hungar. 86
   (2000), 231–238.
+- [Atk69] Atkinson, F. V. "Some further estimates concerning sums of powers of complex numbers."
+  Acta Math. Acad. Sci. Hungar. 20 (1969), 193-210.
+- [Bir00b] Biró, A. "An improved estimate in a power sum problem of Tur\'{a}n." Indag. Math. (N.S.)
+  11 (2000), no. 3, 343-358.
+- [Gri26] Griego, S. "An improved asymptotic certificate for Turan's pure power sum constant
+  $C_{42}$." GitHub repository, version `v1.0.0`, commit `c8ddce14d9a5e898406d5dc6b8d08bb8a39507c7`
+  (2026). https://github.com/sebastian-griego/turan-c42-certificate/tree/v1.0.0
 
 The power sums are formalised in `FormalConjectures.ErdosProblems.«519»` as `Erdos519.powerSum`.
 -/
@@ -50,30 +57,58 @@ $z_1, \ldots, z_n \in \mathbb{C}$ of $\max_{1 \le k \le n} \left| \sum_i z_i^k \
 @[optimization_constant "42a"]
 noncomputable def C42a : ℝ := limsup R atTop
 
-/-- The best known lower bound $1/2$, proven by Biró in [Bir94]. Biró later showed in [Bir00]
-that the constant is strictly larger than $1/2$, without computing an explicit value. -/
+/-- Lower bound from Atkinson [Atk61] (1961). -/
 @[category research solved, AMS 11 30]
-theorem c42a_lower_bound : 1 / 2 ≤ C42a := by
+theorem c42a_lower_bound_atk61 : 1 / 6 ≤ C42a := by
   sorry
 
-/-- The best known upper bound $0.69368$, due to Harcos and reported in [Bir00]. -/
+/-- Lower bound from Atkinson. Mentioned in [Atk69] in a (presumably unpublished) technical report.
+-/
 @[category research solved, AMS 11 30]
-theorem c42a_upper_bound : C42a ≤ 0.69368 := by
+theorem c42a_lower_bound_atkinson : 1 / 3 ≤ C42a := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 11 30]
-theorem mem_Ico_c42a : answer(sorry) ∈ Set.Ico C42a 0.69368 := by
+/-- Lower bound from Atkinson [Atk69] (1969). -/
+@[category research solved, AMS 11 30]
+theorem c42a_lower_bound_atk69 : Real.pi / 8 ≤ C42a := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 11 30]
-theorem mem_Ioc_c42a : answer(sorry) ∈ Set.Ioc (1 / 2) C42a := by
+/-- Lower bound from Biró [Bir94] (2000). -/
+@[category research solved, AMS 11 30]
+theorem c42a_lower_bound_bir94 : 1 / 2 ≤ C42a := by
+  sorry
+
+/-- Lower bound from Biró [Bir00b] (2000). Biró's proof delivers some computable constant
+$1/2<c<1/\sqrt{2}$, but it is not computed there exactly which. -/
+@[category research solved, AMS 11 30]
+theorem c42a_lower_bound_bir00b : 1 / 2 < C42a := by
+  sorry
+
+/-- Trivial upper bound. -/
+@[category research solved, AMS 11 30]
+theorem c42a_upper_bound_trivial : C42a ≤ 1 := by
+  sorry
+
+/-- Upper bound from Biró [Bir00] (2000). -/
+@[category research solved, AMS 11 30]
+theorem c42a_upper_bound_bir00_1 : C42a ≤ 5 / 6 := by
+  sorry
+
+/-- Upper bound from Harcos [Bir00] (2000). -/
+@[category research solved, AMS 11 30]
+theorem c42a_upper_bound_bir00_2 : C42a ≤ 0.69368 := by
+  sorry
+
+/-- Upper bound from Griego [Gri26] (2026). Proposed asymptotic two-block certificate with exact
+rational interval verification of the limiting inequality. No explicit finite threshold $N$ is
+supplied. -/
+@[category research solved, AMS 11 30]
+theorem c42a_upper_bound_gri26 : C42a ≤ 0.6906538 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 11 30]
-theorem c42a_eq : C42a = answer(sorry) := by
+theorem c42a_eq : answer(sorry) = C42a := by
   sorry
 
 end Constant42a

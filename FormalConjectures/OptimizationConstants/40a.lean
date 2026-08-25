@@ -44,35 +44,29 @@ noncomputable def C40a : ℝ :=
   sInf {LehmerMahlerMeasureProblem.mahlerMeasureZ f |
     (f : ℤ[X]) (_ : 1 < LehmerMahlerMeasureProblem.mahlerMeasureZ f)}
 
-/-- The trivial lower bound $1$, which follows from Kronecker's theorem. -/
+/-- Lower bound from Trivial (Kronecker). For $f\in\mathbb{Z}[x]$, one has $M(f)\ge 1$, with
+$M(f)=1$ precisely in the cyclotomic/monomial case; hence $L\ge 1$. [BDM2007-kronecker] -/
 @[category research solved, AMS 11 12]
-theorem c40a_lower_bound : 1 ≤ C40a := by
+theorem c40a_lower_bound_trivial : 1 ≤ C40a := by
   sorry
 
-/-- The best known upper bound $1.176280\ldots$, the Mahler measure of Lehmer's polynomial
-$x^{10} + x^9 - x^7 - x^6 - x^5 - x^4 - x^3 + x + 1$ [Leh1933], [BDM2007]. -/
+/-- Upper bound from [BDM2007] [Leh1933] (2007, 1933). Lehmer’s example polynomial
+$\ell(x)=x^{10}+x^9-x^7-x^6-x^5-x^4-x^3+x+1$ has Mahler measure $M(\ell)=1.176280\ldots$, giving
+$L\le 1.176280\ldots$. [BDM2007-lehmer-poly] -/
 @[category research solved, AMS 11 12]
-theorem c40a_upper_bound :
-    C40a ≤ LehmerMahlerMeasureProblem.mahlerMeasureZ
-      LehmerMahlerMeasureProblem.lehmerPolynomial := by
+theorem c40a_upper_bound_bdm2007_leh1933_1 : C40a ≤ 1.176280 := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 11 12]
-theorem mem_Ico_c40a :
-    answer(sorry) ∈ Set.Ico C40a (LehmerMahlerMeasureProblem.mahlerMeasureZ
-      LehmerMahlerMeasureProblem.lehmerPolynomial) := by
+/-- Upper bound from [BDM2007] [Leh1933] (2007, 1933). The value $1.176280\ldots$ (the Mahler
+measure of $\ell$) “remains the smallest known measure $>1$ for an integer polynomial,” i.e. it is
+the best currently known explicit upper bound for $L$. [BDM2007-smallest-known] -/
+@[category research solved, AMS 11 12]
+theorem c40a_upper_bound_bdm2007_leh1933_2 : C40a ≤ 1.176280 := by
   sorry
 
-/-- How can the lower bound be improved? -/
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 11 12]
-theorem mem_Ioc_c40a : answer(sorry) ∈ Set.Ioc 1 C40a := by
-  sorry
-
-/-- What is the exact value of the constant? **Lehmer's conjecture** is that it equals the
-Mahler measure of Lehmer's polynomial; in particular that it is strictly larger than $1$. -/
-@[category research open, AMS 11 12]
-theorem c40a_eq : C40a = answer(sorry) := by
+theorem c40a_eq : answer(sorry) = C40a := by
   sorry
 
 end Constant40a

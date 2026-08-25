@@ -57,22 +57,44 @@ noncomputable def C11b : ℝ :=
   sInf {β : ℝ | 0 < β ∧ ∀ (n : ℕ) (F : Finset (Finset (Fin n))), #F = 2 ^ (n - 1) →
     (1 / 2 : ℝ) ≤ (1 / 2 ^ n : ℝ) * ∑ S : Finset (Fin n), (h n F S : ℝ) ^ β}
 
-/-- The lower bound $1/2$, proven by Beltran-Ivanisvili-Madrid in [BIM2023]: for every
-$\beta < 1/2$, Hamming ball examples make $\mathbb{E}\,h_A(x)^\beta$ arbitrarily small. -/
+/-- Lower bound from [BIM2023] (2023). For every $\beta<1/2$, Hamming ball examples give half-size
+sets with $\mathbb{E}h_{A}(x)^\beta$ arbitrarily small as $n\to\infty$ -/
 @[category research solved, AMS 5 52 60]
-theorem c11b_lower_bound : 1 / 2 ≤ C11b := by
+theorem c11b_lower_bound_bim2023 : 0.5 ≤ C11b := by
   sorry
 
-/-- The upper bound $1/2$, proven by Durcik-Ivanisvili-Roos-Xie in [DIRX2026]. The classical
-edge isoperimetric inequality [Har1966] gives $1$; intermediate improvements are due to
-Kahn-Park [KP2020] and Durcik-Ivanisvili-Roos [DIR2024]. -/
+/-- Upper bound from Classical (e.g. [Har1966]) (1966). Follows from the edge isoperimetric
+inequality; equality for a codimension-1 subcube -/
 @[category research solved, AMS 5 52 60]
-theorem c11b_upper_bound : C11b ≤ 1 / 2 := by
+theorem c11b_upper_bound_har1966 : C11b ≤ 1 := by
   sorry
 
-/-- The exact value of the constant is $1/2$, established in [DIRX2026]. -/
+/-- Upper bound from [KP2020] (1909). In particular implies $\mathbb{E}h_{A}^\beta \ge 1/2$ for all
+half-size $A$ -/
 @[category research solved, AMS 5 52 60]
-theorem c11b_eq : C11b = 1 / 2 :=
-  le_antisymm c11b_upper_bound c11b_lower_bound
+theorem c11b_upper_bound_kp2020 : C11b ≤ Real.logb 2 (3 / 2) := by
+  sorry
+
+/-- Upper bound from [BIM2023] (2023). Sharp inequality of the form $\mathbb{E}h_{A}^{0.53}\ge
+2\mu(A)(1-\mu(A))$ for $\mu(A)\ge 1/2$; gives the half-size case -/
+@[category research solved, AMS 5 52 60]
+theorem c11b_upper_bound_bim2023 : C11b ≤ 0.53 := by
+  sorry
+
+/-- Upper bound from [DIR2024] (2024). Current best published; Theorem 1.1 implies the half-size
+case -/
+@[category research solved, AMS 5 52 60]
+theorem c11b_upper_bound_dir2024 : C11b ≤ 0.50057 := by
+  sorry
+
+/-- Upper bound from [DIRX2026] (2026). Solves the problem by establishing $\beta=0.5$. -/
+@[category research solved, AMS 5 52 60]
+theorem c11b_upper_bound_dirx2026 : C11b ≤ 0.5 := by
+  sorry
+
+/-- What is the exact value of the constant? -/
+@[category research open, AMS 5 52 60]
+theorem c11b_eq : answer(sorry) = C11b := by
+  sorry
 
 end Constant11b

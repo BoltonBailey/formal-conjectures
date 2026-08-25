@@ -44,32 +44,28 @@ rank-$3$ groups $C_n^3$. -/
 noncomputable def C53a : ℝ :=
   ⨆ n : ℕ, ((davenport (Fin 3 → ZMod (n + 2)) : ℝ) - 1) / (n + 1)
 
-/-- The lower bound $3$, which follows from $D(C_n^3) \ge 3(n - 1) + 1$ [GG2006]. -/
+/-- Lower bound from [GG2006] (2006). Using $d(C_n^3)\ge d^\*(C_n^3)=3(n-1)$ and $D(G)=1+d(G)$ gives
+$D(C_n^3)\ge 3(n-1)+1$, hence $C_{53}\ge 3$. [GG2006-d-ge-dstar] [GG2006-D-equals-1-plus-d]
+[GG2006-def-dstar] -/
 @[category research solved, AMS 11 20]
-theorem c53a_lower_bound : 3 ≤ C53a := by
+theorem c53a_lower_bound_gg2006 : 3 ≤ C53a := by
   sorry
 
-/-- The best known upper bound $4$, which follows from the pointwise estimate
-$D(C_n^3) \le 4n - P(n) - 2$ [Grinsztajn2026], where $P(n)$ is the largest prime power dividing
-$n$. The bound $20369$ was previously the best available [Zak2019]. -/
+/-- Upper bound from [Grinsztajn2026] (2026). From the pointwise estimate $D(C_n^3)\le 4n-P(n)-2$,
+where $P(n)=\max_{p^a\parallel n}p^a$. Since $P(n)\ge2$, this gives $C_{53}\le4$. -/
 @[category research solved, AMS 11 20]
-theorem c53a_upper_bound : C53a ≤ 4 := by
+theorem c53a_upper_bound_grinsztajn2026 : C53a ≤ 4 := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 11 20]
-theorem mem_Ico_c53a : answer(sorry) ∈ Set.Ico C53a 4 := by
+/-- Upper bound from [Zak2019] (1910). From Corollary 3.11: $D(C_n^3)\le 20369(n-1)+1$ for all $n\ge
+2$, hence $C_{53}\le 20369$. [Zak2019-cor3.11] -/
+@[category research solved, AMS 11 20]
+theorem c53a_upper_bound_zak2019 : C53a ≤ 20369 := by
   sorry
 
-/-- How can the lower bound be improved? -/
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 11 20]
-theorem mem_Ioc_c53a : answer(sorry) ∈ Set.Ioc 3 C53a := by
-  sorry
-
-/-- What is the exact value of the constant? It is conjectured that
-$D(C_n^3) = 3(n - 1) + 1$ for every $n$ [GG2006], which would give the value $3$. -/
-@[category research open, AMS 11 20]
-theorem c53a_eq : C53a = answer(sorry) := by
+theorem c53a_eq : answer(sorry) = C53a := by
   sorry
 
 end Constant53a

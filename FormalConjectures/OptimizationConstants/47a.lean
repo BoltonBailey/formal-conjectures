@@ -30,6 +30,8 @@ hallucinations.
 - [Ald2011] Aldaz, J. M. "The weak type (1,1) bounds for the maximal function associated to
   cubes grow to infinity with the dimension." Annals of Mathematics 173 (2011), 1013–1023.
 - [Tao2010] Tao, T. Lecture notes on the Vitali covering argument, 2010.
+- [Tao2006] Tao, Terence. "247A Notes 3: Maximal theorem of Hardy-Littlewood." Lecture notes (Fall
+  2006). [Author PDF](https://www.math.ucla.edu/~tao/247a.1.06f/notes3.pdf)
 -/
 
 open MeasureTheory
@@ -54,36 +56,37 @@ noncomputable def C47a : ℝ :=
   sInf {c : ℝ | ∀ f : (Fin 2 → ℝ) → ℝ, Integrable f → ∀ α > (0 : ℝ),
     α * (volume {x | α ≤ maximalFn f x}).toReal ≤ c * ∫ y, |f y|}
 
-/-- The best known lower bound $\frac34 - \frac{\sqrt 2}{4} + \frac{\sqrt 6}{2} \approx
-1.6211915$, from Aldaz's construction [Ald2000]. Melas [Mel2003] determined the one-dimensional
-constant $\frac{11 + \sqrt{61}}{12}$, which is also a lower bound by monotonicity in the
-dimension. -/
+/-- Lower bound from [Ald2000] (2000). Aldaz's Proposition 1.4 gives a lower bound in every
+dimension $n\ge 2$. Specializing the formula to $n=2$ gives the displayed value. [Ald2000-prop1.4]
+-/
 @[category research solved, AMS 42]
-theorem c47a_lower_bound :
-    3 / 4 - Real.sqrt 2 / 4 + Real.sqrt 6 / 2 ≤ C47a := by
+theorem c47a_lower_bound_ald2000 : 3 / 4 - Real.sqrt 2 / 4 + Real.sqrt 6 / 2 ≤ C47a := by
   sorry
 
-/-- The best known upper bound $4 = 2^2$, from the sharpened Vitali covering argument
-[Tao2010]. The standard covering lemma gives $3^2 = 9$. -/
+/-- Lower bound from [Mel2003], [Ald2011] (2003, 2011). Melas proved $c_1=\dfrac{11+\sqrt{61}}{12}$.
+Since $c_{d+1}\ge c_d$, we get $c_2\ge c_1$. [Mel2003-c1-formula] [Ald2011-monotone] -/
 @[category research solved, AMS 42]
-theorem c47a_upper_bound : C47a ≤ 4 := by
+theorem c47a_lower_bound_mel2003_ald2011 : (11 + Real.sqrt 61) / 12 ≤ C47a := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 42]
-theorem mem_Ico_c47a : answer(sorry) ∈ Set.Ico C47a 4 := by
+/-- Upper bound from [Tao2010] (2010). The Vitali-covering proof can be sharpened from $3^d$ to
+$2^d$ by covering centers with $(2+\varepsilon)$-dilates of a disjoint subcollection and letting
+$\varepsilon\downarrow 0$. The same argument applies to $\ell_\infty$ balls, i.e. axis-parallel
+cubes; hence $c_2\le 2^2=4$. [Tao2010-ex42] -/
+@[category research solved, AMS 42]
+theorem c47a_upper_bound_tao2010 : C47a ≤ 4 := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 42]
-theorem mem_Ioc_c47a :
-    answer(sorry) ∈ Set.Ioc (3 / 4 - Real.sqrt 2 / 4 + Real.sqrt 6 / 2) C47a := by
+/-- Upper bound from [Tao2006] (2006). The standard covering-lemma proof gives an explicit constant
+$3^d$ in the weak-type $(1,1)$ inequality, and the same argument applies to cubes; hence $c_2\le
+3^2=9$. [Tao2006-weak-3d] [Tao2006-cubes] -/
+@[category research solved, AMS 42]
+theorem c47a_upper_bound_tao2006 : C47a ≤ 9 := by
   sorry
 
-/-- What is the exact value of the constant? No best constant is known in any dimension greater
-than one [Ald2011]. -/
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 42]
-theorem c47a_eq : C47a = answer(sorry) := by
+theorem c47a_eq : answer(sorry) = C47a := by
   sorry
 
 end Constant47a

@@ -31,6 +31,17 @@ hallucinations.
   is strictly smaller than Krivine's bound." Forum of Mathematics Pi 1 (2013), e4.
 - [SLXCKKM26] Lower bound $6\pi/11$, 2026.
 - [LSXCKKM26] Upper bound improving Krivine's bound by $6.039 \times 10^{-5}$, 2026.
+- [Dav1984] Davie, A. M. "Lower bound for $K_{G}$." Unpublished note (1984).
+- [Ree1991] Reeds, James A. "A new lower bound on the real Grothendieck constant." Unpublished
+  manuscript (1991).
+- [Hei26] Heilman, Steven. "A lower bound for Grothendieck's constant." (2026)
+  [arXiv:2603.22616](https://arxiv.org/abs/2603.22616)
+- [JM26] Jones, Chris; Malavolta, Giulio. "The Grothendieck constant is strictly larger than
+  Davie-Reeds' bound." (2026) [arXiv:2603.30039](https://arxiv.org/abs/2603.30039)
+- [R1974] Rietz, Ronald E. "A proof of the Grothendieck inequality." Israel J. Math. 19 (1974),
+  271–276.
+- [Hei26b] Heilman, Steven. "An Upper Bound on Grothendieck's constant." (2026)
+  [arXiv:2606.00247](https://arxiv.org/abs/2606.00247)
 -/
 
 open RealInnerProductSpace
@@ -55,33 +66,85 @@ noncomputable def C10a : ℝ :=
     (∀ i, ‖u i‖ = 1) → (∀ j, ‖v j‖ = 1) →
       ∑ i, ∑ j, A i j * ⟪u i, v j⟫ ≤ C * signValue A}
 
-/-- The best known lower bound $6\pi/11 \approx 1.71360$ [SLXCKKM26]. Grothendieck's original
-lower bound is $\pi/2$ [G1953]. -/
+/-- Trivial lower bound. Follows from the definitions -/
 @[category research solved, AMS 46 47]
-theorem c10a_lower_bound : 6 * Real.pi / 11 ≤ C10a := by
+theorem c10a_lower_bound_trivial : 1 ≤ C10a := by
   sorry
 
-/-- The best known explicit upper bound is Krivine's bound
-$\frac{\pi}{2 \log(1 + \sqrt{2})} \approx 1.782214$ [K1979]. It is known to be non-sharp
-[BMMN2011], and has been improved by $6.039 \times 10^{-5}$ in [LSXCKKM26]. -/
+/-- Lower bound from [G1953] (1953). Grothendieck’s original lower bound -/
 @[category research solved, AMS 46 47]
-theorem c10a_upper_bound : C10a ≤ Real.pi / (2 * Real.log (1 + Real.sqrt 2)) := by
+theorem c10a_lower_bound_g1953 : Real.pi / 2 ≤ C10a := by
   sorry
 
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 46 47]
-theorem mem_Ico_c10a :
-    answer(sorry) ∈ Set.Ico C10a (Real.pi / (2 * Real.log (1 + Real.sqrt 2))) := by
+/-- Lower bound from [Dav1984], [Ree1991] (1984, 1991). Here $K_{DR} = 1.676956\ldots$ is the
+Davie-Reeds constant, stated with the truncation $1.67695$. Davie–Reeds lower bound -/
+@[category research solved, AMS 46 47]
+theorem c10a_lower_bound_dav1984_ree1991 : 1.67695 ≤ C10a := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 46 47]
-theorem mem_Ioc_c10a : answer(sorry) ∈ Set.Ioc (6 * Real.pi / 11) C10a := by
+/-- Lower bound from [Hei26] (2026). Here $K_{DR} = 1.676956\ldots$ is the Davie-Reeds constant,
+stated with the truncation $1.67695$. Concurrent 2026 improvement over the Davie–Reeds bound -/
+@[category research solved, AMS 46 47]
+theorem c10a_lower_bound_hei26 : 1.67695 + 10 ^ (-26 : ℤ) ≤ C10a := by
+  sorry
+
+/-- Lower bound from [JM26] (2026). Here $K_{DR} = 1.676956\ldots$ is the Davie-Reeds constant,
+stated with the truncation $1.67695$. Strict improvement over the Davie–Reeds bound -/
+@[category research solved, AMS 46 47]
+theorem c10a_lower_bound_jm26 : 1.67695 + 10 ^ (-12 : ℤ) ≤ C10a := by
+  sorry
+
+/-- Lower bound from [SLXCKKM26] (2026). Major jump over the Davie–Reeds anchor $\approx 1.67696$;
+proved by establishing asymptotic limitations of Krivine schemes rather than by constructing
+explicit gap instances (as all prior lower bounds did). Together with the upper bound above, this
+determines the tenths digit of $K_G^{\mathbb R}$ to be $7$. -/
+@[category research solved, AMS 46 47]
+theorem c10a_lower_bound_slxckkm26 : (6 * Real.pi) / 11 ≤ C10a := by
+  sorry
+
+/-- Upper bound from [G1953] (1953). Grothendieck’s original upper bound -/
+@[category research solved, AMS 46 47]
+theorem c10a_upper_bound_g1953 : C10a ≤ Real.sinh (Real.pi / 2) := by
+  sorry
+
+/-- Upper bound from [R1974] (1974). Improvement of the original upper bound -/
+@[category research solved, AMS 46 47]
+theorem c10a_upper_bound_r1974 : C10a ≤ 2.261 := by
+  sorry
+
+/-- Upper bound from [K1979] (1979). Krivine’s bound; best known **explicit** numerical upper bound
+-/
+@[category research solved, AMS 46 47]
+theorem c10a_upper_bound_k1979 : C10a ≤ Real.pi / (2 * Real.log (1 + Real.sqrt 2)) := by
+  sorry
+
+/-- Upper bound from [BMMN2011] (2013). Strict improvement over Krivine’s bound -/
+@[category research solved, AMS 46 47]
+theorem c10a_upper_bound_bmmn2011 : C10a < Real.pi / (2 * Real.log (1 + Real.sqrt 2)) := by
+  sorry
+
+/-- Upper bound from [Hei26b] (2026). $10^{-5}$ improvement over Krivine's bound -/
+@[category research solved, AMS 46 47]
+theorem c10a_upper_bound_hei26b :
+    C10a < (Real.pi / (2 * Real.log (1 + Real.sqrt 2))) - 10 ^ (-5 : ℤ) := by
+  sorry
+
+/-- Upper bound from [LSXCKKM26] (2026). $6.039\times 10^{-5}$ improvement over Krivine's bound -/
+@[category research solved, AMS 46 47]
+theorem c10a_upper_bound_lsxckkm26 :
+    C10a < (Real.pi / (2 * Real.log (1 + Real.sqrt 2))) - 6.039 * 10 ^ (-5 : ℤ) := by
+  sorry
+
+/-- Upper bound from [SLXCKKM26] (2026). Same team; via the first *asymptotic* Krivine-type rounding
+scheme (previous works only considered low-dimensional schemes). -/
+@[category research solved, AMS 46 47]
+theorem c10a_upper_bound_slxckkm26 :
+    C10a < (Real.pi / (2 * Real.log (1 + Real.sqrt 2))) - 10 ^ (-4 : ℤ) := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 46 47]
-theorem c10a_eq : C10a = answer(sorry) := by
+theorem c10a_eq : answer(sorry) = C10a := by
   sorry
 
 end Constant10a

@@ -26,6 +26,8 @@ hallucinations.
 - [Tao's optimization constant 57c](https://teorth.github.io/optimizationproblems/constants/57c.html)
 - [Skin2009] Skinner, Brian. "The univalent Bloch constant problem." Complex Variables and
   Elliptic Equations 54 (2009), no. 10, 951–955.
+- [Yan1995] Yanagihara, H. "On the locally univalent Bloch constant." Journal d'Analyse Mathématique
+  65 (1995), 1–17. DOI: [10.1007/BF02788763](https://doi.org/10.1007/BF02788763).
 
 The constant is formalised in `FormalConjectures.Wikipedia.Bloch` as
 `Bloch.univalentBlochConstant`.
@@ -39,29 +41,27 @@ of the largest univalent disc contained in $f(\mathbb{D})$. -/
 @[optimization_constant "57c"]
 noncomputable def C57c : ℝ := Bloch.univalentBlochConstant
 
-/-- The best known lower bound $0.5708858$, proven by Skinner in [Skin2009]. -/
+/-- Lower bound from [Yan1995] (1995). Follows from $L\le B_u$ together with Yanagihara's lower
+bound for $L$ as summarized in [BS2023]. [BS2023-relations] [BS2023-bounds-L] -/
 @[category research solved, AMS 30]
-theorem c57c_lower_bound : 0.5708858 ≤ C57c :=
-  Bloch.univalentBlochConstant_lower_bound
-
-/-- The best known upper bound is the trivial bound $1$, coming from the identity function. -/
-@[category research solved, AMS 30]
-theorem c57c_upper_bound : C57c ≤ 1 :=
-  Bloch.univalentBlochConstant_upper_bound
-
-/-- How can the upper bound be improved? -/
-@[category research open, AMS 30]
-theorem mem_Ico_c57c : answer(sorry) ∈ Set.Ico C57c 1 := by
+theorem c57c_lower_bound_yan1995 : 1 / 2 + 10 ^ (-335 : ℤ) ≤ C57c := by
   sorry
 
-/-- How can the lower bound be improved? -/
-@[category research open, AMS 30]
-theorem mem_Ioc_c57c : answer(sorry) ∈ Set.Ioc 0.5708858 C57c := by
+/-- Lower bound from [Skin2009] (2009). Best recorded lower bound (as summarized in [BS2023]).
+[BS2023-latest-Bu-lb] -/
+@[category research solved, AMS 30]
+theorem c57c_lower_bound_skin2009 : 0.5708858 ≤ C57c := by
+  sorry
+
+/-- Trivial upper bound. The identity function $f(z)=z$ is univalent with $f'(0)=1$ and has $B_f=1$,
+hence $B_u\le 1$. -/
+@[category research solved, AMS 30]
+theorem c57c_upper_bound_trivial : C57c ≤ 1 := by
   sorry
 
 /-- What is the exact value of the constant? -/
 @[category research open, AMS 30]
-theorem c57c_eq : C57c = answer(sorry) := by
+theorem c57c_eq : answer(sorry) = C57c := by
   sorry
 
 end Constant57c

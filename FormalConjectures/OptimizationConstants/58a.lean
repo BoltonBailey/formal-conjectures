@@ -50,33 +50,20 @@ noncomputable def C58a : ℕ∞ :=
   sInf {A : ℕ∞ | ∃ m : ℕ, A = m ∧ ∀ d : ℕ, 0 < d →
     ∃ b : ℕ, 0 < b ∧ b < d ∧ Nat.Coprime b d ∧ PartialQuotientsLE ((b : ℚ) / d) m}
 
-/-- The lower bound $5$: the version with $A = 4$ is false, with explicit counterexamples
-$d = 54$ and $d = 150$ [Kan2021]. -/
+/-- Lower bound from [Kan2021] (2021). The $A=4$ version fails (counterexamples $d=54,150$), so any
+universal bound must satisfy $A_{\mathrm{Zar}}\ge 5$. [Kan2021-A4-counterexamples] -/
 @[category research solved, AMS 11]
-theorem c58a_lower_bound : 5 ≤ C58a := by
+theorem c58a_lower_bound_kan2021 : 5 ≤ C58a := by
   sorry
 
-/-- No finite upper bound is known: the conjecture that some $A$ works for every denominator is
-open. Bourgain-Kontorovich [BK2014] prove a density-one statement with $A = 50$, improved to
-$A = 5$ by Huang [Hua2015], but both are for a density-one set of denominators rather than
-all of them. -/
+/-- Trivial upper bound. Trivial. -/
 @[category research solved, AMS 11]
-theorem c58a_upper_bound : C58a ≤ ⊤ :=
-  le_top
-
-/-- **Zaremba's conjecture**: is the constant finite? -/
-@[category research open, AMS 11]
-theorem c58a_ne_top : C58a ≠ ⊤ := by
+theorem c58a_upper_bound_trivial : C58a ≤ ⊤ := by
   sorry
 
-/-- How can the lower bound be improved? -/
+/-- What is the exact value of the constant? -/
 @[category research open, AMS 11]
-theorem mem_Ioc_c58a : answer(sorry) ∈ Set.Ioc 5 C58a := by
-  sorry
-
-/-- What is the exact value of the constant? Zaremba conjectured that it is $5$ [Zar1972]. -/
-@[category research open, AMS 11]
-theorem c58a_eq : C58a = answer(sorry) := by
+theorem c58a_eq : answer(sorry) = C58a := by
   sorry
 
 end Constant58a
